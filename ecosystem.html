@@ -71,52 +71,7 @@
                 style="margin-bottom: 80px; backdrop-filter: blur(10px);">
                 <canvas id="systemCanvas"></canvas>
                 <div class="diagram-overlay"></div>
-
-                <!-- CONTROL BUTTONS -->
-                <div class="diagram-controls mode-ac" id="power-controls"
-                    style="z-index: 999; position: absolute; bottom: 24px; left: 24px;">
-                    <div class="toggle-indicator"></div>
-                    <button class="control-btn" onclick="setPowerMode('AC')">AC</button>
-                    <button class="control-btn" onclick="setPowerMode('DC')">DC</button>
-                </div>
             </div>
-
-            <!-- ECOSYSTEM MODULES -->
-            <section class="product-block reveal">
-                <h2 class="text-accent ecosystem-modules-header">Ecosystem Modules</h2>
-                <div class="product-capabilities">
-                    <!-- LINKED CARD: PDS -->
-                    <div class="capability-card glow-hover" onclick="window.location.href='product.html?tab=pds'"
-                        style="cursor: pointer; border-color: var(--accent-primary);">
-                        <h3>Eonix Core</h3>
-                        <p>The central hub. 10-24V Input. Aggregates telemetry, enforces global protection, and acts as
-                            the communication gateway.</p>
-                    </div>
-
-                    <!-- LINKED CARD: AC-DC -->
-                    <div class="capability-card glow-hover" onclick="window.location.href='product.html?tab=acdc'"
-                        style="cursor: pointer;">
-                        <h3>Eonix ARC</h3>
-                        <p>Primary Power Stage. Delivers stabilized DC bus voltage to the PDS, featuring active
-                            telemetry and hardware-level fault monitoring.</p>
-                    </div>
-
-                    <!-- LINKED CARD: BMS -->
-                    <div class="capability-card glow-hover" onclick="window.location.href='product.html?tab=bms'"
-                        style="cursor: pointer;">
-                        <h3>Eonix Cell</h3>
-                        <p>Smart energy storage with integrated protection and state-of-charge reporting.</p>
-                    </div>
-
-                    <!-- LINKED CARD: SMART FLOW -->
-                    <div class="capability-card glow-hover" onclick="window.location.href='product.html?tab=flow'"
-                        style="cursor: pointer;">
-                        <h3>Eonix Flow</h3>
-                        <p>Intelligent Source Arbitrator. Actively regulates output and manages instant failover to
-                            secondary sources, ensuring zero-downtime operation.</p>
-                    </div>
-                </div>
-            </section>
 
         </section>
 
