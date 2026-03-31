@@ -1,6 +1,6 @@
 /* =========================
-   EONIX ECOSYSTEM DIAGRAM
-   Strict Hierarchical CAN Bus Architecture
+   EONIX ADVANCED INTERACTIVE DIAGRAM ENGINE
+   Transforms static canvas into a stateful, lerp-driven system visualizer.
    ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,15 +8,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!canvas) return;
     const overlay = document.querySelector(".diagram-overlay");
     const ctx = canvas.getContext("2d");
-    let hoveredNode = null;
+    
     let time = 0;
+    
+    // Smooth interpolators
+    const LERP_RATE = 0.15;
+    
+    // Current rendered values
+    const currentAlphas = {}; 
+    const currentGlows = {};
+    const lineAlphas = {};
 
-    // ── Sizing ────────────────────────────────────────────────
+    function lerp(start, end, amt) {
+        return (1 - amt) * start + amt * end;
+    }
+
+    // ── Layout Constants ──────────────────────────────────────
     function resize() {
         const parent = canvas.parentElement;
         const dpr = window.devicePixelRatio || 1;
-        const displayWidth = Math.max(parent.clientWidth, 1000);
-        const displayHeight = 700;
+        const displayWidth = parent.clientWidth; // Exactly fit container
+        // Limit the height strictly to 75% of the user's screen height so it never leaks off the bottom edge
+        const displayHeight = Math.min(750, window.innerHeight * 0.75);
         canvas.style.width = displayWidth + "px";
         canvas.style.height = displayHeight + "px";
         canvas.width = displayWidth * dpr;
@@ -28,86 +41,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const REF_W = 1200;
     const REF_H = 700;
-    function S() { return canvas.width / REF_W; }
+    function S() { return Math.min(canvas.width / REF_W, canvas.height / REF_H * 1.5); }
     function cx(x) { return x * canvas.width; }
     function cy(y) { return y * canvas.height; }
 
-    // ── Layout Constants ──────────────────────────────────────
-    // All Y values are normalized to REF_H=700
-    const Y_TOP = 0.10;   // Desktop / MCU row
-    const Y_MB = 0.30;   // Motherboard
-    const Y_CAN = 0.50;   // CAN BUS backbone
-    const Y_MODS = 0.72;   // Sensor / Driver stubs land here
-    const Y_PWR = 0.72;   // Power Block (same row, center)
-    const Y_BAT = 0.90;   // Battery
+    const Y_TOP = 0.15, Y_MB = 0.35, Y_CAN = 0.52, Y_MODS = 0.70, Y_PWR = 0.70, Y_BAT = 0.85;
+    const X_TEMP = 0.10, X_IMU = 0.22, X_DIST = 0.34, X_DRV = 0.74, X_MOT = 0.90;
+    const X_MB = 0.50, X_MCU = 0.80, X_PWR = 0.50;
 
-    // Sensor X positions (left third)
-    const X_TEMP = 0.10;
-    const X_IMU = 0.22;
-    const X_DIST = 0.34;
-
-    // Right side
-    const X_DRV = 0.74;
-    const X_MOT = 0.90;
-
-    // Center
-    const X_MB = 0.50;
-    const X_MCU = 0.80;
-    const X_PWR = 0.50;
-
-    // Node definitions — only geometric, no routing here
     const NODES = [
-        // User layer
         { id: "APP", x: X_MB, y: Y_TOP, label: ["Eonix Desktop App", "(User Interface)"], type: "visual-desktop", w: 105 },
         { id: "MCU", x: X_MCU, y: Y_TOP, label: ["User MCU", "(Arduino / Custom)"], type: "box", w: 130, h: 44 },
-
-        // Control layer
         { id: "MB", x: X_MB, y: Y_MB, label: ["EONIX", "MOTHERBOARD"], type: "box-major", w: 170, h: 50 },
-
-        // CAN bus — handled as a drawn line, but also a hit-target
         { id: "CAN", x: X_MB, y: Y_CAN, label: "", type: "can-hit", w: 850, h: 28 },
-
-        // Sensors
         { id: "TEMP", x: X_TEMP, y: Y_MODS, label: ["Temperature", "Sensor"], type: "box", w: 120, h: 44 },
         { id: "IMU", x: X_IMU, y: Y_MODS, label: ["IMU", "Sensor"], type: "box", w: 100, h: 44 },
         { id: "DIST", x: X_DIST, y: Y_MODS, label: ["Distance", "LiDAR"], type: "box", w: 100, h: 44 },
-
-        // Driver
         { id: "DRV", x: X_DRV, y: Y_MODS, label: ["Motor Driver", "Module"], type: "box", w: 120, h: 44 },
-
-        // Power
-        { id: "PWR", x: X_PWR, y: Y_PWR, label: ["EONIX POWER BLOCK", "Programmable CC/CV"], type: "box", w: 170, h: 44 },
+        { id: "PWR", x: X_PWR, y: Y_PWR, label: ["EONIX POWER BLOCK", "Programmable CC/CV"], type: "box-major", w: 170, h: 44 },
         { id: "BAT", x: X_PWR, y: Y_BAT, label: "Battery", type: "box", w: 100, h: 40 },
-
-        // Motor (circle)
         { id: "MOT", x: X_MOT, y: Y_MODS, label: "Motor", type: "visual-motor", w: 52 },
     ];
 
+    // Initialize state objects
+    NODES.forEach(n => { currentAlphas[n.id] = 1.0; currentGlows[n.id] = 0; });
+    ["DATA_MB_APP", "DATA_MB_MCU", "DATA_MB_CAN", "CAN_BUS", "CAN_STUB", "PWR_BAT", "PWR_DRV", "PWR_MOT"].forEach(id => lineAlphas[id] = 1.0);
+
     const TIPS = {
-        APP: "System configuration and monitoring\nAuto-detects connected modules",
-        MCU: "Optional external control interface\nSPI based integration",
-        MB: "Central system controller\nManages communication, modules, and power coordination",
-        CAN: "Deterministic shared communication backbone\nNo address conflicts\nScalable multi-node architecture",
-        TEMP: "Abstracted sensing modules\nStandardized interface\nNo protocol conflicts",
-        IMU: "Abstracted sensing modules\nStandardized interface\nNo protocol conflicts",
-        DIST: "Abstracted sensing modules\nStandardized interface\nNo protocol conflicts",
-        DRV: "High-current driver with hardware protection\nSupports current and torque control",
-        PWR: "Programmable CC/CV power\nHardware protection: OCP / SCP\nReal-time voltage and current telemetry",
-        BAT: "Primary energy source",
-        MOT: "High-current inductive load",
+        MB: "Central controller coordinating all modules and managing system communication.",
+        PWR: "Programmable CC/CV power with hardware-level protection and telemetry.",
+        TEMP: "Abstracted sensing module.",
+        IMU: "Abstracted sensing module.",
+        DIST: "Abstracted sensing module.",
+        DRV: "High-current driver with fault protection.",
+        CAN: "Deterministic multi-node communication backbone.",
+        APP: "User Interface Configuration.",
+        MCU: "External MCU integration over SPI.",
+        BAT: "System Power Source.",
+        MOT: "High-current physical load.",
     };
 
-    // ── Interaction ───────────────────────────────────────────
+    // ── Interaction: Tooltips ONLY (Highlight driven by scroll steps mostly) ──────
+    let localHoverNode = null;
     canvas.addEventListener("mousemove", e => {
         const rect = canvas.getBoundingClientRect();
         const dpr = window.devicePixelRatio || 1;
-        const mx = (e.clientX - rect.left) * dpr;
-        const my = (e.clientY - rect.top) * dpr;
+        
+        // Transform-safe mapping (accounts for CSS scaling)
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const mx = (e.clientX - rect.left) * scaleX;
+        const my = (e.clientY - rect.top) * scaleY;
+        
         const s = S();
         let found = null;
         for (const nd of NODES) {
             if (nd.type === "visual-motor" || nd.type === "can-hit") {
-                // special hit for CAN line
                 if (nd.type === "can-hit") {
                     const bx = cx(nd.x) - (nd.w * s) / 2;
                     const bw = nd.w * s;
@@ -115,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     const bh = nd.h * s;
                     if (mx >= bx && mx <= bx + bw && my >= by && my <= by + bh) { found = nd; break; }
                 }
-                // motor hit circle
                 if (nd.type === "visual-motor") {
                     const r = (nd.w / 2) * s;
                     if (Math.hypot(mx - cx(nd.x), my - cy(nd.y)) < r + 5) { found = nd; break; }
@@ -128,85 +116,153 @@ document.addEventListener("DOMContentLoaded", () => {
                 found = nd; break;
             }
         }
-        if (found !== hoveredNode) { hoveredNode = found; renderTooltip(); }
+        if (found !== localHoverNode) { localHoverNode = found; renderTooltip(); }
         canvas.style.cursor = (found && TIPS[found.id]) ? "pointer" : "default";
     });
-    canvas.addEventListener("mouseleave", () => { hoveredNode = null; renderTooltip(); });
+    canvas.addEventListener("mouseleave", () => { localHoverNode = null; renderTooltip(); });
 
     function renderTooltip() {
         overlay.innerHTML = "";
-        if (!hoveredNode || !TIPS[hoveredNode.id]) return;
+        if (!localHoverNode || !TIPS[localHoverNode.id]) return;
         const tip = document.createElement("div");
         tip.className = "diagram-tooltip";
-        tip.innerHTML = TIPS[hoveredNode.id].replace(/\n/g, "<br>");
+        tip.innerHTML = TIPS[localHoverNode.id];
         const dpr = window.devicePixelRatio || 1;
         const s = S();
-        const px = cx(hoveredNode.x) / dpr;
-        const py = cy(hoveredNode.y) / dpr;
-        const nw = ((hoveredNode.w || 120) * s) / dpr;
+        const px = cx(localHoverNode.x) / dpr;
+        const py = cy(localHoverNode.y) / dpr;
+        const nw = ((localHoverNode.w || 120) * s) / dpr;
         const cw = canvas.width / dpr;
         Object.assign(tip.style, {
-            position: "absolute", padding: "10px 14px", borderRadius: "6px",
-            fontSize: "0.82rem", lineHeight: "1.6", whiteSpace: "nowrap",
-            backgroundColor: "#080a0c", border: "1px solid rgba(0,164,255,.4)",
-            color: "#00a4ff", pointerEvents: "none", zIndex: "200",
-            boxShadow: "0 4px 16px rgba(0,0,0,.6)"
+            position: "absolute", padding: "12px 16px", borderRadius: "8px",
+            fontSize: "0.9rem", lineHeight: "1.6", whiteSpace: "nowrap",
+            backgroundColor: "#080a0c", border: "1px solid rgba(0,229,255,.4)",
+            color: "#00e5ff", pointerEvents: "none", zIndex: "200",
+            boxShadow: "0 4px 20px rgba(0,229,255,.15)"
         });
-        if (px > cw * 0.55) {
-            tip.style.right = (cw - px + nw / 2 + 10) + "px";
-        } else {
-            tip.style.left = (px + nw / 2 + 10) + "px";
-        }
+        if (px > cw * 0.55) { tip.style.right = (cw - px + nw / 2 + 10) + "px"; } 
+        else { tip.style.left = (px + nw / 2 + 10) + "px"; }
         tip.style.top = (py - 24) + "px";
         overlay.appendChild(tip);
     }
 
-    // ── Drawing helpers ───────────────────────────────────────
-    function drawBox(x, y, w, h, isHover, isMajor) {
-        const s = S();
-        const r = 7 * s;
-        const bx = x - w / 2, by = y - h / 2;
-        ctx.beginPath();
-        ctx.roundRect(bx, by, w, h, r);
-        ctx.fillStyle = isMajor ? "#101520" : "#0a0c0e";
-        ctx.fill();
-        ctx.strokeStyle = isHover ? "#00a4ff"
-            : isMajor ? "rgba(0,164,255,0.45)"
-                : "rgba(255,255,255,0.18)";
-        ctx.lineWidth = (isMajor ? 1.5 : 1) * s;
-        if (isHover || isMajor) { ctx.shadowColor = "#00a4ff"; ctx.shadowBlur = isMajor ? 14 * s : 10 * s; }
-        ctx.stroke();
-        ctx.shadowBlur = 0;
+    // ── STATE ENGINE: Calculate Targets Based on Step ────────────────────────
+    function getTargetStates() {
+        const step = window.activeDiagramStep || 0;
+        const forced = window.forceHoverNodeId || (localHoverNode ? localHoverNode.id : null);
+        
+        let tAlpha = {}; NODES.forEach(n => tAlpha[n.id] = 0.2);
+        let tLine = {}; Object.keys(lineAlphas).forEach(k => tLine[k] = 0.2);
+        let tGlow = {}; NODES.forEach(n => tGlow[n.id] = 0);
+        
+        let activeNodes = [];
+        let activeLines = [];
+        
+        if (forced) {
+            // Unrelated fade heavily, forced brightens
+            activeNodes.push(forced);
+            tGlow[forced] = 20; // Massive glow on manual hover
+            if (forced === "MB") activeLines.push("DATA_MB_APP", "DATA_MB_MCU", "DATA_MB_CAN");
+            if (forced === "CAN") activeLines.push("CAN_BUS", "DATA_MB_CAN", "CAN_STUB");
+            if (forced === "PWR" || forced === "BAT") activeLines.push("PWR_BAT", "PWR_DRV", "PWR_MOT");
+            if (forced === "DRV" || forced === "MOT") activeLines.push("PWR_DRV", "PWR_MOT", "CAN_STUB");
+        } else if (step === 0) {
+            NODES.forEach(n => activeNodes.push(n.id));
+            Object.keys(lineAlphas).forEach(k => activeLines.push(k));
+        } else if (step === 1) { // CONTROL
+            activeNodes.push("MB", "APP", "MCU");
+            activeLines.push("DATA_MB_APP", "DATA_MB_MCU");
+            tGlow["MB"] = 25; // Motherboard glows strongly!
+        } else if (step === 2) { // COMMUNICATION
+            activeNodes.push("CAN", "MB", "TEMP", "IMU", "DIST", "DRV", "PWR");
+            activeLines.push("CAN_BUS", "DATA_MB_CAN", "CAN_STUB");
+            tGlow["CAN"] = 18;
+            tGlow["MB"] = 8;
+        } else if (step === 3) { // POWER
+            activeNodes.push("PWR", "BAT", "DRV", "MOT");
+            activeLines.push("PWR_BAT", "PWR_DRV", "PWR_MOT");
+            tGlow["PWR"] = 25; // Power block glows blue!
+            tGlow["BAT"] = 10;
+        } else if (step === 4) { // EXECUTION
+            activeNodes.push("DRV", "MOT", "TEMP", "IMU", "DIST");
+            activeLines.push("PWR_MOT", "CAN_STUB");
+            tGlow["MOT"] = 15;
+            tGlow["DRV"] = 15;
+            tGlow["TEMP"] = tGlow["IMU"] = tGlow["DIST"] = 5;
+        }
+
+        activeNodes.forEach(id => tAlpha[id] = 1.0);
+        activeLines.forEach(id => tLine[id] = 1.0);
+
+        return { tAlpha, tGlow, tLine, step };
     }
 
-    function drawLabel(x, y, h, lines, isHover, isMajor) {
+    // ── Drawing primitives ───────────────────────────────────────
+    function drawBox(x, y, w, h, ndId, isMajor) {
         const s = S();
+        const r = 8 * s;
+        ctx.globalAlpha = currentAlphas[ndId];
+        const g = currentGlows[ndId] * s;
+        
+        ctx.beginPath();
+        ctx.roundRect(x - w / 2, y - h / 2, w, h, r);
+        ctx.fillStyle = isMajor ? "#101520" : "#0a0c0e";
+        if (g > 5) ctx.fillStyle = isMajor ? "#121d2b" : "#12161a"; // Brighten bg when glowing
+        ctx.fill();
+        
+        ctx.strokeStyle = g > 5 ? "#00e5ff" : isMajor ? "rgba(0,229,255,0.6)" : "rgba(255,255,255,0.18)";
+        ctx.lineWidth = (isMajor || g > 5 ? 2 : 1) * s;
+        
+        if (g > 0) { ctx.shadowColor = "#00e5ff"; ctx.shadowBlur = g; }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1.0;
+    }
+
+    function drawLabel(x, y, lines, ndId, isMajor) {
+        const s = S();
+        ctx.globalAlpha = currentAlphas[ndId];
+        const g = currentGlows[ndId] * s;
+        
         ctx.fillStyle = "#ffffff";
-        ctx.font = `${Math.max(9, (isMajor ? 14 : 12) * s)}px Inter, system-ui`;
+        ctx.font = `${Math.max(9, (isMajor ? 14 : 11) * s)}px Inter, system-ui`;
+        if (g > 10) { ctx.shadowColor = "#00e5ff"; ctx.shadowBlur = 5 * s; }
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
+        
         if (Array.isArray(lines)) {
-            const gap = 11 * s;
+            const gap = 12 * s;
             ctx.fillText(lines[0], x, y - gap * 0.5);
-            ctx.fillStyle = isMajor ? "#7ec8ff" : "#aaaaaa";
-            ctx.font = `${Math.max(8, (isMajor ? 11 : 10) * s)}px Inter, system-ui`;
+            ctx.fillStyle = isMajor ? "#00e5ff" : "#aaaaaa";
+            if (g > 5 && !isMajor) ctx.fillStyle = "#fff";
+            ctx.font = `${Math.max(8, (isMajor ? 11 : 9) * s)}px Inter, system-ui`;
+            ctx.shadowBlur = 0;
             ctx.fillText(lines[1], x, y + gap * 0.9);
         } else {
             ctx.fillText(lines, x, y);
         }
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1.0;
     }
 
-    function drawMotor(x, y, w) {
+    function drawMotor(x, y, w, ndId, step) {
         const s = S();
         const r = w / 2;
+        ctx.globalAlpha = currentAlphas[ndId];
+        const g = currentGlows[ndId] * s;
+        
         ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fillStyle = "#111";
-        ctx.strokeStyle = "rgba(255,255,255,0.25)";
-        ctx.lineWidth = 1.5 * s;
+        ctx.fillStyle = g > 5 ? "#1a2228" : "#111";
+        ctx.strokeStyle = g > 5 ? "#00e5ff" : "rgba(255,255,255,0.25)";
+        ctx.lineWidth = (g > 5 ? 2 : 1.5) * s;
+        if (g > 0) { ctx.shadowColor = "#00e5ff"; ctx.shadowBlur = g; }
         ctx.fill(); ctx.stroke();
-        // Spinning blades
-        ctx.save(); ctx.translate(x, y); ctx.rotate(time * 0.003);
-        ctx.fillStyle = "#ccc";
+        ctx.shadowBlur = 0;
+        
+        // Spinning blades (spin faster if active step is EXECUTION (4))
+        const speed = (step === 4 || g > 5) ? 0.008 : 0.001;
+        ctx.save(); ctx.translate(x, y); ctx.rotate(time * speed);
+        ctx.fillStyle = g > 5 ? "#00e5ff" : "#ccc";
         for (let i = 0; i < 3; i++) {
             ctx.rotate((Math.PI * 2) / 3);
             ctx.beginPath();
@@ -214,266 +270,210 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.fill();
         }
         ctx.restore();
+        
         ctx.beginPath(); ctx.arc(x, y, 5 * s, 0, Math.PI * 2);
         ctx.fillStyle = "#fff"; ctx.fill();
+        
         ctx.fillStyle = "#fff";
         ctx.font = `${Math.max(8, 11 * s)}px Inter, system-ui`;
         ctx.textAlign = "center"; ctx.textBaseline = "top";
         ctx.fillText("Motor", x, y + r + 6 * s);
+        ctx.globalAlpha = 1.0;
     }
 
-    function drawDesktop(x, y, w, label, isHover) {
+    function drawDesktop(x, y, w, label, ndId) {
         const s = S();
-        const mw = w * 1.4, mh = w * 0.9; // Bigger screen so text fits nicely
+        const mw = w * 1.4, mh = w * 0.9;
         const screenTop = y - mh / 2;
-
-        // Screen chassis
+        ctx.globalAlpha = currentAlphas[ndId];
+        const g = currentGlows[ndId] * s;
+        
         ctx.beginPath();
         ctx.roundRect(x - mw / 2, screenTop, mw, mh, 5 * s);
-        ctx.fillStyle = isHover ? "#0d1522" : "#0a0c0e";
-        ctx.strokeStyle = isHover ? "#00a4ff" : "rgba(255,255,255,0.28)";
+        ctx.fillStyle = g > 5 ? "#0d1522" : "#0a0c0e";
+        ctx.strokeStyle = g > 5 ? "#00e5ff" : "rgba(255,255,255,0.28)";
         ctx.lineWidth = 1.5 * s;
-        if (isHover) { ctx.shadowColor = "#00a4ff"; ctx.shadowBlur = 12 * s; }
+        if (g > 0) { ctx.shadowColor = "#00e5ff"; ctx.shadowBlur = g; }
         ctx.fill(); ctx.stroke();
         ctx.shadowBlur = 0;
 
-        // Inner screen area (bezel inset)
         const bInset = 5 * s;
         ctx.beginPath();
         ctx.roundRect(x - mw / 2 + bInset, screenTop + bInset, mw - bInset * 2, mh - bInset * 2, 3 * s);
-        ctx.fillStyle = isHover ? "rgba(0,164,255,0.08)" : "rgba(255,255,255,0.02)";
+        ctx.fillStyle = g > 5 ? "rgba(0,229,255,0.08)" : "rgba(255,255,255,0.02)";
         ctx.fill();
 
-        // Text INSIDE the screen
-        ctx.fillStyle = isHover ? "#7ed4ff" : "#cdd6df";
+        ctx.fillStyle = g > 5 ? "#7ed4ff" : "#cdd6df";
         ctx.font = `500 ${Math.max(9, 11 * s)}px Inter, system-ui`;
         ctx.textAlign = "center"; ctx.textBaseline = "middle";
         ctx.fillText(label[0], x, y - 7 * s);
-        ctx.fillStyle = isHover ? "rgba(0,200,255,0.7)" : "rgba(255,255,255,0.35)";
+        ctx.fillStyle = g > 5 ? "rgba(0,200,255,0.7)" : "rgba(255,255,255,0.35)";
         ctx.font = `400 ${Math.max(7, 9 * s)}px Inter, system-ui`;
         ctx.fillText(label[1], x, y + 9 * s);
 
-        // Neck
         const neckW = mw * 0.12, neckH = 6 * s;
         ctx.fillStyle = "#0a0c0e";
-        ctx.strokeStyle = isHover ? "#00a4ff" : "rgba(255,255,255,0.28)";
+        ctx.strokeStyle = g > 5 ? "#00e5ff" : "rgba(255,255,255,0.28)";
         ctx.lineWidth = 1 * s;
-        ctx.beginPath();
-        ctx.rect(x - neckW / 2, y + mh / 2, neckW, neckH);
-        ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.rect(x - neckW / 2, y + mh / 2, neckW, neckH); ctx.fill(); ctx.stroke();
 
-        // Base
-        ctx.beginPath();
-        ctx.roundRect(x - mw * 0.32, y + mh / 2 + neckH, mw * 0.64, 5 * s, 2 * s);
+        ctx.beginPath(); ctx.roundRect(x - mw * 0.32, y + mh / 2 + neckH, mw * 0.64, 5 * s, 2 * s);
         ctx.fill(); ctx.stroke();
+        ctx.globalAlpha = 1.0;
     }
 
-    // Build the offset control points for one rail.
-    // At corner points, both adjacent segment perpendicular offsets combine correctly
-    // giving a proper miter (outer rail wider curve, inner rail tighter).
     function buildRailPts(pts, dir, gap) {
         const result = [];
         for (let i = 0; i < pts.length; i++) {
             let ox = 0, oy = 0;
-            // Previous segment contribution
             if (i > 0) {
-                const pdx = pts[i][0] - pts[i-1][0];
-                const pdy = pts[i][1] - pts[i-1][1];
-                if (Math.abs(pdx) > Math.abs(pdy)) oy += dir * gap; // horiz → Y
-                else                                ox += dir * gap; // vert  → X
+                const pdx = pts[i][0] - pts[i-1][0]; const pdy = pts[i][1] - pts[i-1][1];
+                if (Math.abs(pdx) > Math.abs(pdy)) oy += dir * gap; else ox += dir * gap;
             }
-            // Next segment contribution
             if (i < pts.length - 1) {
-                const ndx = pts[i+1][0] - pts[i][0];
-                const ndy = pts[i+1][1] - pts[i][1];
-                if (Math.abs(ndx) > Math.abs(ndy)) oy += dir * gap; // horiz → Y
-                else                                ox += dir * gap; // vert  → X
+                const ndx = pts[i+1][0] - pts[i][0]; const ndy = pts[i+1][1] - pts[i][1];
+                if (Math.abs(ndx) > Math.abs(ndy)) oy += dir * gap; else ox += dir * gap;
             }
             result.push([pts[i][0] + ox, pts[i][1] + oy]);
         }
         return result;
     }
 
-    // Draw one rail as a continuous rounded path.
-    function drawRail(pts, color, s, dir, gap) {
-        const rpts = buildRailPts(pts, dir, gap);
-        const cr = 9 * s; // corner rounding radius
+    function drawRail(rawPts, color, s, dir, gap, curAlpha, timeSpeed) {
+        if (rawPts.length < 2) return;
+        const rpts = buildRailPts(rawPts, dir, gap);
+        ctx.globalAlpha = curAlpha;
         ctx.strokeStyle = color;
         ctx.lineWidth   = 1.5 * s;
         ctx.setLineDash([6 * s, 5 * s]);
-        ctx.lineDashOffset = -time * 0.022 * dir;
+        ctx.lineDashOffset = -time * timeSpeed * dir;
+        
         ctx.beginPath();
         ctx.moveTo(rpts[0][0], rpts[0][1]);
-        for (let i = 1; i < rpts.length - 1; i++) {
-            ctx.arcTo(rpts[i][0], rpts[i][1], rpts[i+1][0], rpts[i+1][1], cr);
-        }
-        ctx.lineTo(rpts[rpts.length - 1][0], rpts[rpts.length - 1][1]);
+        for (let i = 1; i < rpts.length; i++) ctx.lineTo(rpts[i][0], rpts[i][1]);
+        
+        if (curAlpha > 0.5) { ctx.shadowColor = color; ctx.shadowBlur = 8 * s * curAlpha; }
         ctx.stroke();
+        ctx.shadowBlur = 0;
         ctx.setLineDash([]);
+        ctx.globalAlpha = 1.0;
     }
 
-    // Two parallel rounded rails flowing in opposite directions.
-    function polyline(pts, color, dashScale, thick) {
+    function polyline(pts, color, dashScale, thick, lineAlphaId, isPower, activeStep) {
         const s = S();
+        const alpha = lineAlphas[lineAlphaId] || 0.2;
+        let timeSpeed = 0.022;
+        if (activeStep === 2 && dashScale) timeSpeed = 0.035; // Comms: fast lines
+        if (activeStep === 3 && isPower) timeSpeed = 0.03;  // Power: pulsing energy
+
         if (dashScale) {
-            const gap = 5 * s; // perpendicular separation from centre
-            drawRail(pts, color, s,  1, gap);
-            drawRail(pts, color, s, -1, gap);
+            const gap = 5 * s;
+            drawRail(pts, color, s,  1, gap, alpha, timeSpeed);
+            drawRail(pts, color, s, -1, gap, alpha, timeSpeed);
         } else {
-            // Solid power line
+            if (pts.length < 2) return;
+            ctx.globalAlpha = alpha;
             ctx.beginPath();
             ctx.moveTo(pts[0][0], pts[0][1]);
             for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
             ctx.strokeStyle = color;
             ctx.lineWidth   = (thick || 3) * s;
-            ctx.setLineDash([]);
-            ctx.shadowColor = "rgba(0,200,255,0.55)";
-            ctx.shadowBlur  = 8 * s;
+            
+            if (alpha > 0.5 && isPower) {
+                ctx.setLineDash([15 * s, 10 * s]);
+                ctx.lineDashOffset = -time * timeSpeed;
+                ctx.shadowColor = "rgba(0,150,255,0.8)";
+                ctx.shadowBlur  = 15 * s * alpha;
+            }
             ctx.stroke();
+            ctx.setLineDash([]);
             ctx.shadowBlur = 0;
+            ctx.globalAlpha = 1.0;
         }
     }
 
     const DATA_COLOR = "rgba(255,65,65,0.88)";
-    const POWER_COLOR = "rgba(0,200,255,0.9)";
+    const POWER_COLOR = "rgba(0,229,255,0.9)";
 
-    // ── Main draw loop ────────────────────────────────────────
-    function draw() {
+    function renderLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Logical update: Lerp targets
+        const { tAlpha, tGlow, tLine, step } = getTargetStates();
+        Object.keys(currentAlphas).forEach(k => currentAlphas[k] = lerp(currentAlphas[k], tAlpha[k]||0.2, LERP_RATE));
+        Object.keys(currentGlows).forEach(k => currentGlows[k] = lerp(currentGlows[k], tGlow[k]||0, LERP_RATE));
+        Object.keys(lineAlphas).forEach(k => lineAlphas[k] = lerp(lineAlphas[k], tLine[k]||0.2, LERP_RATE));
+
         const s = S();
+        const bbGap = 5 * s; 
 
-        // 1. Background
-        ctx.fillStyle = "#0B0F14";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // ── 1. DATA CONNECTIONS ──────────────────
+        polyline([[cx(X_MB), cy(Y_MB) - 25 * s], [cx(X_MB), cy(Y_TOP) + 42 * s]], DATA_COLOR, true, 1, "DATA_MB_APP", false, step);
+        polyline([[cx(X_MB) + 85 * s, cy(Y_MB)], [cx(X_MCU), cy(Y_MB)], [cx(X_MCU), cy(Y_TOP) + 22 * s]], DATA_COLOR, true, 1, "DATA_MB_MCU", false, step);
+        polyline([[cx(X_MB), cy(Y_MB) + 25 * s], [cx(X_MB), cy(Y_CAN) - bbGap]], DATA_COLOR, true, 1, "DATA_MB_CAN", false, step);
 
-        // 2. Grid
-        const gSize = 50 * s;
-        ctx.strokeStyle = "rgba(255,255,255,0.035)";
-        ctx.lineWidth = 1;
-        ctx.setLineDash([]);
-        for (let x = 0; x <= canvas.width; x += gSize) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
-        for (let y = 0; y <= canvas.height; y += gSize) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
-
-        // 3. ── DATA CONNECTIONS (red dashed) ──────────────────
-        const bbGap = 5 * s; // shared gap for backbone + stubs + MB drop────
-
-        // APP → MB (straight vertical)
-        polyline([
-            [cx(X_MB), cy(Y_TOP) + 42 * s],
-            [cx(X_MB), cy(Y_MB) - 25 * s]
-        ], DATA_COLOR, true);
-
-        // MCU → MB (right-angle: drop, then left)
-        polyline([
-            [cx(X_MCU), cy(Y_TOP) + 22 * s],
-            [cx(X_MCU), cy(Y_MB)],
-            [cx(X_MB) + 85 * s, cy(Y_MB)]
-        ], DATA_COLOR, true);
-        // SPI label
-        ctx.textAlign = "center";
-        ctx.fillText("SPI Interface", cx((X_MCU + X_MB) / 2 + 0.05), cy(Y_MB) - 10 * s);
-
-        // MB → CAN (short vertical drop from MB bottom — ends AT top backbone rail)
-        polyline([
-            [cx(X_MB), cy(Y_MB) + 25 * s],
-            [cx(X_MB), cy(Y_CAN) - bbGap]
-        ], DATA_COLOR, true);
-
-        // 4. ── CAN BUS BACKBONE ───────────────────────────────
+        // ── 2. CAN BUS BACKBONE ──────────────────
         const canY = cy(Y_CAN);
-        const canX0 = cx(0.05);
-        const canX1 = cx(0.95);
-        const isCH = hoveredNode && hoveredNode.id === "CAN";
-
-        // Draw backbone as two bidirectional rails (horizontal → offset in Y)
-        const bbColor = isCH ? "#ff4141" : "rgba(255,65,65,0.80)";
-        if (isCH) { ctx.shadowColor = "rgba(255,65,65,0.8)"; ctx.shadowBlur = 12 * s; }
+        const canAlpha = lineAlphas["CAN_BUS"];
+        ctx.globalAlpha = canAlpha;
+        const bbColor = canAlpha > 0.8 ? "#ff4141" : "rgba(255,65,65,0.6)";
+        if (canAlpha > 0.5) { ctx.shadowColor = "rgba(255,65,65,0.8)"; ctx.shadowBlur = 12 * s * canAlpha; }
         ctx.strokeStyle = bbColor;
         ctx.lineWidth   = 1.8 * s;
-        // Rail 1 — forward
-        ctx.beginPath();
-        ctx.moveTo(canX0, canY - bbGap);
-        ctx.lineTo(canX1, canY - bbGap);
         ctx.setLineDash([8 * s, 6 * s]);
-        ctx.lineDashOffset = -time * 0.022;
-        ctx.stroke();
-        // Rail 2 — reverse
-        ctx.beginPath();
-        ctx.moveTo(canX0, canY + bbGap);
-        ctx.lineTo(canX1, canY + bbGap);
-        ctx.lineDashOffset = time * 0.022;
-        ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.shadowBlur = 0;
-
-        // UNIFIED INTERFACE Label — above top rail, blue
-        ctx.fillStyle = isCH ? "#7ed4ff" : "rgba(0, 180, 255, 0.75)";
+        const speedMultiplier = (step === 2) ? 0.04 : 0.022; // Faster when active step 2
+        
+        ctx.beginPath(); ctx.moveTo(cx(0.05), canY - bbGap); ctx.lineTo(cx(0.95), canY - bbGap);
+        ctx.lineDashOffset = -time * speedMultiplier; ctx.stroke();
+        
+        ctx.beginPath(); ctx.moveTo(cx(0.05), canY + bbGap); ctx.lineTo(cx(0.95), canY + bbGap);
+        ctx.lineDashOffset = time * speedMultiplier; ctx.stroke();
+        
+        ctx.setLineDash([]); ctx.shadowBlur = 0;
+        ctx.fillStyle = canAlpha > 0.8 ? "#00e5ff" : "rgba(0, 229, 255, 0.4)";
         ctx.font = `${Math.max(9, 11 * s)}px Inter, system-ui`;
         ctx.textAlign = "center"; ctx.textBaseline = "bottom";
         ctx.fillText("UNIFIED INTERFACE — Deterministic Multi-Node Communication", cx(0.50), canY - bbGap - 8 * s);
+        ctx.globalAlpha = 1.0;
 
-        // 5. ── STUBS (each module → CAN) ─────────────────────
-        // stubTop = bottom backbone rail → stubs T-junction cleanly
-        const stubTop = canY + bbGap;
-        const stubBot = cy(Y_MODS) - 22 * s;
-        const sensorIds = [X_TEMP, X_IMU, X_DIST];
-        sensorIds.forEach(xv => {
-            polyline([[cx(xv), stubTop], [cx(xv), stubBot]], DATA_COLOR, true);
-        });
-        // Driver stub
-        polyline([[cx(X_DRV), stubTop], [cx(X_DRV), stubBot]], DATA_COLOR, true);
-        // Power stub (up from PWR — starts AT bottom backbone rail)
-        polyline([[cx(X_PWR), stubTop], [cx(X_PWR), cy(Y_PWR) - 22 * s]], DATA_COLOR, true);
+        // ── 3. CAN STUBS ─────────────────────────
+        const stubTop = canY + bbGap, stubBot = cy(Y_MODS) - 22 * s;
+        polyline([[cx(X_TEMP), stubTop], [cx(X_TEMP), stubBot]], DATA_COLOR, true, 1, "CAN_STUB", false, step);
+        polyline([[cx(X_IMU), stubTop], [cx(X_IMU), stubBot]], DATA_COLOR, true, 1, "CAN_STUB", false, step);
+        polyline([[cx(X_DIST), stubTop], [cx(X_DIST), stubBot]], DATA_COLOR, true, 1, "CAN_STUB", false, step);
+        polyline([[cx(X_DRV), stubTop], [cx(X_DRV), stubBot]], DATA_COLOR, true, 1, "CAN_STUB", false, step);
+        polyline([[cx(X_PWR), stubTop], [cx(X_PWR), cy(Y_PWR) - 22 * s]], DATA_COLOR, true, 1, "CAN_STUB", false, step);
 
-        // 6. ── POWER CONNECTIONS (solid blue) ─────────────────
-        // Battery → PDS
-        polyline([
-            [cx(X_PWR), cy(Y_BAT) - 20 * s],
-            [cx(X_PWR), cy(Y_PWR) + 22 * s]
-        ], POWER_COLOR, false, 3);
+        // ── 4. POWER CONNECTIONS ─────────────────
+        polyline([[cx(X_PWR), cy(Y_PWR) + 22 * s], [cx(X_PWR), cy(Y_BAT) - 20 * s]], POWER_COLOR, false, 3, "PWR_BAT", true, step);
+        polyline([[cx(X_PWR) + 85 * s, cy(Y_PWR)], [cx(X_DRV), cy(Y_PWR)]], POWER_COLOR, false, 3, "PWR_DRV", true, step);
+        polyline([[cx(X_DRV) + 60 * s, cy(Y_MODS)], [cx(X_MOT) - 26 * s, cy(Y_MODS)]], POWER_COLOR, false, 3, "PWR_MOT", true, step);
 
-        // PDS → Motor Driver (below CAN: horizontal route at Y = 0.84)
-        const pRoute = cy(0.84);
-        polyline([
-            [cx(X_PWR) + 85 * s, cy(Y_PWR)],
-            [cx(X_DRV), cy(Y_PWR)]
-        ], POWER_COLOR, false, 3);
-        // "Power" label
-        ctx.fillStyle = "rgba(0,200,255,0.65)";
+        // Labels for Power
+        const pAlpha = lineAlphas["PWR_DRV"];
+        ctx.globalAlpha = pAlpha;
+        ctx.fillStyle = `rgba(0,229,255,${0.4 + pAlpha*0.4})`;
         ctx.font = `${Math.max(8, 10 * s)}px Inter, system-ui`;
         ctx.textAlign = "center"; ctx.textBaseline = "top";
-        ctx.fillText("Power", cx((X_PWR + X_DRV) / 2), cy(Y_PWR) + 7 * s);
-
-        // Motor Driver → Motor
-        polyline([
-            [cx(X_DRV) + 60 * s, cy(Y_MODS)],
-            [cx(X_MOT) - 26 * s, cy(Y_MODS)]
-        ], POWER_COLOR, false, 3);
-        ctx.fillStyle = "rgba(0,200,255,0.65)";
-        ctx.font = `${Math.max(8, 10 * s)}px Inter, system-ui`;
-        ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+        ctx.fillText("Power Rail", cx((X_PWR + X_DRV) / 2), cy(Y_PWR) + 7 * s);
+        ctx.textBaseline = "bottom";
         ctx.fillText("Power + Control", cx((X_DRV + X_MOT) / 2 + 0.02), cy(Y_MODS) - 5 * s);
+        ctx.globalAlpha = 1.0;
 
-        // OCP label removed from canvas — lives in PWR hover tooltip now
-
-        // 7. ── DRAW NODES (on top of lines) ───────────────────
+        // ── 5. DRAW NODES ────────────────────────
         NODES.forEach(nd => {
             const x = cx(nd.x), y = cy(nd.y);
-            const w = (nd.w || 120) * s;
-            const h = (nd.h || 44) * s;
-            const isH = hoveredNode === nd;
-
-            if (nd.type === "can-hit") return;  // invisible
-            if (nd.type === "visual-motor") { drawMotor(x, y, w); return; }
-            if (nd.type === "visual-desktop") { drawDesktop(x, y, w, nd.label, isH); return; }
-
+            const w = (nd.w || 120) * s, h = (nd.h || 44) * s;
             const isMajor = nd.type === "box-major";
-            drawBox(x, y, w, h, isH, isMajor);
-            drawLabel(x, y, h, nd.label, isH, isMajor);
+            if (nd.type === "can-hit") return;
+            if (nd.type === "visual-motor") drawMotor(x, y, w, nd.id, step);
+            else if (nd.type === "visual-desktop") drawDesktop(x, y, w, nd.label, nd.id);
+            else { drawBox(x, y, w, h, nd.id, isMajor); drawLabel(x, y, nd.label, nd.id, isMajor); }
         });
 
         time += 16;
-        requestAnimationFrame(draw);
+        requestAnimationFrame(renderLoop);
     }
-    draw();
+    
+    renderLoop();
 });

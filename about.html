@@ -1,226 +1,299 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Eonix Systems is an engineering-first hardware company building intelligent power infrastructure for embedded and robotic systems."
+    />
+    <meta property="og:title" content="About Us | Eonix Systems" />
+    <meta
+      property="og:description"
+      content="We design systems that are predictable, observable, and safe — not just functional. Learn about our engineering philosophy."
+    />
+    <title>About Us | Eonix Systems</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Eonix Systems is an engineering-first hardware company building intelligent power infrastructure for robotics, drones, and industrial automation.">
-    <meta property="og:title" content="About Us | Eonix Systems">
-    <meta property="og:description" content="Built for builders. Hardware safety and clarity over convenience.">
-    <title>About | Eonix Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- Preconnect for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/base.css?v=30" />
+    <link rel="stylesheet" href="css/layout.css?v=30" />
+    <link rel="stylesheet" href="css/nav.css?v=30" />
+    <link rel="stylesheet" href="css/animations.css?v=30" />
+    <link rel="stylesheet" href="css/footer.css?v=30" />
+    <link rel="stylesheet" href="css/about.css?v=30" />
+    <link rel="stylesheet" href="css/home.css?v=30" />
+    <link rel="icon" href="assets/EONIX SYSTEMS LOGO .png" type="image/png" />
+  </head>
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/base.css?v=5">
-    <link rel="stylesheet" href="css/layout.css?v=5">
-    <link rel="stylesheet" href="css/nav.css?v=5">
-    <link rel="stylesheet" href="css/animations.css?v=5">
-    <link rel="stylesheet" href="css/footer.css?v=5">
-    <link rel="stylesheet" href="css/about.css?v=5">
-    <link rel="icon" href="assets/EONIX SYSTEMS LOGO .png" type="image/png">
-</head>
-
-<body>
+  <body>
+    <!-- BACKGROUND GRID FOR TECH AESTHETIC -->
+    <div class="super-grid"></div>
 
     <!-- NAVBAR -->
     <nav class="nav-root">
-        <div class="nav-inner">
-            <div class="nav-logo">
-                <img src="assets/EONIX%20SYSTEMS%20LOGO.png" alt="Eonix Systems logo">
-            </div>
-
-            <div class="nav-links">
-                <a class="nav-link" href="index.html">Home</a>
-                <a class="nav-link" href="ecosystem.html">Ecosystem</a>
-                <a class="nav-link" href="product.html">Product</a>
-                <a class="nav-link nav-active" href="about.html">About</a>
-                <a class="nav-link" href="contact.html">Contact</a>
-            </div>
-
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+      <div class="nav-inner">
+        <div class="nav-logo">
+          <a href="index.html">
+            <img src="assets/EONIX%20SYSTEMS%20LOGO.png" alt="Eonix Systems logo" />
+          </a>
         </div>
+        <div class="nav-links">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="ecosystem.html">Ecosystem</a>
+          <a class="nav-link" href="product.html">Product</a>
+          <a class="nav-link nav-active" href="about.html">About</a>
+          <a class="nav-link" href="contact.html">Contact</a>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
 
-    <main class="page-wrapper">
+    <main class="page-wrapper blueprint-wrapper">
+      
+      <!-- LEFT/RIGHT VERTICAL MASTER GUIDE LINES -->
+      <div class="master-guide left"></div>
+      <div class="master-guide right"></div>
 
-        <!-- ABOUT HERO -->
-        <section class="about-hero page-section reveal">
-            <h1 class="about-title">Built for <span class="text-accent">Builders</span>.</h1>
-            <p class="about-intro">
-                Eonix Systems is an engineering-first hardware company. We prioritize correctness,
-                hardware safety, and clarity over convenience or feature count.
-            </p>
-        </section>
+      <!-- SECTION 1: HERO -->
+      <section class="manifesto-section hero-animated-grid" style="padding-top: 180px; min-height: 60vh; padding-bottom: 80px;">
+        <div class="manifesto-container" style="text-align: center;">
+          <div class="tech-label reveal">SYS_ARC_01 // MANIFESTO</div>
+          <h1 class="manifesto-huge-title reveal" style="--delay: 100ms;">
+            Engineering Infrastructure<br>for <span class="text-accent glow-text">Real Systems</span>
+          </h1>
+          <p class="manifesto-lead reveal" style="--delay: 200ms;">
+            Eonix Systems is an engineering-first hardware company building intelligent power infrastructure for embedded and robotic systems.
+          </p>
+          <p class="manifesto-lead reveal" style="--delay: 400ms; margin-top: 16px;">
+            We design systems that are predictable, observable, and safe — not just functional.
+          </p>
+        </div>
+      </section>
 
-        <!-- OUR STORY -->
-        <section class="page-section reveal">
-            <div class="content-block">
-                <span class="section-label">Our Story</span>
-                <h2 class="section-title">Where Eonix Began</h2>
-                <div class="story-text">
-                    <p>
-                        Eonix Systems did not start as a business idea.
-                        It started as a recurring engineering problem.
-                    </p>
-                    <p>
-                        While building robots and embedded systems, one issue kept appearing across projects:
-                        power was always an afterthought. Engineers would spend months designing control systems,
-                        sensors, and software, but the electrical backbone—the power distribution—was often
-                        improvised at the last moment.
-                    </p>
-                    <p>
-                        It was usually a collection of regulators, fuses, and wires with no visibility,
-                        no telemetry, and limited protection. When something failed, there was no clear
-                        answer why. Debugging meant probing rails manually, replacing burnt components,
-                        and hoping the next iteration would survive.
-                    </p>
-                    <p>
-                        This pattern repeated across robotics labs, university teams, and industrial prototypes.
-                        The conclusion became obvious: power infrastructure had not evolved at the same pace
-                        as the machines it powered.
-                    </p>
-                    <p class="highlight-text">
-                        Eonix Systems was founded to fix that.
-                    </p>
+      <div class="tech-divider reveal"><div class="tech-node"></div></div>
+
+      <!-- SECTION 2: THE PROBLEM -->
+      <section class="manifesto-section reveal">
+        <div class="manifesto-container text-center">
+            <h2 class="manifesto-title reveal"><span class="title-dot"></span>The Problem Isn’t Complexity.<br><span class="text-red-glow">It’s Fragmentation.</span></h2>
+            
+            <p class="manifesto-p reveal" style="--delay: 100ms;">Modern embedded systems are not limited by capability — they are limited by how they are built.</p>
+            
+            <div class="problem-list symmetrical reveal" style="--delay: 300ms;">
+                <p>Power is treated as an afterthought.</p>
+                <p>Communication is inconsistent.</p>
+                <p>Debugging is blind.</p>
+                <p>Failure modes are unpredictable.</p>
+            </div>
+            
+            <p class="manifesto-p emphasize text-red-glow reveal" style="--delay: 500ms; margin-top: 40px;">What should be a system becomes a collection of disconnected parts.</p>
+        </div>
+      </section>
+
+      <div class="tech-divider reveal"><div class="tech-node"></div></div>
+
+      <!-- SECTION 3: ORIGIN STORY -->
+      <section class="manifesto-section">
+        <div class="manifesto-container text-center">
+            <h2 class="manifesto-title reveal"><span class="title-dot"></span>Where Eonix Began</h2>
+            
+            <p class="manifesto-p reveal" style="--delay: 100ms;">Eonix did not start as a business idea.</p>
+            <p class="manifesto-p reveal text-red text-bold" style="--delay: 200ms;">It started as a repeated failure pattern.</p>
+            
+            <p class="manifesto-p reveal mt-32" style="--delay: 300ms;">While building robots and embedded systems, the same issue appeared across projects: power systems were improvised.</p>
+            <p class="manifesto-p reveal" style="--delay: 400ms;">Regulators, fuses, and wiring stitched together with no telemetry, no visibility, and limited protection.</p>
+            <p class="manifesto-p reveal" style="--delay: 500ms;">When something failed, there was no answer why.</p>
+            <p class="manifesto-p reveal" style="--delay: 600ms;">Debugging meant probing rails manually, replacing burnt components, and hoping the next iteration survived.</p>
+            
+            <div class="reveal mt-64" style="--delay: 800ms;">
+                <p class="manifesto-p" style="margin-bottom: 8px;">This was not a one-off problem.</p>
+                <p class="manifesto-p text-accent text-bold glow-text" style="font-size: 1.5rem;">It was systemic.</p>
+            </div>
+        </div>
+      </section>
+
+      <div class="tech-divider split-box reveal">
+        <div class="corner-cross left-top"></div>
+        <div class="corner-cross right-top"></div>
+        <div class="tech-node"></div>
+      </div>
+
+      <!-- SECTION 4: BREAKPOINT -->
+      <section class="manifesto-section bg-blueprint pt-80 pb-80">
+        <div class="manifesto-container text-center">
+            <h2 class="manifesto-title reveal"><span class="title-dot"></span>The Realization</h2>
+            
+            <p class="manifesto-p reveal" style="--delay: 100ms;">Machines have evolved.</p>
+            <p class="manifesto-p reveal text-red-glow text-bold" style="--delay: 200ms;">Their electrical backbone has not.</p>
+            
+            <div class="realization-stack mt-48 reveal" style="--delay: 400ms;">
+                <span class="tech-frame">Control systems are intelligent.</span>
+                <span class="tech-frame">Sensors are advanced.</span>
+                <span class="tech-frame">Software is complex.</span>
+            </div>
+            
+            <p class="manifesto-p text-bold text-accent glow-text mt-48 reveal" style="--delay: 600ms; font-size: 1.6rem;">But power — the foundation — is still primitive.</p>
+        </div>
+      </section>
+
+      <div class="tech-divider split-box reveal">
+        <div class="corner-cross left-bottom"></div>
+        <div class="corner-cross right-bottom"></div>
+        <div class="tech-node"></div>
+      </div>
+
+      <!-- SECTION 5: THE IDEA -->
+      <section class="manifesto-section pt-80">
+        <div class="manifesto-container wide text-center">
+            <h2 class="manifesto-title reveal"><span class="title-dot"></span>Power Infrastructure Should Be Intelligent</h2>
+            
+            <div class="feature-trio mt-64">
+                <div class="f-block tech-card premium-lift reveal" style="--delay: 100ms;">
+                    <div class="tc-corner tl"></div><div class="tc-corner tr"></div>
+                    <div class="tc-corner bl"></div><div class="tc-corner br"></div>
+                    <h4>[ Monitor ]</h4>
+                    <p>Real-time telemetry for voltage, current, and system health.</p>
+                </div>
+                <div class="f-block tech-card premium-lift reveal" style="--delay: 200ms;">
+                    <div class="tc-corner tl"></div><div class="tc-corner tr"></div>
+                    <div class="tc-corner bl"></div><div class="tc-corner br"></div>
+                    <h4>[ Protect ]</h4>
+                    <p>Hardware-level safeguards that act before damage occurs.</p>
+                </div>
+                <div class="f-block tech-card premium-lift reveal" style="--delay: 300ms;">
+                    <div class="tc-corner tl"></div><div class="tc-corner tr"></div>
+                    <div class="tc-corner bl"></div><div class="tc-corner br"></div>
+                    <h4>[ Communicate ]</h4>
+                    <p>Active reporting of faults and system state.</p>
                 </div>
             </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- CORE IDEA -->
-        <section class="page-section reveal">
-            <div class="content-block">
-                <span class="section-label">The Core Idea</span>
-                <h2 class="section-title">Power Infrastructure Should Be Intelligent</h2>
-                <div class="pcb-trace pcb-trace-left"></div>
-                <p class="section-subtitle">
-                    Modern machines are intelligent. Their power systems are not.
-                    At Eonix, we believe power systems should behave like the rest of the machine:
-                </p>
+      <div class="tech-divider reveal"><div class="tech-node"></div></div>
 
-                <div class="core-grid">
-                    <div class="core-card glass-panel glow-hover reveal reveal-scale" style="--delay: 0ms">
-                        <h3>Monitor</h3>
-                        <p>Real-time telemetry for voltage, current, and health.</p>
-                    </div>
-                    <div class="core-card glass-panel glow-hover reveal reveal-scale" style="--delay: 150ms">
-                        <h3>Protect</h3>
-                        <p>Hardware-level safeguards that trigger before damage occurs.</p>
-                    </div>
-                    <div class="core-card glass-panel glow-hover reveal reveal-scale" style="--delay: 300ms">
-                        <h3>Communicate</h3>
-                        <p>Active reporting of state and faults to the main controller.</p>
-                    </div>
+      <!-- SECTION 6: WHAT EONIX BUILDS -->
+      <section class="manifesto-section">
+        <div class="manifesto-container text-center">
+            <h2 class="manifesto-title reveal" style="font-size: 2.4rem;"><span class="title-dot"></span>The Electrical Backbone for Autonomous Machines</h2>
+            
+            <p class="manifesto-p reveal mt-32" style="--delay: 100ms;">Eonix builds a modular, system-level power infrastructure for embedded and robotic machines.</p>
+            <p class="manifesto-p reveal text-accent text-bold" style="--delay: 200ms;">Each module is designed to operate as part of a larger system — not in isolation.</p>
+            
+            <div class="check-grid mt-64">
+                <div class="check-item reveal" style="--delay: 300ms;">
+                    <span class="check-icon">[✓]</span>
+                    <span class="check-text">Electrically safe by design</span>
+                </div>
+                <div class="check-item reveal" style="--delay: 400ms;">
+                    <span class="check-icon">[✓]</span>
+                    <span class="check-text">Fully instrumented telemetry</span>
+                </div>
+                <div class="check-item reveal" style="--delay: 500ms;">
+                    <span class="check-icon">[✓]</span>
+                    <span class="check-text">Configurable through software</span>
+                </div>
+                <div class="check-item reveal" style="--delay: 600ms;">
+                    <span class="check-icon">[✓]</span>
+                    <span class="check-text">Built for system-level integration</span>
                 </div>
             </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- WHAT WE'RE BUILDING -->
-        <section class="page-section reveal">
-            <div class="content-block">
-                <span class="section-label">What We’re Building</span>
-                <h2 class="section-title">The Electrical Backbone for Autonomous Machines</h2>
-                <div class="building-content">
-                    <p>
-                        Eonix Systems is building a modular ecosystem of smart power infrastructure designed
-                        specifically for embedded and robotic systems. Each module is:
-                    </p>
-                    <ul class="feature-list">
-                        <li>Electrically safe by design</li>
-                        <li>Fully instrumented with real-time telemetry</li>
-                        <li>Configurable through software</li>
-                        <li>Built to operate as part of a larger system</li>
-                    </ul>
-                    <p style="margin-top: 24px;">
-                        The goal is simple: When engineers build machines, power should just work—safely,
-                        predictably, and transparently.
-                    </p>
+      <div class="tech-divider reveal"><div class="tech-node"></div></div>
+
+      <!-- SECTION 7: ENGINEERING PHILOSOPHY -->
+      <section class="manifesto-section bg-blueprint pt-80 pb-80">
+        <div class="manifesto-container text-center">
+            <h2 class="manifesto-title reveal"><span class="title-dot"></span>Built the Hard Way. On Purpose.</h2>
+            
+            <p class="manifesto-p reveal" style="--delay: 100ms;">We do not optimize for convenience.</p>
+            <p class="manifesto-p text-accent glow-text text-bold reveal" style="font-size: 1.6rem; --delay: 200ms;">We optimize for correctness.</p>
+            <p class="manifesto-p mt-32 reveal" style="--delay: 300ms;">Every decision is made with system behavior, safety, and predictability in mind.</p>
+            
+            <div class="check-grid-wide mt-64">
+                <div class="check-item-card tech-frame premium-lift reveal" style="--delay: 400ms;">
+                    <span class="check-icon">✓</span> Hardware safety over feature count
+                </div>
+                <div class="check-item-card tech-frame premium-lift reveal" style="--delay: 500ms;">
+                    <span class="check-icon">✓</span> Deterministic behavior over convenience
+                </div>
+                <div class="check-item-card tech-frame premium-lift reveal" style="--delay: 600ms;">
+                    <span class="check-icon">✓</span> Clear architecture over abstraction
+                </div>
+                <div class="check-item-card tech-frame premium-lift reveal" style="--delay: 700ms;">
+                    <span class="check-icon">✓</span> Real telemetry over assumptions
                 </div>
             </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- PHILOSOPHY -->
-        <section class="page-section reveal">
-            <div class="content-block">
-                <span class="section-label">Engineering Philosophy</span>
-                <h2 class="section-title">Built the Hard Way, On Purpose</h2>
-                <div class="pcb-trace pcb-trace-right"></div>
-                <div class="philosophy-grid">
-                    <div class="philosophy-item reveal reveal-left" style="--delay: 0ms">
-                        <span class="check-icon">✓</span>
-                        <p>Hardware safety over feature count</p>
-                    </div>
-                    <div class="philosophy-item reveal reveal-left" style="--delay: 150ms">
-                        <span class="check-icon">✓</span>
-                        <p>Deterministic behavior over convenience</p>
-                    </div>
-                    <div class="philosophy-item reveal reveal-left" style="--delay: 300ms">
-                        <span class="check-icon">✓</span>
-                        <p>Clear electrical architecture over marketing claims</p>
-                    </div>
-                </div>
-                <p class="philosophy-outro">
-                    Every product is designed with layered protections, real telemetry, and predictable failure modes.
-                    If something goes wrong, the system should explain why—not fail silently.
-                </p>
-            </div>
-        </section>
+      <div class="tech-divider reveal"><div class="tech-node"></div></div>
 
-        <!-- FOOTER NOTE -->
-        <section class="page-section reveal">
-            <div class="about-footer-note">
-                <p>Designed and engineered for real machines.</p>
-                <p>Built for the engineers who power them.</p>
+      <!-- SECTION 8: FINAL STATEMENT -->
+      <section class="manifesto-section text-center" style="margin-bottom: 80px;">
+        <div class="manifesto-container">
+            <h2 class="manifesto-huge-title reveal"><span class="title-dot"></span>This Is Not Hobby Hardware</h2>
+            
+            <p class="manifesto-p reveal mt-48" style="--delay: 100ms;">Eonix is built for engineers designing systems that must work outside the lab.</p>
+            
+            <div class="word-flex mt-32 reveal" style="--delay: 200ms;">
+                <span class="text-accent tech-word">Robotics.</span>
+                <span class="text-accent tech-word">Automation.</span>
+                <span class="text-accent tech-word">Real-world machines.</span>
             </div>
-        </section>
+            
+            <p class="manifesto-p text-red-glow text-bold mt-64 reveal" style="font-size: 1.6rem; --delay: 400ms;">If failure is not an option, neither is guesswork.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 9: FINAL CTA -->
+      <section class="page-section cta-grand text-center" style="padding: 100px 24px; border-top: 1px solid rgba(0,229,255,0.1); position: relative;">
+        <!-- Corners for tech feel -->
+        <div class="corner-cross left-top"></div><div class="corner-cross right-top"></div>
+        
+        <h2 class="home-title" style="font-size: 3.5rem; margin-bottom: 40px; text-shadow: 0 0 30px rgba(0,229,255,0.2);">Build Systems That Actually Work</h2>
+        <div class="hero-actions" style="justify-content: center;">
+            <a href="ecosystem.html" class="btn btn-primary btn-glow">
+              Explore Ecosystem <span class="arrow">→</span>
+            </a>
+            <a href="product.html" class="btn btn-secondary">
+              View Products
+            </a>
+        </div>
+      </section>
 
     </main>
 
     <footer class="footer-root">
-        <div class="footer-inner">
-            <div class="footer-left">
-                <p class="footer-brand">Eonix Systems</p>
-                <p class="footer-tagline">Power. Intelligent. Protected.</p>
-            </div>
-
-            <div class="footer-right">
-                <a class="footer-link" href="ecosystem.html">Ecosystem</a>
-                <a class="footer-link" href="product.html">Product</a>
-                <a class="footer-link" href="contact.html">Contact</a>
-            </div>
+      <div class="footer-inner">
+        <div class="footer-left">
+          <p class="footer-brand">Eonix Systems</p>
+          <p class="footer-tagline">Power. Intelligent. Protected.</p>
         </div>
-
-        <div class="footer-bottom">
-            <p>© 2026 Eonix Systems Pvt. Ltd. All rights reserved.</p>
-            <div class="footer-social">
-                <a href="https://www.instagram.com/eonixsystems/" class="social-icon" aria-label="Instagram"
-                    target="_blank">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/company/eonix-systems/?viewAsMember=true" class="social-icon"
-                    aria-label="LinkedIn" target="_blank">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
-                    </svg>
-                </a>
-            </div>
+        <div class="footer-right">
+          <a class="footer-link" href="ecosystem.html">Ecosystem</a>
+          <a class="footer-link" href="product.html">Product</a>
+          <a class="footer-link" href="contact.html">Contact</a>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Eonix Systems Pvt. Ltd. All rights reserved.</p>
+        <!-- Keep existing socials formatting -->
+      </div>
     </footer>
 
-    <script src="js/nav.js?v=5"></script>
-    <script src="js/scroll-reveal.js?v=5"></script>
-
-</body>
-
+    <!-- Scripts -->
+    <script src="js/scroll-reveal.js?v=30"></script>
+    <script src="js/nav.js?v=30"></script>
+  </body>
 </html>

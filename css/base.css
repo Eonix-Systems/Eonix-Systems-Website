@@ -11,7 +11,7 @@
 }
 
 html {
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
 }
 
@@ -36,14 +36,14 @@ html {
     --text-muted: hsl(220, 10%, 50%);
 
     /* Accents */
-    --accent-primary: hsl(var(--hue-accent), 100%, 50%);
+    --accent-primary: #00e5ff;
     /* Cyan/Electric Blue */
-    --accent-glow: hsla(var(--hue-accent), 100%, 50%, 0.4);
-    --accent-dim: hsla(var(--hue-accent), 100%, 50%, 0.1);
+    --accent-glow: rgba(0, 229, 255, 0.4);
+    --accent-dim: rgba(0, 229, 255, 0.1);
 
     /* UI Elements */
     --border-subtle: hsla(220, 10%, 90%, 0.08);
-    --border-active: hsla(var(--hue-accent), 100%, 50%, 0.3);
+    --border-active: rgba(0, 229, 255, 0.3);
 
     /* Spacing */
     --nav-height: 80px;
@@ -61,7 +61,7 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     position: relative;
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
 }
 

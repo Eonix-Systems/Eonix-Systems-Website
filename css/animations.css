@@ -2,14 +2,13 @@
    SCROLL REVEAL — VARIANTS
    ========================= */
 
-/* Base reveal stays as-is */
 .reveal {
-    --reveal-y: 16px;
+    --reveal-y: 20px;
     opacity: 0;
     transform: translateY(var(--reveal-y));
     transition:
-        opacity 0.45s ease-out,
-        transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+        opacity 0.6s ease-out,
+        transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .reveal.is-visible {
@@ -17,42 +16,76 @@
     transform: translateY(0);
 }
 
-/* Fade + slide from left */
 .reveal-left {
     opacity: 0;
     transform: translateX(-32px);
 }
-
 .reveal-left.is-visible {
     opacity: 1;
     transform: translateX(0);
 }
 
-/* Fade + slide from right */
 .reveal-right {
     opacity: 0;
     transform: translateX(32px);
 }
-
 .reveal-right.is-visible {
     opacity: 1;
     transform: translateX(0);
 }
 
-/* Scale + fade (good for cards) */
 .reveal-scale {
     opacity: 0;
     transform: scale(0.96);
 }
-
 .reveal-scale.is-visible {
     opacity: 1;
     transform: scale(1);
 }
 
-/* Stagger helper (delay via CSS variable) */
 .reveal[data-delay] {
     transition-delay: var(--delay, 0ms);
+}
+
+/* =========================
+   NEW CUSTOM ANIMATIONS
+   ========================= */
+
+/* Hero grid gradient movement */
+@keyframes gridMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+.hero-animated-grid {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-animated-grid::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    z-index: 0;
+    background-image:
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 40s linear infinite;
+    mask-image: radial-gradient(circle at center, black 10%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Connectors drawing animation */
+.connector-line {
+    height: 2px;
+    width: 0%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 8px var(--accent-glow);
+    transition: width 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.connector-line.is-visible {
+    width: 60px; /* Expands to connect */
 }
 
 /* Reduced motion */
@@ -60,9 +93,14 @@
     .reveal,
     .reveal-left,
     .reveal-right,
-    .reveal-scale {
+    .reveal-scale,
+    .connector-line {
         opacity: 1;
         transform: none;
         transition: none;
+        animation: none;
+    }
+    .connector-line.is-visible {
+        width: 60px;
     }
 }

@@ -2,22 +2,14 @@
    HOME — HERO
    ========================= */
 
-/* =========================
-   HOME — HERO & SECTIONS
-   ========================= */
-
 .home-root {
-    /* Flexbox Centering Strategy (v2) */
     min-height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     padding-top: 0;
-    /* Let flexbox handle vertical alignment */
     padding-bottom: 60px;
-
     position: relative;
     text-align: center;
 }
@@ -37,8 +29,7 @@
 
 /* Updated Text Styles */
 .home-title {
-    font-size: 4.5rem;
-    /* Bigger */
+    font-size: 5rem;
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.03em;
@@ -47,23 +38,19 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    /* Stronger text glow */
-    text-shadow: 0 0 40px rgba(0, 164, 255, 0.25);
+    text-shadow: 0 0 40px var(--accent-glow);
 }
 
 .home-subtitle {
-    font-size: 1.35rem;
-    /* Larger */
+    font-size: 1.35rem; /* Precise engineering look */
     color: #b0b8c1;
-    /* Lighter/Cleaner */
     max-width: 800px;
     margin: 0 auto 64px;
     font-weight: 400;
     line-height: 1.6;
 }
 
-/* HERO ACTIONS */
+/* HERO ACTIONS (Buttons matched) */
 .hero-actions {
     display: flex;
     justify-content: center;
@@ -71,233 +58,194 @@
     margin-bottom: 40px;
 }
 
-/* Restore Original Blue Button "Blue Box" */
-.btn-primary {
+/* Uniform Button Structures */
+.btn-primary, .btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 14px 32px;
-
-    /* Slightly more visible blue fill */
-    background: rgba(0, 164, 255, 0.15);
-    border: 1px solid var(--accent-primary);
-    color: var(--accent-primary);
-
-    border-radius: 4px;
+    padding: 16px 40px; /* matched sizes */
+    border-radius: 8px; /* matched border radius everywhere */
     font-weight: 500;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
 }
 
-.btn-primary:hover {
-    background: var(--accent-primary);
-    color: #000;
-    box-shadow: 0 0 25px var(--accent-glow);
+.btn-primary {
+    background: rgba(0, 229, 255, 0.05); /* very subtle fill */
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: 0 0 15px var(--accent-dim);
 }
 
 .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    padding: 14px 32px;
     background: transparent;
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    text-decoration: none;
+}
+
+/* Hover States (Slight upward motion, intensify glow) */
+.btn-primary:hover {
+    background: rgba(0, 229, 255, 0.1);
+    color: #fff;
+    border-color: #fff; /* Border brightens */
+    box-shadow: 0 0 25px var(--accent-glow), inset 0 0 10px var(--accent-glow);
+    transform: translateY(-2px);
 }
 
 .btn-secondary:hover {
-    border-color: var(--text-primary);
-    color: var(--text-primary);
-}
-
-
-/* CTA at bottom needs to be glowing and animated */
-.home-direction {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.home-cta {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 40px;
-    background: rgba(0, 164, 255, 0.05);
-    /* Very subtle fill */
-    border: 1px solid var(--accent-primary);
+    background: rgba(0, 229, 255, 0.03); /* Subtle trace of accent */
+    border-color: var(--accent-primary); /* outline becomes primary on hover */
     color: var(--accent-primary);
-    border-radius: 4px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    margin-top: 32px;
-    /* Ensure spacing */
+    box-shadow: 0 0 15px var(--accent-dim);
+    transform: translateY(-2px);
 }
 
-.home-cta:hover {
-    background: rgba(0, 164, 255, 0.1);
-    box-shadow: 0 0 25px var(--accent-glow), inset 0 0 10px var(--accent-glow);
-    text-shadow: 0 0 8px var(--accent-primary);
+.btn-arrow {
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-
-.home-cta::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--accent-primary);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s ease;
-}
-
-.home-cta:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-/* DIAGRAM */
-/* DIAGRAM */
-.hero-diagram-container {
-    width: 95%;
-    max-width: 1600px;
-    margin: 0 auto;
-    border-radius: 16px;
-    position: relative;
-    background: radial-gradient(circle at center, rgba(0, 164, 255, 0.05), transparent 70%);
-
-    /* Desktop Default */
-    height: auto;
-    aspect-ratio: 16/9;
-    /* UNIVERSAL SCROLL BEHAVIOR */
-    /* If JS forces canvas > container, allow scroll */
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    /* Scrollbar Styling (Global) */
-    scrollbar-width: auto;
-    scrollbar-color: var(--accent-primary) rgba(255, 255, 255, 0.1);
-}
-
-/* Webkit Scrollbar (Global) */
-.hero-diagram-container::-webkit-scrollbar {
-    height: 8px;
-    display: block;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.hero-diagram-container::-webkit-scrollbar-thumb {
-    background-color: var(--accent-primary);
-    border-radius: 10px;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-}
-
-.hero-diagram-container::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-@media (max-width: 768px) {
-    .hero-diagram-container {
-        width: 100%;
-        height: 750px !important;
-        min-height: 750px;
-        aspect-ratio: auto;
-        /* Disable aspect ratio to use fixed height */
-
-        /* SCROLLING MAGIC */
-        overflow-x: scroll !important;
-        /* Force scrollbar */
-        overflow-y: hidden;
-        white-space: nowrap;
-
-        /* Enable Native Momentum Scroll */
-        -webkit-overflow-scrolling: touch;
-
-        /* Ensure border radius doesn't clip scrollbar */
-        border-radius: 8px;
-        margin-bottom: 40px;
-
-        /* Visual Scrollbar styling */
-        scrollbar-width: auto;
-        scrollbar-color: var(--accent-primary) rgba(255, 255, 255, 0.1);
-    }
-
-    /* Webkit Scrollbar (Chrome/Edge/Safari) */
-    .hero-diagram-container::-webkit-scrollbar {
-        height: 8px;
-        display: block;
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    .hero-diagram-container::-webkit-scrollbar-thumb {
-        background-color: var(--accent-primary);
-        border-radius: 10px;
-        border: 2px solid rgba(0, 0, 0, 0.2);
-        /* Contrast safety */
-    }
-
-    .hero-diagram-container::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    #systemCanvas {
-        display: block;
-        width: auto;
-        min-width: 1000px;
-        /* Synchronized with JS logic */
-    }
-}
-
-#systemCanvas {
-    width: 100%;
-    height: 100%;
-    display: block;
+.btn-primary:hover .btn-arrow, .btn-secondary:hover .btn-arrow {
+    transform: translateX(4px);
 }
 
 /* =========================
-   HOME — SECTIONS
+   COMMON HOVER PREMIUM CARD
    ========================= */
 
-.page-section {
-    margin-bottom: 160px;
-    padding: 0 24px;
+.hover-premium {
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+    border-radius: 8px; /* System 8px unit */
 }
+
+.hover-premium:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 30px var(--accent-dim);
+    background: rgba(255, 255, 255, 0.05); /* Slightly brighter background */
+    z-index: 10;
+}
+
+/* =========================
+   SECTION TITLES
+   ========================= */
 
 .home-section-title {
     font-size: 2.2rem;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 48px;
-}
-
-.home-section-text {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: 0 auto 24px;
-    text-align: center;
-    line-height: 1.7;
+    margin-bottom: 64px;
+    letter-spacing: -0.02em;
 }
 
 /* =========================
-   DIFFERENTIATION
+   CORE VALUES - CONNECTED CARDS
    ========================= */
 
-.home-diff-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+.problem-context-block {
+    max-width: 800px;
+    margin: 0 auto 64px auto;
+    text-align: center;
+}
+
+.problem-main-text {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.problem-sub-text {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.problem-transition-text {
+    font-size: 1.3rem;
+    color: var(--accent-primary);
+    font-weight: 600;
+    line-height: 1.5;
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}
+
+.premium-lift {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+    border-radius: 8px; /* System 8px unit */
+}
+
+.premium-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(0, 229, 255, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 229, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05); /* Slightly brighter background */
+    z-index: 10;
+}
+
+.connected-cards-container:hover .connector-line {
+    background: rgba(0, 229, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+    opacity: 1;
+}
+
+.connected-cards-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
     max-width: 1200px;
+    margin: 0 auto;
+}
+
+.connected-card {
+    flex: 1;
+    padding: 40px 32px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.connected-card h3 {
+    color: var(--accent-primary);
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+}
+
+.connected-card p {
+    color: #a0a0a0;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Animated connector line between cards */
+.connector-line {
+    flex: 0 0 60px; /* Space between cards */
+    height: 2px;
+    background: var(--accent-primary);
+    opacity: 0.5;
+    z-index: 0;
+    transition: all 0.5s ease;
+}
+
+/* =========================
+   BUILT FOR DEPLOYMENT (2x2 Grid)
+   ========================= */
+
+.deployment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -305,48 +253,163 @@
     padding: 40px;
     border-radius: 8px;
     text-align: left;
+    border: 1px solid var(--border-subtle);
 }
 
 .home-diff-item h3 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     margin-bottom: 16px;
     color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .home-diff-item p {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* =========================
-   AUDIENCE
+   GAP SECTION (VS Layout)
    ========================= */
 
-.audience-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    max-width: 1000px;
-    margin: 0 auto;
+.home-gap {
+    position: relative;
 }
 
-.audience-item {
+.gap-vs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+}
+
+.gap-card {
+    flex: 1;
     padding: 32px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+}
+
+.hobby-card {
+    border-top: 3px solid #ff6b6b;
+}
+
+.industrial-card {
+    border-top: 3px solid #fcc419;
+}
+
+.gap-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    opacity: 0.9;
+}
+
+.hobby-card h4 { color: #ff6b6b; }
+.industrial-card h4 { color: #fcc419; }
+
+.gap-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.gap-vs-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.gap-center {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid var(--accent-primary);
+    box-shadow: 0 0 40px var(--accent-dim);
+}
+
+.gap-center h3 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.gap-center p {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* =========================
+   WHO IT'S FOR
+   ========================= */
+
+.who-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto 48px;
+}
+
+.who-item {
+    padding: 32px 24px;
+    text-align: center;
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.who-icon {
+    width: 32px;
+    height: 32px;
+    stroke: var(--accent-primary);
+    opacity: 0.8;
+}
+
+.who-item h4 {
+    font-size: 1.15rem;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.who-summary {
     text-align: center;
-    background: rgba(255, 255, 255, 0.02);
+    font-size: 1.2rem;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 0 0 15px var(--accent-glow);
 }
 
-.audience-item h4 {
-    font-size: 1.1rem;
-    margin-bottom: 12px;
-    color: var(--accent-primary);
-}
+/* =========================
+   CLOSING CTA
+   ========================= */
 
-.audience-item p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+.home-direction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.05), transparent 70%);
+    max-width: 1200px;
+    margin: 0 auto 160px;
 }
 
 /* =========================
@@ -354,50 +417,46 @@
    ========================= */
 
 @media (max-width: 1024px) {
-    .home-title {
-        font-size: 2.5rem;
+    .home-title { font-size: 4rem; }
+    
+    .connected-cards-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .connector-line {
+        width: 2px;
+        height: 30px;
+    }
+    .connector-line.is-visible {
+        height: 30px;
+        width: 2px;
     }
 
-    .home-diff-list,
-    .audience-grid {
+    .deployment-grid {
         grid-template-columns: 1fr;
     }
-
-    .hero-actions {
-        flex-direction: column;
-        align-items: center;
+    
+    .who-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .hero-diagram-container {
-        height: 450px;
-        /* Increased significantly for visibility */
+    .home-title { font-size: 2.8rem; }
+    .hero-actions {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .btn-primary, .btn-secondary {
         width: 100%;
-        border-radius: 8px;
-        margin-left: 0;
-        margin-right: 0;
-        margin-bottom: 40px;
+        justify-content: center;
     }
-
-    #systemCanvas {
-        width: 100%;
-        height: 100%;
+    .gap-vs-container {
+        flex-direction: column;
     }
-
-    .home-title {
-        font-size: 2rem;
-    }
-
-    .home-subtitle {
-        font-size: 1rem;
-    }
-
-    /* Floating controls on scrollable diagram */
-    #power-controls {
-        position: sticky !important;
-        left: 16px !important;
-        bottom: 16px !important;
-        margin-right: auto;
+    .gap-vs-text { margin: 16px 0; }
+    .who-grid {
+        grid-template-columns: 1fr;
     }
 }
