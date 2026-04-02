@@ -1,6 +1,7 @@
-/* =========================
-   NAVBAR
-   ========================= */
+/* =============================================================================
+   NAV.CSS — Fixed Top Navigation
+   Design: Minimal, thin, clean. No glowing active states.
+   ============================================================================= */
 
 .nav-root {
     position: fixed;
@@ -9,18 +10,17 @@
     width: 100%;
     height: var(--nav-height);
 
-    background-color: rgba(6, 12, 20, 0.8);
-    /* Semi-transparent base */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* Solid nav — not glass, not blur */
+    background-color: rgba(11, 15, 20, 0.92);
     border-bottom: 1px solid var(--border-subtle);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
     z-index: 1000;
 }
 
 .nav-inner {
     max-width: 1400px;
-    /* Standardize max-width */
     height: 100%;
     margin: 0 auto;
     padding: 0 48px;
@@ -30,30 +30,36 @@
     justify-content: space-between;
 }
 
+/* Logo clickable wrapper */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
 .nav-logo img {
-    height: 48px;
-    /* Slightly smaller for cleaner look */
+    height: 40px;
     display: block;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 40px;
-    /* Use gap instead of margin-left */
+    gap: 36px;
 }
 
 .nav-link {
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.875rem;
     color: var(--text-secondary);
     font-weight: 500;
     transition: color 0.2s ease;
+    letter-spacing: 0.01em;
 }
 
+/* Hover — subtle colour shift, NO text-shadow */
 .nav-link:hover {
-    color: var(--accent-primary);
-    text-shadow: 0 0 8px var(--accent-glow);
+    color: var(--text-primary);
 }
 
 .nav-toggle {
@@ -61,53 +67,50 @@
     background: none;
     border: none;
     cursor: pointer;
+    padding: 4px;
 }
 
 .nav-toggle span {
     display: block;
-    width: 24px;
-    height: 2px;
-    background-color: var(--text-primary);
+    width: 22px;
+    height: 1.5px;
+    background-color: var(--text-secondary);
     margin: 5px 0;
+    transition: background 0.2s ease;
 }
 
 /* =========================
-   NAVBAR ACTIVE STATE
+   ACTIVE PAGE STATE
+   Clean underline — no box-shadow glow
    ========================= */
 
 .nav-active {
     color: var(--text-primary);
     position: relative;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    font-weight: 500;
+    /* NO text-shadow */
 }
 
 .nav-active::after {
     content: "";
     position: absolute;
-    bottom: -29px;
-    /* Align with bottom border */
+    bottom: -21px;   /* Aligns with nav bottom border */
     left: 0;
-
     width: 100%;
-    height: 2px;
+    height: 1.5px;
     background-color: var(--accent-primary);
-    box-shadow: 0 -2px 10px var(--accent-glow);
+    /* NO box-shadow glow */
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE (mobile)
    ========================= */
 
 @media (max-width: 1024px) {
 
-    :root {
-        --nav-height: 64px;
-    }
+    :root { --nav-height: 60px; }
 
-    .nav-inner {
-        padding: 0 24px;
-        /* Reduce padding on mobile */
-    }
+    .nav-inner { padding: 0 24px; }
 
     .nav-links {
         position: absolute;
@@ -116,47 +119,29 @@
         width: 100%;
         gap: 0;
         max-height: calc(100vh - var(--nav-height));
-        /* Prevent overflow */
         overflow-y: auto;
-        /* Allow scrolling if many items */
-
         flex-direction: column;
-        background-color: var(--bg-main);
-
+        background-color: var(--bg-soft);
         display: none;
         border-bottom: 1px solid var(--border-subtle);
     }
 
-    .nav-links.open {
-        display: flex;
-    }
+    .nav-links.open { display: flex; }
 
     .nav-link {
         width: 100%;
-        padding: 20px 24px;
-        /* Match nav-inner padding */
+        padding: 18px 24px;
         border-top: 1px solid var(--border-subtle);
-        color: var(--text-primary);
+        color: var(--text-secondary);
     }
 
-    /* Fix active state on mobile */
-    .nav-active::after {
-        display: none;
-    }
+    .nav-active::after { display: none; }
 
-    /* Add contained background highlight instead */
     .nav-active {
-        background-color: rgba(0, 164, 255, 0.1);
-        color: var(--accent-primary);
-        border-radius: 4px;
-        /* Make it look like a button item */
-        width: calc(100% - 48px);
-        /* Account for padding */
-        margin-left: 24px;
-        /* Center it */
+        color: var(--accent-hover);
+        border-left: 2px solid var(--accent-primary);
+        padding-left: 22px;
     }
 
-    .nav-toggle {
-        display: block;
-    }
+    .nav-toggle { display: block; }
 }

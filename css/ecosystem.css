@@ -36,16 +36,9 @@
     border-top: 1px solid var(--border-subtle);
 }
 
+/* Ambient glow removed — no overlays */
 .interactive-ambient-glow {
-    position: absolute;
-    top: 10%;
-    left: 45%;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.04), transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-    transition: top 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: none;
 }
 
 .interactive-split {
@@ -130,17 +123,17 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--accent-primary);
-    box-shadow: 0 0 8px var(--accent-glow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* NO box-shadow glow */
+    transition: transform 0.2s ease;
 }
 
 .arch-key-points li:hover::before {
-    transform: translateY(-50%) scale(1.3);
-    box-shadow: 0 0 12px var(--accent-primary);
+    transform: translateY(-50%) scale(1.4);
+    /* NO glow on hover */
 }
 
 /* ── RIGHT PANE: STICKY DIAGRAM ── */
@@ -171,7 +164,7 @@
     width: 100%;
     height: 0%;
     background: var(--accent-primary);
-    box-shadow: 0 0 10px var(--accent-glow);
+    /* NO box-shadow glow */
     transition: height 0.1s linear;
 }
 
@@ -244,9 +237,9 @@
 }
 
 .flow-node-primary {
-    border-color: var(--accent-primary);
-    background: rgba(0, 229, 255, 0.08);
-    box-shadow: 0 0 20px var(--accent-dim);
+    border-color: var(--accent-border);
+    background: var(--accent-subtle);
+    /* NO box-shadow glow */
 }
 
 .flow-power-injector {
@@ -264,19 +257,19 @@
 
 .flow-node-power {
     border-color: var(--border-subtle);
-    background: linear-gradient(0deg, rgba(0, 229, 255, 0.1), transparent);
+    background: var(--bg-soft);
     width: 300px;
 }
 
-/* Flow Arrow Animation */
+/* Flow arrows — simple fade, no glow */
 @keyframes flowDrift {
-    0% { transform: translateX(-4px); opacity: 0.3; }
-    50% { transform: translateX(4px); opacity: 1; text-shadow: 0 0 10px var(--accent-glow); }
-    100% { transform: translateX(-4px); opacity: 0.3; }
+    0%   { transform: translateX(-3px); opacity: 0.35; }
+    50%  { transform: translateX(3px); opacity: 0.8; }
+    100% { transform: translateX(-3px); opacity: 0.35; }
 }
 
 .flow-animate-arrow {
-    animation: flowDrift 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    animation: flowDrift 2.5s infinite ease-in-out;
 }
 
 /* =========================

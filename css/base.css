@@ -3,15 +3,13 @@
    =============================================================================
    ⭐ THIS IS THE MOST IMPORTANT CSS FILE. Read this before editing anything else.
 
-   This file defines:
-   1. CSS Custom Properties (variables) — the ENTIRE color palette, spacing, etc.
-   2. Global resets and typography defaults
-   3. The background grid (tech aesthetic)
-   4. Shared utility classes (.glass-panel, .text-gradient, etc.)
-
-   IMPORTANT: Do NOT hardcode colors in page-specific CSS files.
-   Always use the variables defined in :root {} here.
-   To change the color theme, only edit this file.
+   DESIGN PHILOSOPHY (v2 — Premium Minimal):
+   Target aesthetic: Linear / Stripe / Antigravity — NOT glowing/cyberpunk.
+   - Deep navy-black backgrounds, NOT pure black
+   - Muted electric blue accent (#2563EB), NOT neon cyan
+   - Zero glow effects, zero text-shadows on accent colors
+   - Flat surfaces with very thin borders for separation
+   - Generous whitespace, clean typography hierarchy
 
    CSS Load Order (every page loads these in sequence):
    base.css → layout.css → nav.css → animations.css → footer.css → [page].css
@@ -35,38 +33,44 @@ html {
 }
 
 /* =========================
-   CSS VARIABLES
+   CSS VARIABLES — Design Tokens
    ========================= */
 
 :root {
-    /* Colors (HSL) */
-    --hue-brand: 210;
-    --hue-accent: 190;
-
-    /* Backgrounds */
-    --bg-main: hsl(220, 20%, 6%);
-    --bg-soft: hsl(220, 18%, 10%);
-    --bg-card: hsl(220, 15%, 12%);
-    --bg-glass: hsla(220, 20%, 10%, 0.6);
+    /* Backgrounds — deep navy, not pure black */
+    --bg-main:  #0B0F14;
+    --bg-soft:  #111827;
+    --bg-card:  #1a2030;
+    --bg-glass: rgba(17, 24, 39, 0.9);
 
     /* Text */
-    --text-primary: hsl(220, 10%, 98%);
-    --text-secondary: hsl(220, 10%, 75%);
-    --text-muted: hsl(220, 10%, 50%);
+    --text-primary:   #E5E7EB;
+    --text-secondary: #9CA3AF;
+    --text-muted:     #6B7280;
 
-    /* Accents */
-    --accent-primary: #00e5ff;
-    /* Cyan/Electric Blue */
-    --accent-glow: rgba(0, 229, 255, 0.4);
-    --accent-dim: rgba(0, 229, 255, 0.1);
+    /* Accent — muted electric blue. NOT neon. NOT cyan. */
+    --accent-primary: #2563EB;
+    --accent-hover:   #3B82F6;
+    --accent-subtle:  rgba(37, 99, 235, 0.12);
+    --accent-border:  rgba(37, 99, 235, 0.35);
 
     /* UI Elements */
-    --border-subtle: hsla(220, 10%, 90%, 0.08);
-    --border-active: rgba(0, 229, 255, 0.3);
+    --border-subtle: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.14);
+
+    /* Shadows — soft, directional, no glow */
+    --shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg:  0 12px 40px rgba(0, 0, 0, 0.5);
 
     /* Spacing */
-    --nav-height: 80px;
-    --section-spacing: 120px;
+    --nav-height:       64px;
+    --section-spacing:  120px;
+
+    /* OLD COMPAT — kept so old var() references don't break visually */
+    --accent-glow: transparent;
+    --accent-dim:  rgba(37, 99, 235, 0.08);
+    --border-active: rgba(37, 99, 235, 0.4);
 }
 
 /* =========================
@@ -84,12 +88,7 @@ body {
     width: 100%;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
     font-weight: 600;
     line-height: 1.2;
@@ -104,7 +103,8 @@ a {
 }
 
 /* =========================
-   BACKGROUND GRID (Tech Feel)
+   BACKGROUND GRID
+   Very subtle — feels like drafting paper, NOT a laser grid.
    ========================= */
 
 body::before {
@@ -113,53 +113,50 @@ body::before {
     inset: 0;
     z-index: -1;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
     pointer-events: none;
 }
 
-body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50vh;
-    background: radial-gradient(circle at 50% 0%, var(--accent-dim), transparent 70%);
-    z-index: -1;
-    pointer-events: none;
-}
+/* NOTE: body::after removed — no accent glow overlay */
 
 /* =========================
    UTILITIES
    ========================= */
 
+/* Flat panel — no blur, no glassmorphism */
 .glass-panel {
-    background: var(--bg-glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: var(--bg-soft);
     border: 1px solid var(--border-subtle);
+    border-radius: 8px;
 }
 
-.text-gradient {
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
+/* Accent color — no text-shadow */
 .text-accent {
     color: var(--accent-primary);
-    text-shadow: 0 0 15px var(--accent-glow);
 }
 
+/* Accent text that used to glow — now just bold blue */
+.glow-text {
+    color: var(--accent-hover);
+    font-weight: 600;
+}
+
+/* Red emphasis — used in about.html manifesto */
+.text-red-glow {
+    color: #F87171;
+}
+
+.text-red { color: #F87171; }
+.text-bold { font-weight: 700; }
+
+/* Hover border brightening — replaces all glow effects */
 .glow-hover {
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: border-color 0.25s ease, background 0.25s ease;
 }
-
 .glow-hover:hover {
-    border-color: var(--border-active);
-    box-shadow: 0 0 20px var(--accent-dim);
+    border-color: var(--border-strong);
+    background: var(--bg-card);
 }

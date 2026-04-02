@@ -67,22 +67,21 @@
 .text-bold { font-weight: 600; }
 .text-red { color: #ff4a4a; }
 .text-red-glow {
-    color: #ff4a4a;
-    text-shadow: 0 0 20px rgba(255, 74, 74, 0.4);
+    color: #F87171; /* No text-shadow */
 }
 
 /* =========================
    TECH AESTHETICS (GRIDS & DIVIDERS)
    ========================= */
 
-/* Global animated grid background */
+/* Very subtle neutral grid — same as body::before in base.css */
 .super-grid {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background-image: 
-        linear-gradient(to right, rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
     z-index: 0;
     pointer-events: none;
 }
@@ -91,8 +90,8 @@
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    border-left: 1px solid rgba(0,229,255,0.05);
-    border-right: 1px solid rgba(0,229,255,0.05);
+    border-left: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
 }
 
 /* Vertical guide lines */
@@ -100,21 +99,21 @@
     position: absolute;
     top: 0; bottom: 0;
     width: 1px;
-    background: linear-gradient(to bottom, transparent, rgba(0,229,255,0.2), transparent);
+    background: var(--border-subtle);
     z-index: 1;
 }
 .master-guide.left { left: 40px; }
 .master-guide.right { right: 40px; }
 
-/* Glowing Dot on Titles */
+/* Clean dot on section titles — no glow */
 .title-dot {
     position: absolute;
     top: 50%; left: -30px;
-    width: 8px; height: 8px;
+    width: 6px; height: 6px;
     background: var(--accent-primary);
     border-radius: 50%;
     transform: translateY(-50%);
-    box-shadow: 0 0 15px var(--accent-glow);
+    /* NO box-shadow glow */
 }
 
 /* Technical Label */
@@ -132,7 +131,7 @@
     position: relative;
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(0,229,255,0.3), transparent);
+    background: var(--border-subtle); /* Neutral grey — no cyan glow */
     margin: 60px 0;
     display: flex;
     justify-content: center;
@@ -141,11 +140,11 @@
 }
 
 .tech-node {
-    width: 6px;
-    height: 6px;
-    background: #fff;
+    width: 5px;
+    height: 5px;
+    background: var(--text-muted);
     border-radius: 50%;
-    box-shadow: 0 0 10px #fff, 0 0 20px var(--accent-primary);
+    /* NO glow */
 }
 
 /* Corner Crosshairs */
@@ -157,7 +156,7 @@
     opacity: 0.5;
 }
 .corner-cross::before, .corner-cross::after {
-    content: ''; position: absolute; background: rgba(0,229,255,0.8);
+    content: ''; position: absolute; background: var(--border-strong);
 }
 .corner-cross::before { top: 7px; left: 0; width: 15px; height: 1px; }
 .corner-cross::after { top: 0; left: 7px; width: 1px; height: 15px; }
@@ -197,13 +196,13 @@
 
 /* Realization Stack */
 .realization-stack span.tech-frame {
-    font-size: 1.2rem;
-    color: #fff;
-    padding: 16px 32px;
-    border: 1px solid rgba(0,229,255,0.15);
-    background: rgba(0,229,255,0.02);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    padding: 14px 28px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-soft);
     border-radius: 4px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
 }
 .word-flex {
     display: flex;
@@ -226,11 +225,16 @@
 }
 .tech-card {
     position: relative;
-    background: rgba(10, 12, 14, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 40px 32px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-subtle);
+    padding: 36px 28px;
     text-align: left;
     overflow: hidden;
+    border-radius: 8px;
+    transition: border-color 0.2s ease;
+}
+.tech-card:hover {
+    border-color: var(--border-strong);
 }
 /* Card Corners Cutout effect (using borders) */
 .tc-corner { position: absolute; width: 10px; height: 10px; border: 1px solid transparent; }
@@ -272,52 +276,55 @@
 }
 
 .check-item {
-    font-size: 1.2rem;
-    color: #fff;
+    font-size: 1.05rem;
+    color: var(--text-primary);
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 20px;
-    background: linear-gradient(90deg, rgba(0,229,255,0.05), transparent);
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--bg-soft);
     border-left: 2px solid var(--accent-primary);
+    border-radius: 0 4px 4px 0;
 }
 
 .check-item-card {
-    font-size: 1.2rem;
-    color: #fff;
-    background: rgba(10, 12, 14, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 24px 32px;
-    border-radius: 4px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    background: var(--bg-soft);
+    border: 1px solid var(--border-subtle);
+    padding: 20px 28px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
+    transition: border-color 0.2s ease;
+}
+.check-item-card:hover {
+    border-color: var(--border-strong);
 }
 
 .check-icon {
-    color: var(--accent-primary);
+    color: var(--accent-hover);
     font-weight: 700;
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    /* NO text-shadow glow */
 }
 
 /* Animations */
 .premium-lift {
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease;
 }
-
 .premium-lift:hover {
-    transform: translateY(-8px);
-    border-color: rgba(0, 229, 255, 0.5);
-    box-shadow: 0 15px 35px rgba(0, 229, 255, 0.1);
-    background: rgba(0, 229, 255, 0.02);
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+    /* NO glow box-shadow */
 }
 
 /* BACKGROUND UTILS */
 .bg-blueprint {
-    background: radial-gradient(circle at center, rgba(0,229,255,0.03) 0%, transparent 60%);
-    border-top: 1px solid rgba(0,229,255,0.1);
-    border-bottom: 1px solid rgba(0,229,255,0.1);
+    background: var(--bg-soft);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .pt-80 { padding-top: 80px; }
