@@ -1,0 +1,517 @@
+/* =============================================================================
+   SERVICES.CSS — Services Page Styles (services.html)
+   Design: Premium Minimal — matches the overall Eonix design system.
+   ============================================================================= */
+
+/* =========================
+   HERO
+   ========================= */
+
+.svc-hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 80px;
+}
+
+.svc-hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.svc-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin-bottom: 24px;
+    opacity: 0.9;
+}
+
+.svc-title {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    color: #F9FAFB;
+    margin-bottom: 24px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.svc-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    max-width: 640px;
+    margin: 0 auto 40px;
+    font-weight: 400;
+}
+
+/* =========================
+   SHARED SECTION LAYOUT
+   ========================= */
+
+.svc-section {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 80px 48px;
+}
+
+.svc-section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+}
+
+.svc-section-sub {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 56px;
+    max-width: 600px;
+}
+
+/* Thin divider between major sections */
+.svc-divider {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 1px;
+    background: var(--border-subtle);
+}
+
+/* =========================
+   SECTION 2: PILLAR CARDS
+   ========================= */
+
+.svc-pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.svc-pillar-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+.svc-pillar-card:hover {
+    border-color: var(--border-strong);
+    background: var(--bg-card);
+    transform: translateY(-3px);
+}
+
+.svc-pillar-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--accent-hover);
+    opacity: 0.85;
+}
+.svc-pillar-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.svc-pillar-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.svc-pillar-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    flex: 1;
+}
+
+.svc-card-link {
+    font-size: 0.9rem;
+    color: var(--accent-hover);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    margin-top: auto;
+    display: inline-block;
+}
+.svc-card-link:hover { color: var(--text-primary); }
+
+/* =========================
+   SECTIONS 3 & 4: DETAIL LAYOUT
+   ========================= */
+
+.svc-detail-header {
+    margin-bottom: 48px;
+    max-width: 680px;
+}
+
+.svc-detail-header .svc-label {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+
+.svc-detail-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 16px;
+    line-height: 1.15;
+}
+
+.svc-detail-desc {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 600px;
+}
+
+/* 3-column detail grid */
+.svc-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+}
+
+.svc-detail-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 28px 24px;
+    transition: border-color 0.2s ease;
+}
+.svc-detail-card:hover { border-color: var(--border-strong); }
+
+.svc-detail-card-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-hover);
+    margin-bottom: 20px;
+}
+
+/* List styles */
+.svc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.svc-list li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    padding-left: 18px;
+    position: relative;
+}
+.svc-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    opacity: 0.7;
+}
+.svc-list.compact li { font-size: 0.875rem; }
+
+/* Aligned CTA below a detail section */
+.svc-cta-row {
+    padding-top: 4px;
+}
+
+/* =========================
+   SECTION 4: CUSTOM HW SPLIT
+   ========================= */
+
+.svc-hw-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.svc-hw-col {
+    background: var(--bg-soft);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 32px 28px;
+    transition: border-color 0.2s ease;
+}
+.svc-hw-col:hover { border-color: var(--border-strong); }
+
+/* =========================
+   SECTION 5: PROCESS STEPS
+   ========================= */
+
+.svc-process-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 1px solid var(--border-subtle);
+    margin-left: 28px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.svc-process-step {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    padding: 28px 0 28px 40px;
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+/* The dot on the timeline */
+.svc-process-step::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 36px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg-main);
+    border: 1.5px solid var(--accent-primary);
+}
+
+.svc-step-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-hover);
+    flex-shrink: 0;
+    padding-top: 3px;
+    min-width: 28px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.svc-step-body h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.svc-step-body p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 560px;
+}
+
+.svc-optional {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* =========================
+   SECTION 6: PRICING CARDS
+   ========================= */
+
+.svc-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.svc-pricing-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.svc-pricing-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+}
+
+.svc-pricing-card h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+}
+.svc-pricing-card p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* Highlighted pricing card — subtle blue distinction */
+.svc-pricing-highlight {
+    border-color: var(--accent-border);
+    background: var(--accent-subtle);
+}
+.svc-pricing-highlight:hover {
+    border-color: var(--accent-primary);
+}
+.svc-pricing-highlight h4 {
+    color: var(--accent-hover);
+}
+
+.svc-pricing-note {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0;
+    padding-left: 4px;
+    border-left: 2px solid var(--border-strong);
+    padding-left: 16px;
+}
+
+/* =========================
+   SECTION 7: WHY EONIX
+   ========================= */
+
+.svc-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.svc-why-item {
+    padding: 28px 24px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    background: var(--bg-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+.svc-why-item:hover {
+    border-color: var(--border-strong);
+    background: var(--bg-card);
+}
+
+.svc-why-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--accent-hover);
+    opacity: 0.8;
+}
+.svc-why-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.svc-why-item h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+}
+.svc-why-item p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* =========================
+   SECTION 8: FINAL CTA
+   ========================= */
+
+.svc-cta-final {
+    padding: 0 48px 120px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.svc-cta-final-inner {
+    background: var(--bg-soft);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 72px 80px;
+    text-align: center;
+}
+
+.svc-cta-final-inner h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.svc-cta-final-inner p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+    .svc-section { padding: 60px 24px; }
+    .svc-pillar-grid { grid-template-columns: 1fr; }
+    .svc-detail-grid { grid-template-columns: 1fr; }
+    .svc-hw-split { grid-template-columns: 1fr; }
+    .svc-pricing-grid { grid-template-columns: 1fr; }
+    .svc-why-grid { grid-template-columns: 1fr 1fr; }
+    .svc-title { font-size: 2.8rem; }
+    .svc-cta-final-inner { padding: 48px 32px; }
+    .svc-cta-final-inner h2 { font-size: 2rem; }
+}
+
+@media (max-width: 600px) {
+    .svc-why-grid { grid-template-columns: 1fr; }
+    .svc-title { font-size: 2.2rem; }
+    .svc-process-list { margin-left: 16px; }
+    .svc-process-step { padding-left: 28px; gap: 20px; }
+}
