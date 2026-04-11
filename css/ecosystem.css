@@ -1,123 +1,214 @@
 /* =============================================================================
-   ECOSYSTEM.CSS — Interactive Architecture Explorer (ecosystem.html)
+   ECOSYSTEM.CSS — Full-Width Architecture Diagram + Layered Content
    =============================================================================
-   Styles the scroll-driven, split-screen architecture diagram on ecosystem.html.
-
-   HOW THE SCROLL-SPY DIAGRAM WORKS:
-   - Left side (.interactive-steps): 4 sections, each "min-height: 85vh" to force scroll time
-   - Right side (.interactive-diagram): Contains the sticky canvas diagram
-   - As the user scrolls through each left-side step, IntersectionObserver
-     (defined in inline <script> at bottom of ecosystem.html) updates
-     window.activeDiagramStep (1–4), which diagram.js reads to animate the canvas
-
-   ⚠️ CRITICAL BUG FIX — DO NOT REVERT:
-   The .interactive-diagram element must NOT have "height: 100%" set on it.
-   When height:100% was present, the browser calculated the sticky element's
-   scroll track as 0px tall (because the parent grid column collapsed), making
-   position:sticky fail silently. This was removed and the fix is permanent.
-
-   KEY COMPONENTS:
-   1. .interactive-split — 35/65 CSS Grid (left steps / right diagram)
-   2. .arch-scroll-step — Each scrollable content section on the left
-   3. .sticky-wrapper — Contains the diagram + progress rail (position: sticky)
-   4. .sticky-progress-rail — Vertical progress bar showing scroll position
-   5. .data-flow-container — The "How the System Operates" pipeline below the diagram
-   6. .why-card — The 3-column "Problem / Solution / Result" grid
+   Layout:
+   1. .eco-hero            — Hero (uses home.css classes)
+   2. .eco-diagram-section — Full-width canvas with tabs above it
+   3. .eco-layers-section  — 4 layer cards full-width below the diagram
+   4. .data-flow-section   — How the system operates
+   5. .why-arch-section    — Problem / Solution / Result cards
    ============================================================================= */
 
+/* Ambient glow removed */
+.interactive-ambient-glow { display: none; }
+
 /* =========================
-   ECOSYSTEM — ADVANCED INTERACTIVE ARCHITECTURE
+   1. HERO
    ========================= */
 
-.architecture-interactive {
-    position: relative;
-    width: 100%;
-    margin-bottom: 120px;
-    border-top: 1px solid var(--border-subtle);
+.eco-hero {
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 40px;
 }
 
-/* Ambient glow removed — no overlays */
-.interactive-ambient-glow {
-    display: none;
+/* =========================
+   2. DIAGRAM SECTION
+   ========================= */
+
+.eco-diagram-section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 24px;
+    margin-bottom: 80px;
 }
 
-.interactive-split {
-    display: grid;
-    grid-template-columns: 35fr 65fr;
-    gap: 64px;
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
+/* ── Step Tabs ── */
+.eco-tabs {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: var(--bg-soft);
 }
 
-/* ── LEFT PANE: SCROLLING STEPS ── */
-.interactive-steps {
+.eco-tab {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0 0 40vh 40px;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 12px;
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--border-subtle);
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+    color: var(--text-muted);
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-.arch-scroll-step {
-    min-height: 85vh; /* forces scroll time */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 0.25;
-    transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s ease;
-    transform: translateY(20px);
-}
+.eco-tab:last-child { border-right: none; }
 
-.arch-scroll-step.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.arch-label {
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
-    opacity: 0.9;
-}
-
-.arch-layer-title {
-    font-size: 2.6rem;
-    margin-bottom: 24px;
+.eco-tab.active {
+    background: var(--accent-subtle);
     color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-primary);
 }
 
-.arch-layer-desc {
-    font-size: 1.25rem;
+.eco-tab:hover:not(.active) {
+    background: var(--bg-card);
     color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 40px;
-    max-width: 600px;
 }
 
-.arch-key-points {
+.eco-tab-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--accent-primary);
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+}
+
+.eco-tab.active .eco-tab-index { opacity: 1; }
+
+.eco-tab-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* ── Canvas Wrapper ── */
+.eco-canvas-wrapper {
+    width: 100%;
+}
+
+.hero-diagram-container {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.diagram-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* =========================
+   3. LAYER CARDS GRID
+   ========================= */
+
+.eco-layers-section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 24px;
+    margin-bottom: 80px;
+}
+
+.eco-layers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 0;
+}
+
+.eco-layer-card {
+    padding: 36px 32px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid transparent;
+    border-radius: 0 8px 8px 0;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    list-style: none;
-    padding: 0;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease,
+                border-left-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.eco-layer-card:hover {
+    border-color: var(--border-strong);
+    border-left-color: var(--accent-primary);
+    transform: translateX(4px);
+    background: var(--bg-card);
+}
+
+.eco-layer-card.eco-layer-active {
+    border-color: var(--accent-border);
+    border-left-color: var(--accent-primary);
+    background: var(--accent-subtle);
+}
+
+.eco-layer-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.eco-layer-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--accent-primary);
+    letter-spacing: 0.18em;
+    opacity: 0.8;
+}
+
+.eco-layer-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.eco-layer-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
     margin: 0;
 }
 
-.arch-key-points li {
-    font-size: 1.1rem;
+.eco-layer-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.eco-layer-points li {
+    font-size: 0.92rem;
     color: var(--text-muted);
+    padding-left: 20px;
     position: relative;
-    padding-left: 24px;
+    line-height: 1.5;
     cursor: default;
-    transition: color 0.2s ease;
+    transition: color 0.15s ease;
 }
 
-.arch-key-points li:hover {
-    color: var(--text-primary);
-}
-
-.arch-key-points li::before {
+.eco-layer-points li::before {
     content: '';
     position: absolute;
     left: 0;
@@ -127,61 +218,34 @@
     height: 5px;
     border-radius: 50%;
     background: var(--accent-primary);
-    /* NO box-shadow glow */
-    transition: transform 0.2s ease;
+    opacity: 0.6;
+    transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
-.arch-key-points li:hover::before {
+.eco-layer-points li:hover {
+    color: var(--text-primary);
+}
+
+.eco-layer-points li:hover::before {
+    opacity: 1;
     transform: translateY(-50%) scale(1.4);
-    /* NO glow on hover */
-}
-
-/* ── RIGHT PANE: STICKY DIAGRAM ── */
-.interactive-diagram {
-    position: relative;
-}
-
-.sticky-wrapper {
-    position: sticky;
-    top: max(15vh, 120px);
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-/* Progress logic */
-.sticky-progress-rail {
-    width: 2px;
-    height: 500px;
-    background: var(--border-subtle);
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
-}
-
-.sticky-progress-fill {
-    width: 100%;
-    height: 0%;
-    background: var(--accent-primary);
-    /* NO box-shadow glow */
-    transition: height 0.1s linear;
-}
-
-.hero-diagram-container {
-    width: 100%; 
-    max-width: 100%;
-    transition: transform 0.3s ease;
 }
 
 /* =========================
-   DATA FLOW LAYOUT
+   4. DATA FLOW LAYOUT
    ========================= */
+
+.data-flow-section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 24px;
+}
 
 .data-flow-container {
     padding: 64px 32px;
     border-radius: 12px;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -212,60 +276,67 @@
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     text-align: center;
-    min-width: 160px;
+    min-width: 140px;
     position: relative;
     z-index: 2;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.flow-node:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
 }
 
 .flow-node strong {
-    font-size: 1.3rem;
+    font-size: 1rem;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    color: var(--text-primary);
 }
 
 .flow-detail {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+    font-size: 0.85rem;
+    color: var(--text-muted);
     line-height: 1.4;
     display: block;
 }
 
 .flow-arrow {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--accent-primary);
-    opacity: 0.6;
+    opacity: 0.5;
+    flex-shrink: 0;
 }
 
 .flow-node-primary {
     border-color: var(--accent-border);
     background: var(--accent-subtle);
-    /* NO box-shadow glow */
 }
 
 .flow-power-injector {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
 }
 
 .power-arrow {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--accent-primary);
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .flow-node-power {
     border-color: var(--border-subtle);
     background: var(--bg-soft);
-    width: 300px;
+    width: 280px;
 }
 
-/* Flow arrows — simple fade, no glow */
+/* Flow arrows animation */
 @keyframes flowDrift {
-    0%   { transform: translateX(-3px); opacity: 0.35; }
-    50%  { transform: translateX(3px); opacity: 0.8; }
-    100% { transform: translateX(-3px); opacity: 0.35; }
+    0%   { transform: translateX(-3px); opacity: 0.3; }
+    50%  { transform: translateX(3px); opacity: 0.7; }
+    100% { transform: translateX(-3px); opacity: 0.3; }
 }
 
 .flow-animate-arrow {
@@ -273,14 +344,21 @@
 }
 
 /* =========================
-   WHY THIS ARCHITECTURE
+   5. WHY THIS ARCHITECTURE
    ========================= */
+
+.why-arch-section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 24px;
+}
 
 .why-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    max-width: 1200px;
+    gap: 20px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -290,6 +368,12 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.why-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
 }
 
 .why-card h4 {
@@ -299,62 +383,34 @@
 
 .why-card p {
     color: var(--text-secondary);
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.7;
     margin: 0;
 }
 
 /* =========================
-   RESPONSIVE OVERRIDES
+   RESPONSIVE
    ========================= */
 
 @media (max-width: 1024px) {
-    .interactive-split {
-        grid-template-columns: 1fr; /* Stack vertically */
-        gap: 0;
-    }
-    
-    .interactive-steps {
-        padding: 40vh 24px 10vh 24px; /* Give room at the top for sticky diagram */
-    }
-
-    .interactive-diagram {
-        position: absolute; /* Actually, we need to restructure for mobile if sticking */
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        pointer-events: none; /* Text goes over top or underneath */
-    }
-    
-    /* Elegant Mobile Solution: Stick diagram to top half of screen, text flows over bottom half */
-    .sticky-wrapper {
-        position: sticky;
-        top: 100px;
-        z-index: 10;
-        padding: 0 16px;
-        pointer-events: auto;
-    }
-
-    .sticky-progress-rail {
-        display: none; /* Hide progress rail on mobile to save space */
-    }
-    
-    .arch-scroll-step {
-        min-height: 60vh;
-        background: var(--bg-glass);
-        backdrop-filter: blur(8px);
-        margin-bottom: 24px;
-        padding: 32px;
-        border-radius: 12px;
-        border: 1px solid var(--border-subtle);
-        z-index: 20;
-        position: relative;
-    }
-
-    .arch-layer-title { font-size: 2.2rem; }
-    .flow-pipeline { flex-direction: column; gap: 8px; }
-    .flow-arrow { transform: rotate(90deg); margin: 8px 0; }
-    .flow-animate-arrow { animation: none; }
+    .eco-layers-grid { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
+    .eco-tabs { flex-wrap: wrap; }
+    .eco-tab { flex: 0 0 50%; border-bottom: 1px solid var(--border-subtle); }
+}
+
+@media (max-width: 768px) {
+    .eco-diagram-section,
+    .eco-layers-section,
+    .data-flow-section,
+    .why-arch-section { padding: 0 16px; }
+    .flow-pipeline { flex-direction: column; gap: 8px; }
+    .flow-arrow { transform: rotate(90deg); margin: 4px 0; }
+    .flow-animate-arrow { animation: none; }
+    .eco-tab { flex: 0 0 50%; }
+    .eco-layer-card { padding: 24px 20px; }
+}
+
+@media (max-width: 480px) {
+    .eco-tab { flex: 0 0 100%; border-right: none; }
 }

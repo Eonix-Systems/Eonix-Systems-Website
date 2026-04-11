@@ -12,19 +12,17 @@
         content="Modular, plug-and-play power architecture with intelligent protection and telemetry.">
     <title>Ecosystem | Eonix Systems</title>
 
-    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/base.css?v=604">
-    <link rel="stylesheet" href="css/layout.css?v=604">
-    <link rel="stylesheet" href="css/nav.css?v=604">
-    <link rel="stylesheet" href="css/animations.css?v=604">
-    <link rel="stylesheet" href="css/footer.css?v=604">
-    <link rel="stylesheet" href="css/home.css?v=604">
-    <link rel="stylesheet" href="css/product.css?v=604">
-    <link rel="stylesheet" href="css/ecosystem.css?v=604">
+    <link rel="stylesheet" href="css/base.css?v=605">
+    <link rel="stylesheet" href="css/layout.css?v=605">
+    <link rel="stylesheet" href="css/nav.css?v=605">
+    <link rel="stylesheet" href="css/animations.css?v=605">
+    <link rel="stylesheet" href="css/footer.css?v=605">
+    <link rel="stylesheet" href="css/home.css?v=605">
+    <link rel="stylesheet" href="css/ecosystem.css?v=605">
 </head>
 
 <body>
@@ -49,9 +47,7 @@
             </div>
 
             <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
@@ -61,116 +57,147 @@
         <div class="master-guide left"></div>
         <div class="master-guide right"></div>
 
-        <!-- HERO SECTION -->
-        <section class="home-root page-section hero-animated-grid"
-            style="padding-top: 140px; min-height: 50vh; padding-bottom: 0px;">
-            <div class="home-hero-inner reveal reveal-scale">
-                <h1 class="home-title" style="margin-bottom: 24px;">
-                    <span class="text-accent glow-text">System Architecture</span>,<br />
+        <!-- 1. HERO -->
+        <section class="eco-hero page-section hero-animated-grid">
+            <div class="home-hero-inner">
+                <span class="hero-sys-label">SYS_ARC_01 // ARCHITECTURE</span>
+                <h1 class="home-title">
+                    <span class="text-accent">System Architecture</span>,<br />
                     Not Modules.
                 </h1>
-                <p class="home-subtitle" style="max-width: 900px; margin-bottom: 40px;">
-                    Eonix is built as a layered embedded <span class="text-accent"
-                        style="text-shadow: 0 0 8px var(--accent-glow);">system</span> — where power, communication,
+                <p class="home-subtitle">
+                    Eonix is built as a layered embedded system — where power, communication,
                     sensing, and actuation are engineered to operate together with predictable behavior.
                 </p>
             </div>
         </section>
 
-        <!-- INTERACTIVE ARCHITECTURE SECTION (SPLIT SCREEN) -->
-        <section class="page-section architecture-interactive">
-            <!-- Subtle ambient spotlight for depth -->
-            <div class="interactive-ambient-glow" id="ambientGlow"></div>
+        <!-- 2. DIAGRAM — FULL WIDTH -->
+        <section class="eco-diagram-section page-section">
 
-            <div class="interactive-split">
+            <!-- Step Tabs -->
+            <div class="eco-tabs reveal">
+                <button class="eco-tab active" onclick="ecoSelectStep(1, this)" id="eco-tab-1">
+                    <span class="eco-tab-index">01</span>
+                    <span class="eco-tab-label">Control</span>
+                </button>
+                <button class="eco-tab" onclick="ecoSelectStep(2, this)" id="eco-tab-2">
+                    <span class="eco-tab-index">02</span>
+                    <span class="eco-tab-label">Communication</span>
+                </button>
+                <button class="eco-tab" onclick="ecoSelectStep(3, this)" id="eco-tab-3">
+                    <span class="eco-tab-index">03</span>
+                    <span class="eco-tab-label">Power</span>
+                </button>
+                <button class="eco-tab" onclick="ecoSelectStep(4, this)" id="eco-tab-4">
+                    <span class="eco-tab-index">04</span>
+                    <span class="eco-tab-label">Execution</span>
+                </button>
+            </div>
 
-                <!-- LEFT CONTENT: Scrolling Steps -->
-                <div class="interactive-steps" id="scroll-steps-container">
+            <!-- Canvas diagram -->
+            <div class="eco-canvas-wrapper reveal">
+                <div class="hero-diagram-container glass-panel" style="width: 100%; border: 1px solid var(--accent-border);">
+                    <canvas id="systemCanvas"></canvas>
+                    <div class="diagram-overlay"></div>
+                </div>
+            </div>
 
-                    <div class="arch-scroll-step" data-step="1">
-                        <div class="arch-label text-accent">CONTROL LAYER</div>
-                        <h3 class="arch-layer-title">System Brain</h3>
-                        <p class="arch-layer-desc">
-                            The motherboard acts as the central controller, coordinating all modules and maintaining
-                            system state.
-                        </p>
-                        <ul class="arch-key-points">
-                            <li data-target="MB">Centralized control architecture</li>
-                            <li data-target="MB">No distributed logic chaos</li>
-                            <li data-target="APP">USB interface to desktop</li>
-                            <li data-target="MCU">Optional external MCU integration</li>
-                        </ul>
+        </section>
+
+        <!-- DIVIDER -->
+        <div class="home-tech-divider"><div class="tech-node"></div></div>
+
+        <!-- 3. ARCHITECTURE LAYERS — FULL WIDTH BELOW DIAGRAM -->
+        <section class="eco-layers-section page-section">
+            <div class="home-section-header reveal">
+                <span class="home-section-label">SYS_ARC_02 // LAYER BREAKDOWN</span>
+                <h2 class="home-section-title">
+                    <span class="title-dot"></span>Four Layers. One System.
+                </h2>
+            </div>
+
+            <!-- Layer Cards Grid -->
+            <div class="eco-layers-grid">
+
+                <div class="eco-layer-card reveal" style="--delay: 100ms;" data-step="1">
+                    <div class="eco-layer-card-header">
+                        <span class="eco-layer-index">01 // CONTROL</span>
+                        <h3>System Brain</h3>
                     </div>
-
-                    <div class="arch-scroll-step" data-step="2">
-                        <div class="arch-label text-accent">COMMUNICATION LAYER</div>
-                        <h3 class="arch-layer-title">Unified Interface — Deterministic Communication</h3>
-                        <p class="arch-layer-desc">
-                            All modules communicate through a structured interface — no conflicts, no collisions, no
-                            unpredictability.
-                        </p>
-                        <ul class="arch-key-points">
-                            <li data-target="CAN">Multi-node communication</li>
-                            <li data-target="CAN">Predictable system behavior</li>
-                            <li data-target="CAN">Scalable architecture</li>
-                            <li data-target="CAN">No I2C/SPI chaos</li>
-                        </ul>
-                    </div>
-
-                    <div class="arch-scroll-step" data-step="3">
-                        <div class="arch-label text-accent">POWER LAYER</div>
-                        <h3 class="arch-layer-title">Programmable Power — Controlled Energy Flow</h3>
-                        <p class="arch-layer-desc">
-                            Power is regulated, monitored, and protected in hardware — ensuring stable operation under
-                            real loads.
-                        </p>
-                        <ul class="arch-key-points">
-                            <li data-target="PWR">CC/CV programmable outputs</li>
-                            <li data-target="PWR">Hardware OCP / SCP</li>
-                            <li data-target="PWR">Real-time telemetry</li>
-                            <li data-target="DRV">Stable under dynamic loads</li>
-                        </ul>
-                    </div>
-
-                    <div class="arch-scroll-step" data-step="4">
-                        <div class="arch-label text-accent">EXECUTION LAYER</div>
-                        <h3 class="arch-layer-title">Sensing and Actuation</h3>
-                        <p class="arch-layer-desc">
-                            Sensors provide structured input, while drivers convert electrical power into controlled
-                            physical output.
-                        </p>
-                        <ul class="arch-key-points">
-                            <li data-target="TEMP">Sensor abstraction (no raw protocols)</li>
-                            <li data-target="DRV">High-current driver modules</li>
-                            <li data-target="MB">Control-ready architecture</li>
-                            <li data-target="MOT">Built for real-world loads</li>
-                        </ul>
-                    </div>
-
+                    <p class="eco-layer-desc">
+                        The motherboard acts as the central controller, coordinating all modules and maintaining system state. No distributed logic chaos.
+                    </p>
+                    <ul class="eco-layer-points">
+                        <li>Centralized control architecture</li>
+                        <li>No distributed logic chaos</li>
+                        <li>USB interface to desktop</li>
+                        <li>Optional external MCU integration</li>
+                    </ul>
                 </div>
 
-                <!-- RIGHT CONTENT: Sticky Diagram -->
-                <div class="interactive-diagram">
-                    <div class="sticky-wrapper" id="sticky-diagram">
-                        <!-- Progress Bar (Vertical) -->
-                        <div class="sticky-progress-rail">
-                            <div class="sticky-progress-fill" id="diagramProgressFill"></div>
-                        </div>
-
-                        <div class="hero-diagram-container glass-panel"
-                            style="width: 100%; border: 1px solid rgba(56, 182, 255, 0.2); transform: scale(0.95); transform-origin: top center;">
-                            <canvas id="systemCanvas"></canvas>
-                            <div class="diagram-overlay"></div>
-                        </div>
+                <div class="eco-layer-card reveal" style="--delay: 200ms;" data-step="2">
+                    <div class="eco-layer-card-header">
+                        <span class="eco-layer-index">02 // COMMUNICATION</span>
+                        <h3>Unified Interface</h3>
                     </div>
+                    <p class="eco-layer-desc">
+                        All modules communicate through a structured interface — no conflicts, no collisions, no unpredictability.
+                    </p>
+                    <ul class="eco-layer-points">
+                        <li>Multi-node communication</li>
+                        <li>Predictable system behavior</li>
+                        <li>Scalable architecture</li>
+                        <li>No I2C/SPI chaos</li>
+                    </ul>
+                </div>
+
+                <div class="eco-layer-card reveal" style="--delay: 300ms;" data-step="3">
+                    <div class="eco-layer-card-header">
+                        <span class="eco-layer-index">03 // POWER</span>
+                        <h3>Programmable Power</h3>
+                    </div>
+                    <p class="eco-layer-desc">
+                        Power is regulated, monitored, and protected in hardware — ensuring stable operation under real loads.
+                    </p>
+                    <ul class="eco-layer-points">
+                        <li>CC/CV programmable outputs</li>
+                        <li>Hardware OCP / SCP</li>
+                        <li>Real-time telemetry</li>
+                        <li>Stable under dynamic loads</li>
+                    </ul>
+                </div>
+
+                <div class="eco-layer-card reveal" style="--delay: 400ms;" data-step="4">
+                    <div class="eco-layer-card-header">
+                        <span class="eco-layer-index">04 // EXECUTION</span>
+                        <h3>Sensing &amp; Actuation</h3>
+                    </div>
+                    <p class="eco-layer-desc">
+                        Sensors provide structured input, while drivers convert electrical power into controlled physical output.
+                    </p>
+                    <ul class="eco-layer-points">
+                        <li>Sensor abstraction (no raw protocols)</li>
+                        <li>High-current driver modules</li>
+                        <li>Control-ready architecture</li>
+                        <li>Built for real-world loads</li>
+                    </ul>
                 </div>
 
             </div>
         </section>
 
-        <!-- DATA FLOW SECTION -->
-        <section class="page-section data-flow-section reveal" style="margin-top: -10vh;">
-            <h2 class="home-section-title">How the System Operates</h2>
+        <!-- DIVIDER -->
+        <div class="home-tech-divider reveal"><div class="tech-node"></div></div>
+
+        <!-- 4. DATA FLOW SECTION -->
+        <section class="page-section data-flow-section reveal">
+            <div class="home-section-header reveal">
+                <span class="home-section-label">SYS_ARC_03 // SIGNAL PATH</span>
+                <h2 class="home-section-title">
+                    <span class="title-dot"></span>How the System Operates
+                </h2>
+            </div>
 
             <div class="data-flow-container glass-panel reveal reveal-scale">
                 <div class="flow-pipeline-wrapper">
@@ -179,7 +206,7 @@
                                 class="flow-detail">Generate structured data</span></div>
                         <div class="flow-arrow flow-animate-arrow">&#8594;</div>
                         <div class="flow-node flow-node-primary hover-premium"><strong>Motherboard</strong><br /><span
-                                class="flow-detail">Processes & routes commands</span></div>
+                                class="flow-detail">Processes &amp; routes commands</span></div>
                         <div class="flow-arrow flow-animate-arrow">&#8594;</div>
                         <div class="flow-node hover-premium"><strong>Drivers</strong><br /><span
                                 class="flow-detail">Execute control signals</span></div>
@@ -197,9 +224,17 @@
             </div>
         </section>
 
-        <!-- WHY THIS ARCHITECTURE -->
+        <!-- DIVIDER -->
+        <div class="home-tech-divider reveal"><div class="tech-node"></div></div>
+
+        <!-- 5. WHY THIS ARCHITECTURE -->
         <section class="page-section why-arch-section">
-            <h2 class="home-section-title reveal">Why This Architecture Exists</h2>
+            <div class="home-section-header reveal">
+                <span class="home-section-label">SYS_ARC_04 // RATIONALE</span>
+                <h2 class="home-section-title">
+                    <span class="title-dot"></span>Why This Architecture Exists
+                </h2>
+            </div>
 
             <div class="why-grid">
                 <div class="why-card glass-panel hover-premium reveal reveal-left">
@@ -223,12 +258,18 @@
             </div>
         </section>
 
-        <!-- FINAL CTA SECTION -->
-        <section class="home-direction page-section hero-animated-grid reveal reveal-scale">
-            <h2 class="home-section-title" style="margin-bottom: 1rem;">
+        <!-- DIVIDER -->
+        <div class="home-tech-divider reveal"><div class="tech-node"></div></div>
+
+        <!-- 6. FINAL CTA -->
+        <section class="home-direction page-section reveal reveal-scale" style="position: relative;">
+            <div class="corner-cross left-top"></div>
+            <div class="corner-cross right-top"></div>
+            <span class="hero-sys-label" style="margin-bottom: 20px;">SYS_ARC_05 // NEXT STEP</span>
+            <h2 class="home-section-title" style="margin-bottom: 20px; font-size: 2.8rem;">
                 A System That Scales Without Breaking
             </h2>
-            <p class="home-section-text" style="max-width: 700px; margin-bottom: 2rem; color: var(--text-secondary);">
+            <p style="max-width: 700px; margin-bottom: 32px; color: var(--text-secondary);">
                 Eonix enforces structure across power, communication, and control — enabling systems that remain stable
                 as complexity increases.
             </p>
@@ -238,8 +279,8 @@
                     Explore Products
                     <span class="btn-arrow">→</span>
                 </a>
-                <a class="btn-secondary" href="ecosystem.html">
-                    Read Technical Architecture
+                <a class="btn-secondary" href="contact.html">
+                    Work With Us
                     <span class="btn-arrow">→</span>
                 </a>
             </div>
@@ -282,70 +323,62 @@
         </div>
     </footer>
 
-    <script src="js/scroll-reveal.js?v=604"></script>
-    <script src="js/scroll-animations.js?v=604"></script>
-    <script src="js/nav.js?v=604"></script>
-    <script src="js/diagram.js?v=604"></script>
+    <script src="js/scroll-reveal.js?v=605"></script>
+    <script src="js/scroll-animations.js?v=605"></script>
+    <script src="js/nav.js?v=605"></script>
+    <script src="js/diagram.js?v=605"></script>
 
-
-    <!-- Scroll Step Logic -->
     <script>
+        // Initialize diagram on step 1
+        window.activeDiagramStep = 1;
+        window.forceHoverNodeId = null;
+
+        // Tab switching for the diagram
+        window.ecoSelectStep = function(step, btnEl) {
+            if (window.activeDiagramStep === step) return;
+            window.activeDiagramStep = step;
+
+            // Update tab active state
+            document.querySelectorAll('.eco-tab').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+
+            // Highlight the matching layer card
+            document.querySelectorAll('.eco-layer-card').forEach(c => c.classList.remove('eco-layer-active'));
+            const card = document.querySelector(`.eco-layer-card[data-step="${step}"]`);
+            if (card) {
+                card.classList.add('eco-layer-active');
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        };
+
+        // Layer card click → update diagram step
         document.addEventListener('DOMContentLoaded', () => {
-            const steps = document.querySelectorAll('.arch-scroll-step');
-            window.activeDiagramStep = 0; // Global for diagram.js override
-
-            // Interaction logic for intersection
-            const obsv = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Re-activate
-                        steps.forEach(s => s.classList.remove('active'));
-                        entry.target.classList.add('active');
-
-                        // Set global target for diagram animation lerp loop
-                        window.activeDiagramStep = parseInt(entry.target.getAttribute('data-step') || 0);
-
-                        // Shift ambient background
-                        const amb = document.getElementById('ambientGlow');
-                        if (amb) amb.style.top = (window.activeDiagramStep * 20) + "%";
-                    }
+            document.querySelectorAll('.eco-layer-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const step = parseInt(card.getAttribute('data-step'));
+                    const tab = document.getElementById(`eco-tab-${step}`);
+                    ecoSelectStep(step, tab);
                 });
-            }, {
-                root: null,
-                rootMargin: '-40% 0px -40% 0px', // Trigger exactly as it hits screen center
-                threshold: 0
             });
 
-            steps.forEach(step => obsv.observe(step));
-
-            // Progress rail logic
-            const container = document.getElementById('scroll-steps-container');
-            const fill = document.getElementById('diagramProgressFill');
-            if (container && fill) {
-                window.addEventListener('scroll', () => {
-                    const rect = container.getBoundingClientRect();
-                    const winH = window.innerHeight;
-                    const scrolledThrough = (winH / 2 - rect.top) / rect.height;
-                    const p = Math.max(0, Math.min(1, scrolledThrough));
-                    fill.style.height = (p * 100) + "%";
-                });
-            }
-
-            // Bullet Hover Triggers override
-            const bullets = document.querySelectorAll('.arch-key-points li');
-            bullets.forEach(b => {
-                b.addEventListener('mouseenter', () => window.forceHoverNodeId = b.getAttribute('data-target') || null);
-                b.addEventListener('mouseleave', () => window.forceHoverNodeId = null);
+            // Bullet hover → highlight specific node in diagram
+            document.querySelectorAll('.eco-layer-points li').forEach((li, i) => {
+                const targets = [
+                    ['MB', 'MB', 'APP', 'MCU'],
+                    ['CAN', 'CAN', 'CAN', 'CAN'],
+                    ['PWR', 'PWR', 'PWR', 'DRV'],
+                    ['TEMP', 'DRV', 'MB', 'MOT']
+                ];
+                const card = li.closest('.eco-layer-card');
+                const step = parseInt(card?.getAttribute('data-step') || '0');
+                const liIdx = Array.from(card.querySelectorAll('li')).indexOf(li);
+                const nodeId = targets[step - 1]?.[liIdx] || null;
+                li.addEventListener('mouseenter', () => window.forceHoverNodeId = nodeId);
+                li.addEventListener('mouseleave', () => window.forceHoverNodeId = null);
             });
         });
     </script>
+
 </body>
 
 </html>
-
-
-
-
-
-
-
