@@ -12,7 +12,7 @@
 
     /* Solid nav — not glass, not blur */
     background-color: rgba(255, 255, 255, 0.92);
-    border-bottom: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle); /* #e6eaf0 maps to border-subtle in base.css */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
@@ -106,7 +106,7 @@
     width: calc(100% - 36px);
     height: 3px;
     border-radius: 3px;
-    background-color: var(--accent-primary);
+    background-color: var(--accent);
 }
 
 /* =========================

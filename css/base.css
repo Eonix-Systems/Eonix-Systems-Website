@@ -37,40 +37,37 @@ html {
    ========================= */
 
 :root {
-    /* Backgrounds — light themes */
-    --bg-main: #FFFFFF;
-    --bg-soft: #FAFAFA;
-    --bg-card: #F0F0F0;
-    --bg-glass: rgba(255, 255, 255, 0.95);
+    /* Global Color System (Premium Engineering) */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f7f9fb;
+    --border-subtle: #e6eaf0;
+
+    /* Accent System */
+    --accent: #2f80ed;
+    --accent-light: #56a8ff;
+    --accent-dark: #1c5ed6;
 
     /* Text */
-    --text-primary: #000000;
-    --text-secondary: #1A1A1A;
-    --text-muted: #4D4D4D;
+    --text-primary: #0b0f14;
+    --text-secondary: #5b6470;
+    --text-muted: #8492a6;
 
-    /* Accent — custom blue */
-    --accent-primary: #38b6ff;
-    --accent-hover: #1ba5f2;
-    --accent-subtle: rgba(56, 182, 255, 0.12);
-    --accent-border: rgba(56, 182, 255, 0.35);
+    /* LEGACY ALIASES (to prevent immediate structural breaks) */
+    --bg-main: var(--bg-primary);
+    --bg-soft: var(--bg-secondary);
+    --bg-card: #ffffff;
+    --accent-primary: var(--accent);
+    --accent-hover: var(--accent-dark);
+    --border-strong: rgba(0, 0, 0, 0.15);
 
     /* UI Elements */
-    --border-subtle: rgba(0, 0, 0, 0.1);
-    --border-strong: rgba(0, 0, 0, 0.2);
-
-    /* Shadows — soft, directional, no glow */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.06);
 
     /* Geometry */
     --nav-height: 80px;
     --section-spacing: 120px;
-
-    /* OLD COMPAT — kept so old var() references don't break visually */
-    --accent-glow: transparent;
-    --accent-dim: transparent;
-    --border-active: rgba(56, 182, 255, 0.4);
 }
 
 /* =========================
@@ -79,13 +76,18 @@ html {
 
 body {
     background-color: var(--bg-main);
-    color: var(--text-primary);
+    color: var(--text-secondary);
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     position: relative;
     overflow-x: clip;
     width: 100%;
+}
+
+p {
+    color: var(--text-secondary);
+    line-height: 1.65;
 }
 
 h1,
@@ -109,7 +111,6 @@ a {
 
 /* =========================
    BACKGROUND GRID
-   Very subtle — feels like drafting paper, NOT a laser grid.
    ========================= */
 
 body::before {
@@ -118,8 +119,8 @@ body::before {
     inset: 0;
     z-index: -1;
     background-image:
-        linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        linear-gradient(#e9eef5 1px, transparent 1px),
+        linear-gradient(90deg, #e9eef5 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
     pointer-events: none;
@@ -131,21 +132,91 @@ body::before {
    UTILITIES
    ========================= */
 
-/* Flat panel — no blur, no glassmorphism */
-.glass-panel {
-    background: var(--bg-soft);
+/* Flat panel / Base card component */
+.card,
+.provides-card,
+.check-item-card,
+.stat-card,
+.prd-overview-card,
+.why-card {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: all 0.25s ease;
+}
+
+.card:hover,
+.provides-card:hover,
+.check-item-card:hover,
+.stat-card:hover,
+.prd-overview-card:hover,
+.why-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* Subtle section divider */
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e6eaf0, transparent);
+    width: 100%;
+    margin: 60px 0;
+}
+
+/* Base CTA Buttons */
+.primary-btn, .btn-primary {
+    background: var(--accent);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(47, 128, 237, 0.25);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+}
+
+.primary-btn:hover, .btn-primary:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+    color: white;
+}
+
+.secondary-btn, .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
 }
 
-/* Accent color — no text-shadow */
+.secondary-btn:hover, .btn-secondary:hover {
+    background: var(--bg-secondary);
+    border-color: rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Accent color */
 .text-accent {
-    color: var(--accent-primary);
+    color: var(--accent);
 }
 
-/* Accent text that used to glow — now just bold blue */
+/* Formerly glow-text */
 .glow-text {
-    color: var(--accent-hover);
+    color: var(--accent);
     font-weight: 600;
 }
 
