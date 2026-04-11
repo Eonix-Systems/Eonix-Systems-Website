@@ -71,16 +71,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const parent = canvas.parentElement;
         const dpr = window.devicePixelRatio || 1;
         const displayWidth = parent.clientWidth; // Exactly fit container
-        // Aspect-ratio based height so the full diagram is always visible
-        const displayHeight = Math.min(640, Math.max(440, displayWidth * 0.6));
+        // Aspect-ratio based height — 0.65× width so the full diagram always fits
+        const displayHeight = Math.min(720, Math.max(520, displayWidth * 0.65));
         canvas.style.width = displayWidth + "px";
         canvas.style.height = displayHeight + "px";
         canvas.width = displayWidth * dpr;
         canvas.height = displayHeight * dpr;
         ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
+    // Fire resize on window resize
     window.addEventListener("resize", resize);
+    // Fire immediately, then again after layout settles (rAF + load)
     resize();
+    requestAnimationFrame(resize);
+    window.addEventListener("load", resize);
 
     const REF_W = 1200;
     const REF_H = 700;

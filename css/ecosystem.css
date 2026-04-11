@@ -17,12 +17,21 @@
    ========================= */
 
 .eco-hero {
-    min-height: 55vh;
-    display: flex;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 40px;
+    /* spacing via .page-hero in layout.css */
 }
+
+/* Always-visible hero title — does NOT use home-title to avoid scroll-JS visibility gate */
+.eco-page-title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+@media (max-width: 1024px) { .eco-page-title { font-size: 3.8rem; } }
+@media (max-width: 768px)  { .eco-page-title { font-size: 2.8rem; letter-spacing: -0.03em; } }
 
 /* =========================
    2. DIAGRAM SECTION

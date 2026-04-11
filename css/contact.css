@@ -8,11 +8,7 @@
    ========================= */
 
 .contact-root {
-    min-height: 55vh;
-    display: flex;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 60px;
+    /* spacing via .page-hero in layout.css */
 }
 
 .contact-hero-inner {
@@ -33,11 +29,11 @@
 }
 
 .contact-intro {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 /* =========================

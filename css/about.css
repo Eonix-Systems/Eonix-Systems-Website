@@ -23,10 +23,10 @@
 
 /* TYPOGRAPHY overrides */
 .manifesto-huge-title {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
     margin-bottom: 24px;
     color: var(--text-primary);
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -44,11 +44,12 @@
 }
 
 .manifesto-lead {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    max-width: 800px;
+    max-width: 650px;
     margin: 0 auto;
+    font-weight: 400;
 }
 
 .manifesto-p {

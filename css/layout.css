@@ -32,3 +32,27 @@
     padding-top: var(--nav-height);
     min-height: calc(100vh - var(--nav-height));
 }
+
+/* =========================
+   CONSISTENT PAGE HERO
+   All first-sections on every page use this class for
+   identical top padding / headline distance from the nav.
+   ========================= */
+
+.page-hero {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 60px;
+    position: relative;
+    text-align: center;
+}
+
+/* Vertical space between major page sections */
+.page-section + .home-tech-divider {
+    margin-top: 0;
+    margin-bottom: 0;
+}

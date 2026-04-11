@@ -17,17 +17,7 @@
    HERO
    ========================= */
 
-.home-root {
-    min-height: 88vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 0;
-    padding-bottom: 60px;
-    position: relative;
-    text-align: center;
-}
+/* .home-root styling moved to .page-hero in layout.css */
 
 .home-hero-inner {
     max-width: 860px;

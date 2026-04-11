@@ -4,32 +4,22 @@
     <link rel="icon" href="assets/New Logo only symbol Transparent Background For Website.png" type="image/png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Hardware, As a System. A unified embedded platform where power, sensing, control, and actuation are engineered to work together from the start."
-    />
-    <meta property="og:title" content="System Experience Explorer | Eonix Systems" />
-    <meta
-      property="og:description"
-      content="Layered hardware architecture engineered as a unified system."
-    />
+    <meta name="description" content="Hardware, As a System. A unified embedded platform where power, sensing, control, and actuation are engineered to work together from the start." />
+    <meta property="og:title" content="Hardware Platform | Eonix Systems" />
+    <meta property="og:description" content="Layered hardware architecture engineered as a unified system." />
     <title>Hardware Platform | Eonix Systems</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="css/base.css?v=604" />
-    <link rel="stylesheet" href="css/layout.css?v=604" />
-    <link rel="stylesheet" href="css/nav.css?v=604" />
-    <link rel="stylesheet" href="css/animations.css?v=604" />
-    <link rel="stylesheet" href="css/footer.css?v=604" />
-    <link rel="stylesheet" href="css/product.css?v=604" />
-    <link rel="stylesheet" href="css/home.css?v=604" />
-    
+    <link rel="stylesheet" href="css/base.css?v=606" />
+    <link rel="stylesheet" href="css/layout.css?v=606" />
+    <link rel="stylesheet" href="css/nav.css?v=606" />
+    <link rel="stylesheet" href="css/animations.css?v=606" />
+    <link rel="stylesheet" href="css/footer.css?v=606" />
+    <link rel="stylesheet" href="css/home.css?v=606" />
+    <link rel="stylesheet" href="css/product.css?v=606" />
   </head>
 
   <body>
@@ -58,302 +48,201 @@
       <!-- VERTICAL GUIDE RAILS -->
       <div class="master-guide left"></div>
       <div class="master-guide right"></div>
-      
-      <!-- HERO DELETED PER USER REQUEST -->
 
-
-      <!-- SYSTEM NAV (SEGMENTED CONTROL) -->
-      <section id="system-explorer" class="page-section" style="padding: 140px 0 0 0; margin-bottom: 40px;">
-        <div class="seg-control-container reveal">
-            <div class="seg-control">
-                <div class="seg-indicator" id="segIndicator"></div>
-                <button class="seg-btn active" onclick="switchSysTab(1, this)">CONTROL</button>
-                <button class="seg-btn" onclick="switchSysTab(2, this)">SENSING</button>
-                <button class="seg-btn" onclick="switchSysTab(3, this)">POWER</button>
-                <button class="seg-btn" onclick="switchSysTab(4, this)">ACTUATION</button>
-            </div>
+      <!-- 1. HERO -->
+      <section class="page-hero page-section hero-animated-grid">
+        <div class="prd-hero-inner">
+          <span class="hero-sys-label">SYS_PRD_01 // HARDWARE PLATFORM</span>
+          <h1 class="prd-hero-title reveal">
+            Hardware,<br><span class="text-accent">As a System.</span>
+          </h1>
+          <p class="prd-hero-sub reveal" style="--delay: 80ms;">
+            A unified embedded platform — power, sensing, control, and actuation engineered to work together from the start. No integration guesswork.
+          </p>
+          <div class="hero-actions reveal" style="--delay: 160ms;">
+            <a class="btn-primary" href="ecosystem.html">View Architecture <span class="btn-arrow">→</span></a>
+            <a class="btn-secondary" href="contact.html">Work With Us <span class="btn-arrow">→</span></a>
+          </div>
         </div>
       </section>
 
-      <!-- ACTIVE SYSTEM VIEW (CORE) -->
-      <section class="page-section system-active-view">
-        <div class="system-split">
-            
-            <!-- LEFT: Persistant Interactive Diagram -->
-            <div class="system-pane-left">
-                <div class="interactive-ambient-glow override-ambient" id="prodAmbient"></div>
-                <div class="hero-diagram-container glass-panel" style="border-color: rgba(56, 182, 255, 0.2); width: 100%; max-width: 100%; position: sticky; top: 15vh;">
-                    <canvas id="systemCanvas"></canvas>
-                    <div class="diagram-overlay"></div>
-                </div>
-            </div>
+      <!-- DIVIDER -->
+      <div class="home-tech-divider reveal"><div class="tech-node"></div></div>
 
-            <!-- RIGHT: Contextual Content Blocks -->
-            <div class="system-pane-right">
-                
-                <!-- TAB 1: CONTROL -->
-                <div id="sys-tab-1" class="sys-content active">
-                    <div class="arch-label text-accent">MOTHERBOARD</div>
-                    <h3 class="arch-layer-title">System Brain</h3>
-                    <p class="arch-layer-desc">
-                        The motherboard is the central control layer, coordinating modules, managing communication, and enforcing system structure.
-                    </p>
+      <!-- 2. PLATFORM OVERVIEW — 4 cards -->
+      <section class="page-section prd-overview-section">
+        <div class="home-section-header reveal">
+          <span class="home-section-label">SYS_PRD_02 // THE PLATFORM</span>
+          <h2 class="home-section-title"><span class="title-dot"></span>Four Layers. One Platform.</h2>
+        </div>
 
-                    <div class="feature-blocks">
-                        <div class="f-block">
-                            <h4>Centralized Control</h4>
-                            <p>No distributed logic chaos.</p>
-                        </div>
-                        <div class="f-block">
-                            <h4>Unified Interface</h4>
-                            <p>All modules connect through a structured system layer.</p>
-                        </div>
-                        <div class="f-block">
-                            <h4>System Coordination</h4>
-                            <p>Handles state, communication, and orchestration.</p>
-                        </div>
-                    </div>
-
-                    <div class="replacement-block mt-48">
-                        <h4 class="rep-title">What it Replaces</h4>
-                        <ul class="rep-list bad">
-                            <li>Multiple MCUs + messy wiring</li>
-                            <li>Protocol conflicts</li>
-                            <li>Integration overhead</li>
-                        </ul>
-                        <ul class="rep-list good mt-16">
-                            <li class="success">One structured control layer</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- TAB 2: SENSING -->
-                <div id="sys-tab-2" class="sys-content">
-                    <div class="arch-label text-accent">INPUT LAYER</div>
-                    <h3 class="arch-layer-title">Structured Sensing Layer</h3>
-                    <p class="arch-layer-desc" style="font-weight: 600; color: var(--text-primary);">
-                        Sensors are not raw devices — they are system-aware modules.
-                    </p>
-
-                    <div class="sensor-interactive mt-32">
-                        <!-- Pill Selector -->
-                        <div class="sensor-pills">
-                            <button class="s-pill active" onclick="selectSensor('sens-temp', this)">Temperature</button>
-                            <button class="s-pill" onclick="selectSensor('sens-imu', this)">IMU</button>
-                            <button class="s-pill" onclick="selectSensor('sens-lidar', this)">LiDAR</button>
-                            <button class="s-pill" onclick="selectSensor('sens-tof', this)">ToF</button>
-                            <button class="s-pill" onclick="selectSensor('sens-us', this)">Ultrasonic</button>
-                            <button class="s-pill" onclick="selectSensor('sens-ir', this)">IR</button>
-                        </div>
-                        
-                        <!-- Selected Content Card -->
-                        <div class="sensor-cards-wrapper mt-24">
-                            <div id="sens-temp" class="sensor-crd active">
-                                <h4>Temperature Sensor</h4>
-                                <p>Environmental sensing node focused on high-accuracy thermal data acquisition.</p>
-                                <ul>
-                                    <li>Stable calibrated output</li>
-                                    <li>Low-noise measurement</li>
-                                    <li>Standardized data interface</li>
-                                </ul>
-                            </div>
-                            <div id="sens-imu" class="sensor-crd">
-                                <h4>IMU Sensor</h4>
-                                <p>High-speed inertial measurement for orientation and motion tracking.</p>
-                                <ul>
-                                    <li>Acceleration + gyroscope</li>
-                                    <li>Motion tracking algorithms</li>
-                                    <li>Orientation estimation</li>
-                                </ul>
-                            </div>
-                            <div id="sens-lidar" class="sensor-crd">
-                                <h4>LiDAR Module</h4>
-                                <p>Precision distance measurement node for spatial mapping and advanced detection.</p>
-                                <ul>
-                                    <li>High precision targeting</li>
-                                    <li>Long range mapping</li>
-                                    <li>Fast response matrix</li>
-                                </ul>
-                            </div>
-                            <div id="sens-tof" class="sensor-crd">
-                                <h4>ToF Sensor</h4>
-                                <p>Time-of-flight optical distance measurement built for compact applications.</p>
-                                <ul>
-                                    <li>Short-range high accuracy</li>
-                                    <li>Compact form factor</li>
-                                    <li>Fast sampling rates</li>
-                                </ul>
-                            </div>
-                            <div id="sens-us" class="sensor-crd">
-                                <h4>Ultrasonic Sensor</h4>
-                                <p>Acoustic distance sensing optimized for robust medium-range obstacle detection.</p>
-                                <ul>
-                                    <li>Cost-effective sound reflection</li>
-                                    <li>Medium range spread</li>
-                                    <li>Simple system integration</li>
-                                </ul>
-                            </div>
-                            <div id="sens-ir" class="sensor-crd">
-                                <h4>IR Sensor</h4>
-                                <p>Infrared proximity detection for simple presence and reflection boundaries.</p>
-                                <ul>
-                                    <li>Proximity detection</li>
-                                    <li>Short range boundaries</li>
-                                    <li>Low power footprint</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB 3: POWER -->
-                <div id="sys-tab-3" class="sys-content">
-                    <div class="arch-label text-accent">ENERGY LAYER</div>
-                    <h3 class="arch-layer-title">Controlled Power Architecture</h3>
-                    <p class="arch-layer-desc" style="font-weight: 600; color: var(--text-primary);">
-                        Power is treated as a controlled system — not a passive supply.
-                    </p>
-
-                    <div class="feature-blocks mt-32">
-                        <div class="f-block">
-                            <h4>Programmable Output</h4>
-                            <p>Voltage and current defined by system.</p>
-                        </div>
-                        <div class="f-block">
-                            <h4>Hardware Protection</h4>
-                            <p>OCP, SCP, faults handled in hardware.</p>
-                        </div>
-                        <div class="f-block">
-                            <h4>Telemetry Driven</h4>
-                            <p>Real-time system awareness.</p>
-                        </div>
-                        <div class="f-block">
-                            <h4>System Distribution</h4>
-                            <p>Multi-node power routing.</p>
-                        </div>
-                    </div>
-
-                    <div class="product-cards-mini mt-48">
-                        <div class="p-card-mini">
-                            <h5>Smart PDS</h5>
-                            <span>Multi-channel intelligent distribution</span>
-                        </div>
-                        <div class="p-card-mini">
-                            <h5>Power Core</h5>
-                            <span>Analog CC/CV control foundation</span>
-                        </div>
-                        <div class="p-card-mini">
-                            <h5>Eonix Flow</h5>
-                            <span>System-level power routing logic</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB 4: ACTUATION -->
-                <div id="sys-tab-4" class="sys-content">
-                    <div class="arch-label text-accent">EXECUTION LAYER</div>
-                    <h3 class="arch-layer-title">Execution Layer — Real Output</h3>
-                    <p class="arch-layer-desc" style="font-weight: 600; color: var(--text-primary);">
-                        Where electrical energy becomes controlled physical action.
-                    </p>
-
-                    <div class="feature-blocks mt-32">
-                        <div class="f-block">
-                            <h4>High Current Drivers</h4>
-                            <p>Designed for real loads, not demos.</p>
-                        </div>
-                        <div class="f-block">
-                            <h4>Hardware Fault Protection</h4>
-                            <p>OCP, SCP, thermal shutdown.</p>
-                        </div>
-                        <div class="f-block">
-                            <h4>Control Ready</h4>
-                            <p>Torque, stall, dynamic response handling.</p>
-                        </div>
-                        <div class="f-block">
-                            <h4>System Integration</h4>
-                            <p>Works strictly within unified architecture.</p>
-                        </div>
-                    </div>
-
-                    <div class="product-cards-mini mt-48">
-                        <div class="p-card-mini">
-                            <h5>Brushed Driver</h5>
-                            <span>Standard high-current PWM logic.</span>
-                        </div>
-                        <div class="p-card-mini">
-                            <h5>BLDC Driver</h5>
-                            <span>3-phase high efficiency motion.</span>
-                        </div>
-                        <div class="p-card-mini">
-                            <h5>General Load Driver</h5>
-                            <span>Massive relay/solenoid inductive loads.</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="prd-overview-grid">
+          <div class="prd-overview-card reveal" style="--delay: 80ms;">
+            <span class="prd-card-index">01 // CONTROL</span>
+            <h3>Eonix Motherboard</h3>
+            <p>Central controller coordinating all modules with a single, deterministic communication architecture. No distributed logic chaos.</p>
+            <ul class="prd-card-specs">
+              <li>Centralized control architecture</li>
+              <li>USB interface to desktop app</li>
+              <li>External MCU integration</li>
+            </ul>
+          </div>
+          <div class="prd-overview-card reveal" style="--delay: 150ms;">
+            <span class="prd-card-index">02 // COMMUNICATION</span>
+            <h3>CAN Bus Backbone</h3>
+            <p>All modules talk through a structured, deterministic communication layer. No I²C collisions, no SPI chaos — predictable by design.</p>
+            <ul class="prd-card-specs">
+              <li>Multi-node deterministic link</li>
+              <li>Scalable to any module count</li>
+              <li>Hardware-level fault isolation</li>
+            </ul>
+          </div>
+          <div class="prd-overview-card reveal" style="--delay: 220ms;">
+            <span class="prd-card-index">03 // POWER</span>
+            <h3>Smart Power Block</h3>
+            <p>Programmable CC/CV outputs with hardware OCP, SCP, and live telemetry. Power treated as an active system layer — not a passive supply.</p>
+            <ul class="prd-card-specs">
+              <li>Programmable voltage &amp; current</li>
+              <li>Hardware OCP / SCP / thermal</li>
+              <li>Real-time power telemetry</li>
+            </ul>
+          </div>
+          <div class="prd-overview-card reveal" style="--delay: 290ms;">
+            <span class="prd-card-index">04 // EXECUTION</span>
+            <h3>Sensors &amp; Drivers</h3>
+            <p>Sensor abstraction and high-current driver modules — built for real loads. Structured input, controlled output.</p>
+            <ul class="prd-card-specs">
+              <li>Sensor abstraction layer</li>
+              <li>High-current motor drivers</li>
+              <li>Fault-protected outputs</li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      <!-- WHY THIS SYSTEM EXISTS (GAP SECTION REPLACEMENT) -->
-      <section class="page-section contrast-section" style="padding: 100px 0;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-            <h2 class="home-section-title text-center mb-64" style="margin-bottom: 64px;">Why Existing Systems Break</h2>
-            
-            <div class="why-split">
-                
-                <div class="why-row">
-                    <div class="why-bad">
-                        <h4 class="text-red">Fragmented Hardware</h4>
-                        <p>Multiple boards. Multiple protocols. No clear structure linking power to control.</p>
-                    </div>
-                    <div class="why-arrow">→</div>
-                    <div class="why-good">
-                        <h4 class="text-accent">Unified Architecture</h4>
-                        <p>One engineered platform treating hardware as a continuous software target.</p>
-                    </div>
-                </div>
-                
-                <div class="why-row">
-                    <div class="why-bad">
-                        <h4 class="text-red">Unreliable Integration</h4>
-                        <p>Relying on software glue logic and unstable standard buses. Random runtime failures.</p>
-                    </div>
-                    <div class="why-arrow">→</div>
-                    <div class="why-good">
-                        <h4 class="text-accent">Hardware-Enforced Behavior</h4>
-                        <p>Zero protocol conflicts. Behavior protected natively in the physics.</p>
-                    </div>
-                </div>
+      <!-- DIVIDER -->
+      <div class="home-tech-divider reveal"><div class="tech-node"></div></div>
 
-                <div class="why-row">
-                    <div class="why-bad">
-                        <h4 class="text-red">Power is an Afterthought</h4>
-                        <p>Supplies are passive blocks blindly pouring out voltage with no system awareness.</p>
-                    </div>
-                    <div class="why-arrow">→</div>
-                    <div class="why-good">
-                        <h4 class="text-accent">Managed Energy Layer</h4>
-                        <p>Programmable limits, strict fault barriers, and live telemetry to the main brain.</p>
-                    </div>
-                </div>
+      <!-- 3. SENSING MODULES (detailed) -->
+      <section class="page-section prd-sensing-section">
+        <div class="home-section-header reveal">
+          <span class="home-section-label">SYS_PRD_03 // INPUT LAYER</span>
+          <h2 class="home-section-title"><span class="title-dot"></span>Structured Sensing Layer</h2>
+        </div>
+        <p class="prd-section-sub reveal">Sensors are not raw devices — they are system-aware modules with abstracted interfaces and standardized data output.</p>
 
+        <div class="prd-sensing-layout">
+          <!-- Pill selector -->
+          <div class="sensor-pills reveal">
+            <button class="s-pill active" onclick="selectSensor('sens-temp', this)">Temperature</button>
+            <button class="s-pill" onclick="selectSensor('sens-imu', this)">IMU</button>
+            <button class="s-pill" onclick="selectSensor('sens-lidar', this)">LiDAR</button>
+            <button class="s-pill" onclick="selectSensor('sens-tof', this)">ToF</button>
+            <button class="s-pill" onclick="selectSensor('sens-us', this)">Ultrasonic</button>
+            <button class="s-pill" onclick="selectSensor('sens-ir', this)">IR</button>
+          </div>
+
+          <div class="sensor-cards-wrapper">
+            <div id="sens-temp" class="sensor-crd active">
+              <h4>Temperature Sensor</h4>
+              <p>Environmental sensing node focused on high-accuracy thermal data acquisition for system and environment monitoring.</p>
+              <ul><li>Stable calibrated output</li><li>Low-noise measurement</li><li>Standardized data interface</li></ul>
             </div>
+            <div id="sens-imu" class="sensor-crd">
+              <h4>IMU Sensor</h4>
+              <p>High-speed inertial measurement for orientation and motion tracking in dynamic environments.</p>
+              <ul><li>Acceleration + gyroscope</li><li>Motion tracking algorithms</li><li>Orientation estimation</li></ul>
+            </div>
+            <div id="sens-lidar" class="sensor-crd">
+              <h4>LiDAR Module</h4>
+              <p>Precision distance measurement node for spatial mapping and advanced detection applications.</p>
+              <ul><li>High precision targeting</li><li>Long range mapping</li><li>Fast response matrix</li></ul>
+            </div>
+            <div id="sens-tof" class="sensor-crd">
+              <h4>ToF Sensor</h4>
+              <p>Time-of-flight optical distance measurement built for compact, fast-response applications.</p>
+              <ul><li>Short-range high accuracy</li><li>Compact form factor</li><li>Fast sampling rates</li></ul>
+            </div>
+            <div id="sens-us" class="sensor-crd">
+              <h4>Ultrasonic Sensor</h4>
+              <p>Acoustic distance sensing optimized for robust medium-range obstacle detection.</p>
+              <ul><li>Cost-effective sound reflection</li><li>Medium range spread</li><li>Simple system integration</li></ul>
+            </div>
+            <div id="sens-ir" class="sensor-crd">
+              <h4>IR Sensor</h4>
+              <p>Infrared proximity detection for simple presence sensing and reflection boundaries.</p>
+              <ul><li>Proximity detection</li><li>Short range boundaries</li><li>Low power footprint</li></ul>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- FINAL CTA -->
-      <section class="page-section cta-grand text-center" style="padding: 140px 24px;">
-        <h2 class="home-title" style="font-size: 3.5rem; margin-bottom: 24px; text-align: center;">Build Systems That Actually Ship</h2>
-        <p class="home-subtitle" style="max-width: 600px; margin: 0 auto 40px; text-align: center;">Stop assembling random fragmented hardware components. Start building unified, scalable systems.</p>
-        <div class="hero-actions" style="justify-content: center;">
-            <a href="ecosystem.html" class="btn-primary">
-              Explore Ecosystem <span class="btn-arrow">→</span>
-            </a>
-            <a href="contact.html" class="btn-secondary">
-              Contact Sales
-            </a>
+      <!-- DIVIDER -->
+      <div class="home-tech-divider reveal"><div class="tech-node"></div></div>
+
+      <!-- 4. WHY EXISTING SYSTEMS BREAK -->
+      <section class="page-section prd-contrast-section">
+        <div class="home-section-header reveal">
+          <span class="home-section-label">SYS_PRD_04 // PROBLEM SPACE</span>
+          <h2 class="home-section-title"><span class="title-dot"></span>Why Existing Systems Break</h2>
+        </div>
+
+        <div class="why-split">
+
+          <div class="why-row reveal">
+            <div class="why-bad">
+              <h4 class="text-red">Fragmented Hardware</h4>
+              <p>Multiple boards. Multiple protocols. No clear structure linking power to control.</p>
+            </div>
+            <div class="why-arrow">→</div>
+            <div class="why-good">
+              <h4 class="text-accent">Unified Architecture</h4>
+              <p>One engineered platform treating hardware as a continuous, structured system.</p>
+            </div>
+          </div>
+
+          <div class="why-row reveal" style="--delay: 100ms;">
+            <div class="why-bad">
+              <h4 class="text-red">Unreliable Integration</h4>
+              <p>Software glue logic and unstable buses. Random runtime failures at scale.</p>
+            </div>
+            <div class="why-arrow">→</div>
+            <div class="why-good">
+              <h4 class="text-accent">Hardware-Enforced Behavior</h4>
+              <p>Zero protocol conflicts. Behavior protected natively at the hardware level.</p>
+            </div>
+          </div>
+
+          <div class="why-row reveal" style="--delay: 200ms;">
+            <div class="why-bad">
+              <h4 class="text-red">Power is an Afterthought</h4>
+              <p>Passive supplies blindly pouring voltage with zero system awareness.</p>
+            </div>
+            <div class="why-arrow">→</div>
+            <div class="why-good">
+              <h4 class="text-accent">Managed Energy Layer</h4>
+              <p>Programmable limits, strict fault barriers, and live telemetry to the control brain.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- DIVIDER -->
+      <div class="home-tech-divider reveal"><div class="tech-node"></div></div>
+
+      <!-- 5. FINAL CTA -->
+      <section class="home-direction page-section reveal reveal-scale" style="position: relative;">
+        <div class="corner-cross left-top"></div>
+        <div class="corner-cross right-top"></div>
+        <span class="hero-sys-label" style="margin-bottom: 20px;">SYS_PRD_05 // NEXT STEP</span>
+        <h2 class="home-section-title" style="margin-bottom: 20px; font-size: 2.8rem;">Build Systems That Actually Ship</h2>
+        <p style="max-width: 600px; margin-bottom: 32px; color: var(--text-secondary);">
+          Stop assembling random fragmented hardware. Start building unified, scalable systems with Eonix.
+        </p>
+        <div class="hero-actions">
+          <a href="ecosystem.html" class="btn-primary">Explore Ecosystem <span class="btn-arrow">→</span></a>
+          <a href="contact.html" class="btn-secondary">Contact Us <span class="btn-arrow">→</span></a>
         </div>
       </section>
 
@@ -373,70 +262,20 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Eonix Systems Pvt. Ltd. All rights reserved.</p>
-        <!-- Keep existing socials formatting -->
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/scroll-reveal.js?v=604"></script>
-    <script src="js/scroll-animations.js?v=604"></script>
-    <script src="js/nav.js?v=604"></script>
-    <script src="js/diagram.js?v=604"></script>
+    <script src="js/scroll-reveal.js?v=606"></script>
+    <script src="js/scroll-animations.js?v=606"></script>
+    <script src="js/nav.js?v=606"></script>
 
     <script>
-        // System Explorer Integration Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Diagram to Step 1 (Control)
-            window.activeDiagramStep = 1;
-
-            // Setup Segmented Indicator Initial Width
-            const activeBtn = document.querySelector('.seg-btn.active');
-            updateIndicator(activeBtn);
-        });
-
-        // Window resize indicator fix
-        window.addEventListener('resize', () => {
-            const activeBtn = document.querySelector('.seg-btn.active');
-            if(activeBtn) updateIndicator(activeBtn);
-        });
-
-        function updateIndicator(btn) {
-            const ind = document.getElementById('segIndicator');
-            ind.style.width = btn.offsetWidth + 'px';
-            ind.style.left = btn.offsetLeft + 'px';
-        }
-
-        window.switchSysTab = function(stepNum, btnContext) {
-            if(window.activeDiagramStep === stepNum) return; // ignore same click
-            
-            // 1. Update Buttons & Indicator
-            document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
-            btnContext.classList.add('active');
-            updateIndicator(btnContext);
-
-            // 2. Set Diagram Engine Step
-            window.activeDiagramStep = stepNum;
-
-            // 3. Swap Content Panes
-            document.querySelectorAll('.sys-content').forEach(c => c.classList.remove('active'));
-            document.getElementById(`sys-tab-${stepNum}`).classList.add('active');
-        };
-
-        window.selectSensor = function(sensorId, btnContext) {
-            // Update pills
-            document.querySelectorAll('.s-pill').forEach(b => b.classList.remove('active'));
-            btnContext.classList.add('active');
-
-            // Swap active card
-            document.querySelectorAll('.sensor-crd').forEach(c => c.classList.remove('active'));
-            document.getElementById(sensorId).classList.add('active');
-        };
+      window.selectSensor = function(sensorId, btnEl) {
+        document.querySelectorAll('.s-pill').forEach(b => b.classList.remove('active'));
+        btnEl.classList.add('active');
+        document.querySelectorAll('.sensor-crd').forEach(c => c.classList.remove('active'));
+        document.getElementById(sensorId).classList.add('active');
+      };
     </script>
   </body>
 </html>
-
-
-
-
-
-
