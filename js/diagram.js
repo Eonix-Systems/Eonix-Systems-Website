@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const parent = canvas.parentElement;
         const dpr = window.devicePixelRatio || 1;
         const displayWidth = parent.clientWidth; // Exactly fit container
-        // Limit the height strictly to 75% of the user's screen height so it never leaks off the bottom edge
-        const displayHeight = Math.min(750, window.innerHeight * 0.75);
+        // Aspect-ratio based height so the full diagram is always visible
+        const displayHeight = Math.min(640, Math.max(440, displayWidth * 0.6));
         canvas.style.width = displayWidth + "px";
         canvas.style.height = displayHeight + "px";
         canvas.width = displayWidth * dpr;
@@ -179,9 +179,9 @@ document.addEventListener("DOMContentLoaded", () => {
         Object.assign(tip.style, {
             position: "absolute", padding: "12px 16px", borderRadius: "8px",
             fontSize: "0.9rem", lineHeight: "1.6", whiteSpace: "nowrap",
-            backgroundColor: "#080a0c", border: "1px solid rgba(0,229,255,.4)",
-            color: "#00e5ff", pointerEvents: "none", zIndex: "200",
-            boxShadow: "0 4px 20px rgba(0,229,255,.15)"
+            backgroundColor: "#ffffff", border: "1px solid rgba(56,182,255,0.35)",
+            color: "#111111", pointerEvents: "none", zIndex: "200",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.1)"
         });
         if (px > cw * 0.55) { tip.style.right = (cw - px + nw / 2 + 10) + "px"; } 
         else { tip.style.left = (px + nw / 2 + 10) + "px"; }
@@ -249,14 +249,14 @@ document.addEventListener("DOMContentLoaded", () => {
         
         ctx.beginPath();
         ctx.roundRect(x - w / 2, y - h / 2, w, h, r);
-        ctx.fillStyle = isMajor ? "#101520" : "#0a0c0e";
-        if (g > 5) ctx.fillStyle = isMajor ? "#121d2b" : "#12161a"; // Brighten bg when glowing
+        ctx.fillStyle = isMajor ? "#EEF6FF" : "#F4F4F4";
+        if (g > 5) ctx.fillStyle = isMajor ? "#D8EEFF" : "#E8E8E8"; // Brighten bg when glowing
         ctx.fill();
         
-        ctx.strokeStyle = g > 5 ? "#00e5ff" : isMajor ? "rgba(0,229,255,0.6)" : "rgba(255,255,255,0.18)";
+        ctx.strokeStyle = g > 5 ? "#38b6ff" : isMajor ? "rgba(56,182,255,0.6)" : "rgba(0,0,0,0.12)";
         ctx.lineWidth = (isMajor || g > 5 ? 2 : 1) * s;
         
-        if (g > 0) { ctx.shadowColor = "#00e5ff"; ctx.shadowBlur = g; }
+        if (g > 0) { ctx.shadowColor = "#38b6ff"; ctx.shadowBlur = g * 0.6; }
         ctx.stroke();
         ctx.shadowBlur = 0;
         ctx.globalAlpha = 1.0;
@@ -267,18 +267,18 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.globalAlpha = currentAlphas[ndId];
         const g = currentGlows[ndId] * s;
         
-        ctx.fillStyle = "#ffffff";
-        ctx.font = `${Math.max(9, (isMajor ? 14 : 11) * s)}px Inter, system-ui`;
-        if (g > 10) { ctx.shadowColor = "#00e5ff"; ctx.shadowBlur = 5 * s; }
+        ctx.fillStyle = "#111111";
+        ctx.font = `${Math.max(9, (isMajor ? 14 : 11) * s)}px 'Plus Jakarta Sans', system-ui`;
+        if (g > 10) { ctx.shadowColor = "#38b6ff"; ctx.shadowBlur = 3 * s; }
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         
         if (Array.isArray(lines)) {
             const gap = 12 * s;
             ctx.fillText(lines[0], x, y - gap * 0.5);
-            ctx.fillStyle = isMajor ? "#00e5ff" : "#aaaaaa";
-            if (g > 5 && !isMajor) ctx.fillStyle = "#fff";
-            ctx.font = `${Math.max(8, (isMajor ? 11 : 9) * s)}px Inter, system-ui`;
+            ctx.fillStyle = isMajor ? "#38b6ff" : "#555555";
+            if (g > 5 && !isMajor) ctx.fillStyle = "#222222";
+            ctx.font = `${Math.max(8, (isMajor ? 11 : 9) * s)}px 'Plus Jakarta Sans', system-ui`;
             ctx.shadowBlur = 0;
             ctx.fillText(lines[1], x, y + gap * 0.9);
         } else {
@@ -295,17 +295,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const g = currentGlows[ndId] * s;
         
         ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fillStyle = g > 5 ? "#1a2228" : "#111";
-        ctx.strokeStyle = g > 5 ? "#00e5ff" : "rgba(255,255,255,0.25)";
+        ctx.fillStyle = g > 5 ? "#D8EEFF" : "#E8E8E8";
+        ctx.strokeStyle = g > 5 ? "#38b6ff" : "rgba(0,0,0,0.18)";
         ctx.lineWidth = (g > 5 ? 2 : 1.5) * s;
-        if (g > 0) { ctx.shadowColor = "#00e5ff"; ctx.shadowBlur = g; }
+        if (g > 0) { ctx.shadowColor = "#38b6ff"; ctx.shadowBlur = g * 0.6; }
         ctx.fill(); ctx.stroke();
         ctx.shadowBlur = 0;
         
         // Spinning blades (spin faster if active step is EXECUTION (4))
         const speed = (step === 4 || g > 5) ? 0.008 : 0.001;
         ctx.save(); ctx.translate(x, y); ctx.rotate(time * speed);
-        ctx.fillStyle = g > 5 ? "#00e5ff" : "#ccc";
+        ctx.fillStyle = g > 5 ? "#38b6ff" : "#888888";
         for (let i = 0; i < 3; i++) {
             ctx.rotate((Math.PI * 2) / 3);
             ctx.beginPath();
@@ -315,10 +315,10 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.restore();
         
         ctx.beginPath(); ctx.arc(x, y, 5 * s, 0, Math.PI * 2);
-        ctx.fillStyle = "#fff"; ctx.fill();
+        ctx.fillStyle = "#333333"; ctx.fill();
         
-        ctx.fillStyle = "#fff";
-        ctx.font = `${Math.max(8, 11 * s)}px Inter, system-ui`;
+        ctx.fillStyle = "#222222";
+        ctx.font = `${Math.max(8, 11 * s)}px 'Plus Jakarta Sans', system-ui`;
         ctx.textAlign = "center"; ctx.textBaseline = "top";
         ctx.fillText("Motor", x, y + r + 6 * s);
         ctx.globalAlpha = 1.0;
@@ -333,30 +333,30 @@ document.addEventListener("DOMContentLoaded", () => {
         
         ctx.beginPath();
         ctx.roundRect(x - mw / 2, screenTop, mw, mh, 5 * s);
-        ctx.fillStyle = g > 5 ? "#0d1522" : "#0a0c0e";
-        ctx.strokeStyle = g > 5 ? "#00e5ff" : "rgba(255,255,255,0.28)";
+        ctx.fillStyle = g > 5 ? "#D8EEFF" : "#F0F0F0";
+        ctx.strokeStyle = g > 5 ? "#38b6ff" : "rgba(0,0,0,0.15)";
         ctx.lineWidth = 1.5 * s;
-        if (g > 0) { ctx.shadowColor = "#00e5ff"; ctx.shadowBlur = g; }
+        if (g > 0) { ctx.shadowColor = "#38b6ff"; ctx.shadowBlur = g * 0.6; }
         ctx.fill(); ctx.stroke();
         ctx.shadowBlur = 0;
 
         const bInset = 5 * s;
         ctx.beginPath();
         ctx.roundRect(x - mw / 2 + bInset, screenTop + bInset, mw - bInset * 2, mh - bInset * 2, 3 * s);
-        ctx.fillStyle = g > 5 ? "rgba(0,229,255,0.08)" : "rgba(255,255,255,0.02)";
+        ctx.fillStyle = g > 5 ? "rgba(56,182,255,0.12)" : "rgba(0,0,0,0.04)";
         ctx.fill();
 
-        ctx.fillStyle = g > 5 ? "#7ed4ff" : "#cdd6df";
-        ctx.font = `500 ${Math.max(9, 11 * s)}px Inter, system-ui`;
+        ctx.fillStyle = g > 5 ? "#38b6ff" : "#333333";
+        ctx.font = `500 ${Math.max(9, 11 * s)}px 'Plus Jakarta Sans', system-ui`;
         ctx.textAlign = "center"; ctx.textBaseline = "middle";
         ctx.fillText(label[0], x, y - 7 * s);
-        ctx.fillStyle = g > 5 ? "rgba(0,200,255,0.7)" : "rgba(255,255,255,0.35)";
-        ctx.font = `400 ${Math.max(7, 9 * s)}px Inter, system-ui`;
+        ctx.fillStyle = g > 5 ? "rgba(56,182,255,0.9)" : "#777777";
+        ctx.font = `400 ${Math.max(7, 9 * s)}px 'Plus Jakarta Sans', system-ui`;
         ctx.fillText(label[1], x, y + 9 * s);
 
         const neckW = mw * 0.12, neckH = 6 * s;
-        ctx.fillStyle = "#0a0c0e";
-        ctx.strokeStyle = g > 5 ? "#00e5ff" : "rgba(255,255,255,0.28)";
+        ctx.fillStyle = "#E0E0E0";
+        ctx.strokeStyle = g > 5 ? "#38b6ff" : "rgba(0,0,0,0.15)";
         ctx.lineWidth = 1 * s;
         ctx.beginPath(); ctx.rect(x - neckW / 2, y + mh / 2, neckW, neckH); ctx.fill(); ctx.stroke();
 
@@ -425,8 +425,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (alpha > 0.5 && isPower) {
                 ctx.setLineDash([15 * s, 10 * s]);
                 ctx.lineDashOffset = -time * timeSpeed;
-                ctx.shadowColor = "rgba(0,150,255,0.8)";
-                ctx.shadowBlur  = 15 * s * alpha;
+                ctx.shadowColor = "rgba(56,182,255,0.4)";
+                ctx.shadowBlur  = 8 * s * alpha;
             }
             ctx.stroke();
             ctx.setLineDash([]);
@@ -435,11 +435,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    const DATA_COLOR = "rgba(255,65,65,0.88)";
-    const POWER_COLOR = "rgba(0,229,255,0.9)";
+    const DATA_COLOR = "rgba(200,30,30,0.85)";
+    const POWER_COLOR = "rgba(56,182,255,0.9)";
 
     function renderLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // White background to match light-mode site theme
+        ctx.fillStyle = "#FAFAFA";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         
         // Logical update: Lerp targets
         const { tAlpha, tGlow, tLine, step } = getTargetStates();
@@ -459,8 +462,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const canY = cy(Y_CAN);
         const canAlpha = lineAlphas["CAN_BUS"];
         ctx.globalAlpha = canAlpha;
-        const bbColor = canAlpha > 0.8 ? "#ff4141" : "rgba(255,65,65,0.6)";
-        if (canAlpha > 0.5) { ctx.shadowColor = "rgba(255,65,65,0.8)"; ctx.shadowBlur = 12 * s * canAlpha; }
+        const bbColor = canAlpha > 0.8 ? "#DC2626" : "rgba(220,38,38,0.5)";
+        if (canAlpha > 0.5) { ctx.shadowColor = "rgba(220,38,38,0.4)"; ctx.shadowBlur = 8 * s * canAlpha; }
         ctx.strokeStyle = bbColor;
         ctx.lineWidth   = 1.8 * s;
         ctx.setLineDash([8 * s, 6 * s]);
@@ -473,8 +476,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.lineDashOffset = time * speedMultiplier; ctx.stroke();
         
         ctx.setLineDash([]); ctx.shadowBlur = 0;
-        ctx.fillStyle = canAlpha > 0.8 ? "#00e5ff" : "rgba(0, 229, 255, 0.4)";
-        ctx.font = `${Math.max(9, 11 * s)}px Inter, system-ui`;
+        ctx.fillStyle = canAlpha > 0.8 ? "#38b6ff" : "rgba(56,182,255,0.5)";
+        ctx.font = `${Math.max(9, 11 * s)}px 'Plus Jakarta Sans', system-ui`;
         ctx.textAlign = "center"; ctx.textBaseline = "bottom";
         ctx.fillText("UNIFIED INTERFACE — Deterministic Multi-Node Communication", cx(0.50), canY - bbGap - 8 * s);
         ctx.globalAlpha = 1.0;
@@ -495,8 +498,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Labels for Power
         const pAlpha = lineAlphas["PWR_DRV"];
         ctx.globalAlpha = pAlpha;
-        ctx.fillStyle = `rgba(0,229,255,${0.4 + pAlpha*0.4})`;
-        ctx.font = `${Math.max(8, 10 * s)}px Inter, system-ui`;
+        ctx.fillStyle = `rgba(56,182,255,${0.5 + pAlpha*0.4})`;
+        ctx.font = `${Math.max(8, 10 * s)}px 'Plus Jakarta Sans', system-ui`;
         ctx.textAlign = "center"; ctx.textBaseline = "top";
         ctx.fillText("Power Rail", cx((X_PWR + X_DRV) / 2), cy(Y_PWR) + 7 * s);
         ctx.textBaseline = "bottom";
