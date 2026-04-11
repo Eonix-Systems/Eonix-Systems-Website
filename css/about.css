@@ -187,7 +187,7 @@
     margin: 0;
     padding: 16px;
     border: 1px solid rgba(0, 0, 0, 0.08);
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border-radius: 4px;
 }
 
@@ -197,7 +197,7 @@
     color: var(--text-secondary);
     padding: 14px 28px;
     border: 1px solid var(--border-subtle);
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border-radius: 4px;
     letter-spacing: 0.3px;
 }
@@ -230,7 +230,7 @@
 }
 .tech-card {
     position: relative;
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     padding: 36px 28px;
     text-align: left;
@@ -287,7 +287,7 @@
     align-items: center;
     gap: 14px;
     padding: 16px 20px;
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border-left: 2px solid var(--accent-primary);
     border-radius: 0 4px 4px 0;
 }
@@ -295,7 +295,7 @@
 .check-item-card {
     font-size: 1rem;
     color: var(--text-secondary);
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     padding: 20px 28px;
     border-radius: 6px;
@@ -327,7 +327,7 @@
 
 /* BACKGROUND UTILS */
 .bg-blueprint {
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border-top: 1px solid var(--border-subtle);
     border-bottom: 1px solid var(--border-subtle);
 }

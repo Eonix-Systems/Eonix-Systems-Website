@@ -70,7 +70,7 @@
     align-items: center;
     gap: 20px;
     padding: 20px 28px;
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     border-left: 3px solid var(--accent-primary);
     border-radius: 0 8px 8px 0;
@@ -118,7 +118,7 @@
     align-items: center;
     justify-content: center;
     padding: 48px 24px 36px;
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     text-align: center;
@@ -196,7 +196,7 @@
 }
 
 .svc-cta-final-inner {
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     padding: 72px 80px;

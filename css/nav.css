@@ -12,7 +12,8 @@
 
     /* Solid nav — not glass, not blur */
     background-color: rgba(255, 255, 255, 0.92);
-    border-bottom: 1px solid var(--border-subtle); /* #e6eaf0 maps to border-subtle in base.css */
+    border-bottom: 1px solid var(--border-subtle);
+    /* #e6eaf0 maps to border-subtle in base.css */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
@@ -122,7 +123,8 @@
     .nav-logo img {
         content: url("../assets/New Logo only symbol Transparent Background color contrast.png");
         height: 50px;
-        transform: scale(1.5); /* Adjust this scale specifically for the symbol image */
+        transform: scale(1.5);
+        /* Adjust this scale specifically for the symbol image */
         transform-origin: left center;
     }
 

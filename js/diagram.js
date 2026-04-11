@@ -185,8 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (forced === 'DRV' || forced === 'MOT') { on(['MOT','PWR']); ln(['DRV_MOT','PWR_DRV']); }
       if (['TEMP','IMU','DIST'].includes(forced)) { on(['CAN','MB']); ln(['STUBS','MB_CAN']); }
     } else if (step === 0 || !step) {
-      NODES.forEach(n => { tA[n.id] = 0.85; });
-      LINE_IDS.forEach(k => { tL[k] = 0.7; });
+      NODES.forEach(n => { tA[n.id] = 1.0; });
+      LINE_IDS.forEach(k => { tL[k] = 1.0; });
     } else if (step === 1) {            /* CONTROL */
       on(['MB','APP','MCU']); ln(['APP_MB','MCU_MB']);
       glo('MB', 1.0);

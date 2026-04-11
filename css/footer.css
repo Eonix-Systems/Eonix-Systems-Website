@@ -5,7 +5,7 @@
 .footer-root {
     margin-top: var(--section-spacing);
     border-top: 1px solid var(--border-subtle);
-    background-color: var(--bg-soft);
+    background-color: var(--surface-1);
 }
 
 .footer-inner {

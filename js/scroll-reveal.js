@@ -23,26 +23,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const reveals = document.querySelectorAll(".reveal");
     if (!reveals.length) return;
 
-    const observer = new IntersectionObserver(
-    (entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Skip elements managed by scroll-animations.js cascade
-                if (entry.target.classList.contains('cascade-managed')) {
-                    observer.unobserve(entry.target);
-                    return;
-                }
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
+    let observerInitialized = false;
+
+    const initObserver = () => {
+        if (observerInitialized) return;
+        observerInitialized = true;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Skip elements managed by scroll-animations.js cascade
+                        if (entry.target.classList.contains('cascade-managed')) {
+                            observer.unobserve(entry.target);
+                            return;
+                        }
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.08,
+                rootMargin: "0px 0px -40px 0px"
             }
-        });
-    },
-    {
-        threshold: 0.08,
-        rootMargin: "0px 0px -40px 0px"
+        );
+
+        reveals.forEach(el => observer.observe(el));
+    };
+
+    // Initialize globally only after scrolling smoothly begins
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 15) {
+            initObserver();
+        }
+    }, { passive: true });
+
+    // Fallback if already scrolled down on refresh
+    if (window.scrollY > 15) {
+        initObserver();
     }
-);
-
-
-    reveals.forEach(el => observer.observe(el));
 });

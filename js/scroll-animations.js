@@ -141,31 +141,37 @@
   // =============================================
   // 5. DIVIDER LINE DRAW-IN
   // =============================================
+  let dividersObserverInitialized = false;
   function initDividerDrawIn() {
     var dividers = document.querySelectorAll('.home-tech-divider');
     dividers.forEach(function (divider) {
       divider.classList.add('divider-draw');
     });
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('drawn');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
+    const initDivObserver = () => {
+        if (dividersObserverInitialized) return;
+        dividersObserverInitialized = true;
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('drawn');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        dividers.forEach(function (d) { observer.observe(d); });
+    };
 
-    dividers.forEach(function (d) { observer.observe(d); });
+    window.addEventListener('scroll', () => { if (window.scrollY > 15) initDivObserver(); }, { passive: true });
+    if (window.scrollY > 15) initDivObserver();
   }
 
   // =============================================
   // 6. CARD STAGGER CASCADE
   // =============================================
+  let cascadeObserverInitialized = false;
   function initCardCascade() {
     // Override the default scroll-reveal for cards inside these groups.
-    // We take over from scroll-reveal.js by adding a 'cascade-managed' class
-    // which prevents the default reveal from firing (see below).
     var groups = [
       { sel: '.provides-grid', children: '.provides-card' },
       { sel: '.deployment-grid', children: '.home-diff-item' },
@@ -173,38 +179,43 @@
       { sel: '.who-list', children: '.who-list-item' }
     ];
 
-    // Mark children as cascade-managed so we control their reveal timing
     groups.forEach(function (g) {
       var parent = document.querySelector(g.sel);
       if (!parent) return;
       var cards = parent.querySelectorAll(g.children);
       cards.forEach(function (card) {
         card.classList.add('cascade-managed');
-        // Remove any inline --delay since we handle stagger via JS
         card.style.removeProperty('--delay');
       });
     });
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var group = groups.find(function (g) { return entry.target.matches(g.sel); });
-          if (!group) return;
-          var cards = entry.target.querySelectorAll(group.children);
-          cards.forEach(function (card, idx) {
-            setTimeout(function () {
-              card.classList.add('is-visible');
-            }, idx * 120);
+    const initCascObserver = () => {
+        if (cascadeObserverInitialized) return;
+        cascadeObserverInitialized = true;
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var group = groups.find(function (g) { return entry.target.matches(g.sel); });
+              if (!group) return;
+              var cards = entry.target.querySelectorAll(group.children);
+              cards.forEach(function (card, idx) {
+                setTimeout(function () {
+                  card.classList.add('is-visible');
+                }, idx * 120);
+              });
+              observer.unobserve(entry.target);
+            }
           });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    groups.forEach(function (g) {
-      var el = document.querySelector(g.sel);
-      if (el) observer.observe(el);
-    });
+        groups.forEach(function (g) {
+          var el = document.querySelector(g.sel);
+          if (el) observer.observe(el);
+        });
+    };
+
+    window.addEventListener('scroll', () => { if (window.scrollY > 15) initCascObserver(); }, { passive: true });
+    if (window.scrollY > 15) initCascObserver();
   }
 
   // =============================================

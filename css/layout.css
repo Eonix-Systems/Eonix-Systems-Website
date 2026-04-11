@@ -51,19 +51,19 @@
    ========================= */
 
 .page-hero {
-    min-height: 80vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding-top: 14vh;
-    padding-bottom: 60px;
+    padding-bottom: 20px;
     position: relative;
     text-align: center;
 }
 
 /* Vertical space between major page sections */
-.page-section + .home-tech-divider {
+.page-section+.home-tech-divider {
     margin-top: 0;
     margin-bottom: 0;
-}
+}

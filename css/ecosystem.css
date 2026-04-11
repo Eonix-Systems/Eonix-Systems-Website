@@ -53,7 +53,7 @@
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 20px;
-    background: var(--bg-soft);
+    background: var(--surface-1);
 }
 
 .eco-tab {
@@ -142,7 +142,7 @@
 
 .eco-layer-card {
     padding: 36px 32px;
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     border-left: 3px solid transparent;
     border-radius: 0 8px 8px 0;
@@ -281,7 +281,7 @@
 .flow-node {
     flex: 1;
     padding: 24px 16px;
-    background: var(--bg-soft);
+    background: var(--surface-1);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     text-align: center;
@@ -337,7 +337,7 @@
 
 .flow-node-power {
     border-color: var(--border-subtle);
-    background: var(--bg-soft);
+    background: var(--surface-1);
     width: 280px;
 }
 

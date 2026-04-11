@@ -37,28 +37,42 @@ html {
    ========================= */
 
 :root {
-    /* Global Color System (Premium Engineering) */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f7f9fb;
-    --border-subtle: #e6eaf0;
+    /* SURFACES */
+    --surface-0: #ffffff;   /* base */
+    --surface-1: #e9eef3;   /* section contrast (darkened 5%) */
+    --surface-2: #dfe6f0;   /* elevated containers (darkened 5%) */
 
-    /* Accent System */
-    --accent: #2f80ed;
-    --accent-light: #56a8ff;
-    --accent-dark: #1c5ed6;
-
-    /* Text */
+    /* TEXT */
     --text-primary: #0b0f14;
     --text-secondary: #5b6470;
-    --text-muted: #8492a6;
+    --text-muted: #8b95a3;
 
-    /* LEGACY ALIASES (to prevent immediate structural breaks) */
-    --bg-main: var(--bg-primary);
-    --bg-soft: var(--bg-secondary);
-    --bg-card: #ffffff;
+    /* BORDERS */
+    --border-subtle: #e6eaf0;
+    --border-strong: #d0d7e2;
+
+    /* PRIMARY ACCENT (Tweak these variables to adjust the global blue) */
+    --accent: #1a68d1;         /* Slightly darker main blue (was #2f80ed) */
+    --accent-light: #3584f2;   /* Lighter hover/glow (was #56a8ff) */
+    --accent-dark: #1251a6;    /* Deep strict click-state (was #1c5ed6) */
+
+    /* SYSTEM STATE COLORS (SEMANTIC) */
+    --state-ok: #27ae60;
+    --state-warning: #f2994a;
+    --state-error: #eb5757;
+    --state-info: var(--accent);
+
+    /* OPTIONAL INDUSTRIAL ACCENT */
+    --accent-neutral: #2a2f36;
+
+    /* LEGACY ALIASES (gradual phase-out) */
+    --bg-main: var(--surface-0);
+    --bg-soft: var(--surface-1);
+    --bg-card: var(--surface-0);
+    --bg-primary: var(--surface-0);
+    --bg-secondary: var(--surface-1);
     --accent-primary: var(--accent);
     --accent-hover: var(--accent-dark);
-    --border-strong: rgba(0, 0, 0, 0.15);
 
     /* UI Elements */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -166,7 +180,8 @@ body::before {
 }
 
 /* Base CTA Buttons */
-.primary-btn, .btn-primary {
+.primary-btn,
+.btn-primary {
     background: var(--accent);
     color: white;
     border-radius: 8px;
@@ -182,13 +197,15 @@ body::before {
     cursor: pointer;
 }
 
-.primary-btn:hover, .btn-primary:hover {
+.primary-btn:hover,
+.btn-primary:hover {
     background: var(--accent-dark);
     transform: translateY(-1px);
     color: white;
 }
 
-.secondary-btn, .btn-secondary {
+.secondary-btn,
+.btn-secondary {
     background: transparent;
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
@@ -203,7 +220,8 @@ body::before {
     cursor: pointer;
 }
 
-.secondary-btn:hover, .btn-secondary:hover {
+.secondary-btn:hover,
+.btn-secondary:hover {
     background: var(--bg-secondary);
     border-color: rgba(0, 0, 0, 0.15);
     transform: translateY(-1px);
@@ -220,13 +238,41 @@ body::before {
     font-weight: 600;
 }
 
-/* Red emphasis — used in about.html manifesto */
-.text-red-glow {
-    color: #F87171;
+/* Red emphasis */
+.text-red-glow, .text-red {
+    color: var(--state-error);
 }
 
-.text-red {
-    color: #F87171;
+/* =========================
+   EMPHASIS & STRUCTURAL BLOCKS
+   ========================= */
+
+.highlight-block {
+    background: #eef6ff;
+    border-left: 3px solid var(--accent);
+    padding: 16px;
+    color: var(--text-primary);
+    border-radius: 0 8px 8px 0;
+}
+
+.dark-section {
+    background: #0b0f14;
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 60px;
+}
+
+/* Ensure typography inside dark section automatically adapts */
+.dark-section h1, .dark-section h2, .dark-section h3, .dark-section h4, .dark-section .matters-main {
+    color: #ffffff;
+}
+
+.dark-section p, .dark-section .matters-sub {
+    color: var(--text-muted);
+}
+
+.dark-section .section-divider {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
 }
 
 .text-bold {
