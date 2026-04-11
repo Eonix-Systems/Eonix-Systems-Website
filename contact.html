@@ -12,20 +12,23 @@
         content="Start building with intelligent power infrastructure. Contact our engineering team directly.">
     <title>Contact | Eonix Systems</title>
 
-    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/base.css?v=601">
-    <link rel="stylesheet" href="css/layout.css?v=601">
-    <link rel="stylesheet" href="css/nav.css?v=601">
-    <link rel="stylesheet" href="css/animations.css?v=601">
-    <link rel="stylesheet" href="css/footer.css?v=601">
-    <link rel="stylesheet" href="css/contact.css?v=601">
+    <link rel="stylesheet" href="css/base.css?v=604">
+    <link rel="stylesheet" href="css/layout.css?v=604">
+    <link rel="stylesheet" href="css/nav.css?v=604">
+    <link rel="stylesheet" href="css/animations.css?v=604">
+    <link rel="stylesheet" href="css/footer.css?v=604">
+    <link rel="stylesheet" href="css/home.css?v=604">
+    <link rel="stylesheet" href="css/contact.css?v=604">
 </head>
 
 <body>
+
+    <!-- BACKGROUND GRID -->
+    <div class="super-grid"></div>
 
     <!-- NAVBAR -->
     <nav class="nav-root">
@@ -44,36 +47,82 @@
             </div>
 
             <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <main class="page-wrapper">
+    <main class="page-wrapper blueprint-wrapper">
+        <!-- VERTICAL GUIDE RAILS -->
+        <div class="master-guide left"></div>
+        <div class="master-guide right"></div>
 
-        <!-- CONTACT HERO -->
-        <section class="contact-root page-section reveal">
-            <h1 class="contact-title">Start Building.</h1>
-            <p class="contact-intro">
-                We work with teams who treat intelligent ecosystems seriously. If you are building a complex platform
-                and need seamless integration, determinism, and observability, let's talk.
-            </p>
-
-            <div class="contact-block glass-panel glow-hover reveal reveal-scale">
-                <h2>Direct Engineering Channel</h2>
-                <p>
-                    We skip the sales fluff. Reach out directly to our engineering team for
-                    technical inquiries, partnership proposals, or pilot program access.
+        <!-- 1. HERO -->
+        <section class="contact-root page-section hero-animated-grid">
+            <div class="contact-hero-inner">
+                <span class="hero-sys-label">SYS_CONTACT_01 // REACH OUT</span>
+                <h1 class="contact-title reveal">Start Building.</h1>
+                <p class="contact-intro reveal" style="--delay: 100ms;">
+                    We work with teams who take intelligent hardware seriously. If you're building a complex platform and need seamless integration, determinism, and observability — let's talk.
                 </p>
-                <div class="contact-actions" style="margin-top: 24px;">
-                    <a class="contact-email" href="mailto:rishabh@eonixsystems.com">
-                        rishabh@eonixsystems.com
-                    </a>
-                </div>
+            </div>
+        </section>
+
+        <!-- DIVIDER -->
+        <div class="home-tech-divider reveal"><div class="tech-node"></div></div>
+
+        <!-- 2. CONTACT BLOCK -->
+        <section class="page-section contact-section">
+            <div class="home-section-header reveal">
+                <span class="home-section-label">SYS_CONTACT_02 // ENGINEERING CHANNEL</span>
+                <h2 class="home-section-title">
+                    <span class="title-dot"></span>Direct Engineering Channel
+                </h2>
             </div>
 
+            <div class="contact-cards-grid">
+                <div class="contact-card reveal" style="--delay: 100ms;">
+                    <span class="contact-card-index">CH_01 // EMAIL</span>
+                    <h3>Engineering Inquiries</h3>
+                    <p>Skip the sales queue. Reach our engineering team directly for technical proposals, integration questions, or pilot program access.</p>
+                    <a class="contact-email" href="mailto:rishabh@eonixsystems.com">rishabh@eonixsystems.com</a>
+                </div>
+                <div class="contact-card reveal" style="--delay: 200ms;">
+                    <span class="contact-card-index">CH_02 // SCOPE</span>
+                    <h3>What We Work On</h3>
+                    <p>PCB design, embedded firmware, custom hardware development, and system-level architecture for robotics, automation, and IoT.</p>
+                    <a class="btn-secondary" href="services.html" style="margin-top: 8px; display: inline-flex;">View Services <span class="btn-arrow">→</span></a>
+                </div>
+                <div class="contact-card reveal" style="--delay: 300ms;">
+                    <span class="contact-card-index">CH_03 // SOCIAL</span>
+                    <h3>Follow Our Work</h3>
+                    <p>See what we're building — real hardware, real systems, no vaporware.</p>
+                    <div class="contact-social-links">
+                        <a href="https://www.instagram.com/eonixsystems/" class="contact-social-btn" target="_blank">Instagram →</a>
+                        <a href="https://www.linkedin.com/company/eonix-systems/?viewAsMember=true" class="contact-social-btn" target="_blank">LinkedIn →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DIVIDER -->
+        <div class="home-tech-divider reveal"><div class="tech-node"></div></div>
+
+        <!-- 3. FINAL CTA -->
+        <section class="home-direction page-section reveal reveal-scale" style="position: relative;">
+            <div class="corner-cross left-top"></div>
+            <div class="corner-cross right-top"></div>
+            <span class="hero-sys-label" style="margin-bottom: 20px;">SYS_CONTACT_03 // NEXT STEP</span>
+            <h2 class="home-section-title" style="margin-bottom: 20px; font-size: 2.4rem;">Ready to Build Something Real?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 32px; max-width: 560px;">Industrial-grade reliability. Startup-grade speed. No guesswork.</p>
+            <div class="hero-actions">
+                <a class="btn-primary" href="mailto:rishabh@eonixsystems.com">
+                    Email Us <span class="btn-arrow">→</span>
+                </a>
+                <a class="btn-secondary" href="services.html">
+                    View Services <span class="btn-arrow">→</span>
+                </a>
+            </div>
         </section>
 
     </main>
@@ -113,8 +162,9 @@
         </div>
     </footer>
 
-    <script src="js/nav.js?v=601"></script>
-    <script src="js/scroll-reveal.js?v=601"></script>
+    <script src="js/scroll-reveal.js?v=604"></script>
+    <script src="js/scroll-animations.js?v=604"></script>
+    <script src="js/nav.js?v=604"></script>
 
 </body>
 

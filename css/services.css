@@ -39,7 +39,7 @@
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.04em;
-    color: #F9FAFB;
+    color: var(--text-primary);
     margin-bottom: 0;
     font-family: 'Plus Jakarta Sans', sans-serif;
 }

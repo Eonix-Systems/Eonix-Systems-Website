@@ -17,18 +17,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/base.css?v=601">
-    <link rel="stylesheet" href="css/layout.css?v=601">
-    <link rel="stylesheet" href="css/nav.css?v=601">
-    <link rel="stylesheet" href="css/animations.css?v=601">
-    <link rel="stylesheet" href="css/footer.css?v=601">
-    <link rel="stylesheet" href="css/home.css?v=601">
-    <link rel="stylesheet" href="css/product.css?v=601">
-    <link rel="icon" href="assets/New Logo only symbol Transparent Background For Website.png" type="image/png">
-    <link rel="stylesheet" href="css/ecosystem.css?v=601">
+    <link rel="stylesheet" href="css/base.css?v=604">
+    <link rel="stylesheet" href="css/layout.css?v=604">
+    <link rel="stylesheet" href="css/nav.css?v=604">
+    <link rel="stylesheet" href="css/animations.css?v=604">
+    <link rel="stylesheet" href="css/footer.css?v=604">
+    <link rel="stylesheet" href="css/home.css?v=604">
+    <link rel="stylesheet" href="css/product.css?v=604">
+    <link rel="stylesheet" href="css/ecosystem.css?v=604">
 </head>
 
 <body>
+
+    <!-- BACKGROUND GRID -->
+    <div class="super-grid"></div>
 
     <!-- NAVBAR -->
     <nav class="nav-root">
@@ -54,7 +56,10 @@
         </div>
     </nav>
 
-    <main class="page-wrapper" style="overflow: visible;">
+    <main class="page-wrapper blueprint-wrapper" style="overflow: visible;">
+        <!-- VERTICAL GUIDE RAILS -->
+        <div class="master-guide left"></div>
+        <div class="master-guide right"></div>
 
         <!-- HERO SECTION -->
         <section class="home-root page-section hero-animated-grid"
@@ -209,8 +214,8 @@
                 </div>
 
                 <div class="why-card glass-panel hover-premium reveal reveal-right"
-                    style="--delay: 300ms; border: 1px solid var(--accent-primary); box-shadow: 0 0 20px var(--accent-dim);">
-                    <h4 class="text-accent" style="font-size: 1.5rem; text-shadow: 0 0 10px var(--accent-glow);">Result
+                    style="--delay: 300ms; border: 1px solid var(--accent-border);">
+                    <h4 class="text-accent" style="font-size: 1.5rem;">Result
                     </h4>
                     <p style="font-size: 1.25rem; color: var(--text-primary); font-weight: 500;">Systems that scale without breaking.
                     </p>
@@ -277,9 +282,10 @@
         </div>
     </footer>
 
-    <script src="js/scroll-reveal.js?v=601"></script>
-    <script src="js/nav.js?v=601"></script>
-    <script src="js/diagram.js?v=601"></script>
+    <script src="js/scroll-reveal.js?v=604"></script>
+    <script src="js/scroll-animations.js?v=604"></script>
+    <script src="js/nav.js?v=604"></script>
+    <script src="js/diagram.js?v=604"></script>
 
 
     <!-- Scroll Step Logic -->
