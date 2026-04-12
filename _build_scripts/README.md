@@ -1,9 +1,25 @@
-# _build_scripts — Internal Automation Scripts
+# _build_scripts
 
-> **For Developers:** You can **safely ignore this folder.** These scripts were used internally during the initial website development phase for automated content updates and are not part of the website's runtime.
+Internal helper scripts used during earlier website iteration work.
 
-## What's In Here
-Python scripts that were used for AI-assisted content updates during the design iteration phase. They are **not needed to run, deploy, or maintain the website**.
+These files are not part of the live website runtime.
 
-## The Actual Website Files Are In The Parent Directory
-See the `README.md` in the root of `eonix_systems_website/` for the full developer handbook.
+## What This Folder Is
+
+- historical rewrite/update scripts
+- one-off content generation helpers
+- internal experimentation utilities
+
+## What This Folder Is Not
+
+- not required for local editing
+- not required for deployment
+- not loaded by any page in production
+
+## Maintenance Guidance
+
+- Do not assume these scripts reflect the current live markup or CSS structure.
+- Treat them as reference material only unless you intentionally decide to revive them.
+- If a script becomes part of an active workflow again, document that change in the root `README.md`.
+
+For the actual site structure and current conventions, see the parent [README.md](../README.md).
