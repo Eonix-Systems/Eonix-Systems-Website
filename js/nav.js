@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* 1. Mobile Hamburger Menu Toggle */
     const toggle = document.querySelector(".nav-toggle");
     const links = document.querySelector(".nav-links");
+    const desktopQuery = window.matchMedia("(min-width: 1025px)");
 
     if (toggle && links) {
         toggle.addEventListener("click", () => {
@@ -22,12 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const slider = document.createElement('div');
         slider.classList.add('nav-slider');
         links.appendChild(slider);
-        
-        // Let CSS position it absolutely relative to the flex container
-        links.style.position = 'relative'; 
 
         // Core positioning function
         const updateSlider = (linkEl) => {
+            if (!desktopQuery.matches) {
+                slider.style.opacity = '0';
+                return;
+            }
+
             if (!linkEl) {
                 slider.style.opacity = '0';
                 return;
@@ -44,10 +47,21 @@ document.addEventListener("DOMContentLoaded", () => {
             slider.style.opacity = '1';
         };
 
+        const syncNavMode = () => {
+            if (desktopQuery.matches) {
+                links.style.position = 'relative';
+                updateSlider(activeLink);
+                return;
+            }
+
+            links.style.position = '';
+            slider.style.opacity = '0';
+        };
+
         // Initialize state without animation
         if (activeLink) {
             slider.style.transition = 'none';
-            updateSlider(activeLink);
+            syncNavMode();
             // Force browser reflow so it snaps to position instantly
             void slider.getBoundingClientRect();
             // Restore smooth transitions for subsequent clicks
@@ -59,6 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // Hover handling to slide to target
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                if (!desktopQuery.matches) {
+                    links.classList.remove("open");
+                    return;
+                }
+
                 // Let it slide to the clicked tab
                 updateSlider(link);
                 
@@ -76,7 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Resize handler to recalculate offset accurately
         window.addEventListener('resize', () => {
-            updateSlider(activeLink);
+            syncNavMode();
         });
+
+        syncNavMode();
     }
 });

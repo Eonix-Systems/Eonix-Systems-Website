@@ -138,6 +138,7 @@
         top: var(--nav-height);
         left: 0;
         width: 100%;
+        height: auto;
         gap: 0;
         max-height: calc(100vh - var(--nav-height));
         overflow-y: auto;
