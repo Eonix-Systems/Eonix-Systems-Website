@@ -122,7 +122,7 @@
     }
 
     .nav-logo img {
-        content: url("../assets/Logo Only White Transparent.png");
+        content: url("../assets/Logo Only Black Transparent.png");
         height: 50px;
         transform: scale(1.5);
         /* Adjust this scale specifically for the symbol image */
