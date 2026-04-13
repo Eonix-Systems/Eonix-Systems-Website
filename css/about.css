@@ -73,9 +73,9 @@
 }
 
 .text-bold { font-weight: 600; }
-.text-red { color: #ff4a4a; }
+.text-red { color: var(--accent-primary); }
 .text-red-glow {
-    color: #F87171; /* No text-shadow */
+    color: var(--accent-primary);
 }
 
 /* =========================
@@ -98,8 +98,8 @@
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    border-left: 1px solid var(--border-subtle);
-    border-right: 1px solid var(--border-subtle);
+    border-left: none;
+    border-right: none;
 }
 
 /* Vertical guide lines */
@@ -109,6 +109,7 @@
     width: 1px;
     background: var(--border-subtle);
     z-index: 1;
+    display: none;
 }
 .master-guide.left { left: 40px; }
 .master-guide.right { right: 40px; }
@@ -132,6 +133,10 @@
     letter-spacing: 2px;
     margin-bottom: 24px;
     opacity: 0.8;
+}
+
+.tech-label {
+    display: none !important;
 }
 
 /* Divider Lines */

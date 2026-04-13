@@ -90,6 +90,10 @@
     opacity: 0.7;
 }
 
+.contact-card-index {
+    display: none !important;
+}
+
 .contact-card h3 {
     color: var(--text-primary);
     font-size: 1.05rem;

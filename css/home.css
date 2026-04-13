@@ -269,6 +269,13 @@
     margin: 0;
 }
 
+/* Remove decorative system-caption labels site-wide. */
+.hero-sys-label,
+.home-section-label,
+.sys-eyebrow {
+    display: none !important;
+}
+
 /* =========================
    HOVER UTILITY
    ========================= */
