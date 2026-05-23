@@ -152,6 +152,85 @@
 }
 
 /* =========================
+   CONSULTATION FORM
+   ========================= */
+
+.consultation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.consultation-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.consultation-form span {
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.consultation-form input,
+.consultation-form select,
+.consultation-form textarea {
+    width: 100%;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--text-primary);
+    font: inherit;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.consultation-form textarea {
+    resize: vertical;
+    min-height: 160px;
+}
+
+.consultation-form input:focus,
+.consultation-form select:focus,
+.consultation-form textarea:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(26, 104, 209, 0.1);
+}
+
+.form-wide {
+    width: 100%;
+}
+
+.form-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.form-success {
+    display: none;
+    padding: 16px 18px;
+    border: 1px solid rgba(39, 174, 96, 0.25);
+    border-radius: 10px;
+    background: rgba(39, 174, 96, 0.08);
+    color: #17633a;
+    font-weight: 600;
+}
+
+.form-success.is-visible {
+    display: block;
+}
+
+/* =========================
    RESPONSIVE
    ========================= */
 
@@ -164,4 +243,6 @@
     .contact-root { padding-top: 60px; }
     .contact-title { font-size: 2.8rem; }
     .contact-intro { font-size: 1rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-actions { flex-direction: column; align-items: stretch; }
 }

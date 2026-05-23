@@ -1,375 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <link rel="icon" href="assets/Logo Only White.png" type="image/png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Explore the Eonix Systems power ecosystem - modular, intelligent hardware modules for robotics, AGVs, and embedded systems with real-time telemetry and protection.">
-    <meta property="og:title" content="Power Ecosystem | Eonix Systems">
-    <meta property="og:description"
-        content="Modular, plug-and-play power architecture with intelligent protection and telemetry.">
-    <title>Ecosystem | Eonix Systems</title>
+  <link rel="icon" href="assets/Logo Only White.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="description"
+    content="Eonix Systems provides PCB design, embedded firmware, hardware prototyping, power electronics, debugging, and manufacturing support." />
+  <meta property="og:title" content="Services | Eonix Systems" />
+  <meta property="og:description" content="Explore Eonix Systems engineering services for reliable embedded hardware." />
+  <title>Services | Eonix Systems</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="css/base.css?v=608">
-    <link rel="stylesheet" href="css/layout.css?v=612">
-    <link rel="stylesheet" href="css/nav.css?v=609">
-    <link rel="stylesheet" href="css/animations.css?v=610">
-    <link rel="stylesheet" href="css/footer.css?v=608">
-    <link rel="stylesheet" href="css/home.css?v=612">
-    <link rel="stylesheet" href="css/ecosystem.css?v=608">
+  <link rel="stylesheet" href="css/base.css?v=608" />
+  <link rel="stylesheet" href="css/layout.css?v=612" />
+  <link rel="stylesheet" href="css/nav.css?v=609" />
+  <link rel="stylesheet" href="css/animations.css?v=610" />
+  <link rel="stylesheet" href="css/footer.css?v=608" />
+  <link rel="stylesheet" href="css/home.css?v=613" />
 </head>
 
 <body>
+  <div class="super-grid"></div>
 
-    <!-- BACKGROUND GRID -->
-    <div class="super-grid"></div>
+  <nav class="nav-root">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="assets/Name Logo White Transparent.png" alt="Eonix Systems logo" />
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link nav-active" href="services.html">Services</a>
+        <a class="nav-link" href="about.html#why">Why Eonix</a>
+        <a class="nav-link" href="about.html#industries">Industries</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-    <!-- NAVBAR -->
-    <nav class="nav-root">
-        <div class="nav-inner">
-            <a class="nav-logo" href="index.html">
-                <img src="assets/Name Logo White Transparent.png" alt="Eonix Systems logo">
-            </a>
+  <main class="page-wrapper blueprint-wrapper">
+    <div class="master-guide left"></div>
+    <div class="master-guide right"></div>
 
-            <div class="nav-links">
-                <a class="nav-link" href="index.html">Home</a>
-                <a class="nav-link nav-active" href="ecosystem.html">Ecosystem</a>
-                <a class="nav-link" href="product.html">Product</a>
-                <a class="nav-link" href="services.html">Services</a>
-                <a class="nav-link" href="about.html">About</a>
-                <a class="nav-link" href="contact.html">Contact</a>
-            </div>
-
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
+    <section class="page-hero home-root page-section hero-animated-grid">
+      <div class="home-hero-inner">
+        <span class="hero-sys-label">SYS_SERVICES // UPDATED PAGE</span>
+        <h1 class="home-title">Engineering Services</h1>
+        <p class="home-subtitle subtitle-animate">
+          Eonix Systems now focuses on end-to-end electronics development support: PCB design, firmware, bring-up,
+          power systems, sensor integration, and manufacturing handover.
+        </p>
+        <div class="hero-actions hero-actions-animate">
+          <a href="services.html" class="btn-primary">View Services <span class="btn-arrow">-&gt;</span></a>
+          <a href="about.html#why" class="btn-secondary">Why Eonix <span class="btn-arrow">-&gt;</span></a>
         </div>
-    </nav>
+      </div>
+    </section>
+  </main>
 
-    <main class="page-wrapper blueprint-wrapper" style="overflow: visible;">
-        <!-- VERTICAL GUIDE RAILS -->
-        <div class="master-guide left"></div>
-        <div class="master-guide right"></div>
-
-        <!-- 1. HERO -->
-        <section class="page-hero home-root page-section hero-animated-grid">
-            <div class="home-hero-inner">
-                <span class="hero-sys-label">SYS_ARC_01 // ARCHITECTURE</span>
-                <h1 class="home-title">
-                    <span class="text-accent">System Architecture</span>,<br />
-                    Not Modules.
-                </h1>
-                <p class="home-subtitle subtitle-animate">
-                    Eonix is built as a layered embedded system — where power, communication,
-                    sensing, and actuation are engineered to operate together with predictable behavior.
-                </p>
-            </div>
-        </section>
-
-        <!-- 2. DIAGRAM — FULL WIDTH -->
-        <section class="eco-diagram-section page-section">
-            <div class="home-section-shell section-wide">
-                <div class="home-section-header reveal">
-                    <span class="home-section-label">SYS_ARC_01A // SYSTEM MAP</span>
-                    <h2 class="home-section-title">
-                        <span class="title-dot"></span>Layered Architecture Overview
-                    </h2>
-                </div>
-
-                <div class="eco-canvas-wrapper reveal">
-                    <div class="hero-diagram-container glass-panel">
-                        <canvas id="systemCanvas"></canvas>
-                        <div class="diagram-overlay"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DIVIDER -->
-        <div class="home-tech-divider"><div class="tech-node"></div></div>
-
-        <!-- 3. ARCHITECTURE LAYERS — FULL WIDTH BELOW DIAGRAM -->
-        <section class="eco-layers-section page-section">
-            <div class="home-section-shell section-wide">
-                <div class="home-section-header reveal">
-                    <span class="home-section-label">SYS_ARC_02 // LAYER BREAKDOWN</span>
-                    <h2 class="home-section-title">
-                        <span class="title-dot"></span>Four Layers. One System.
-                    </h2>
-                </div>
-
-                <div class="eco-layers-grid">
-
-                    <div class="eco-layer-card reveal" style="--delay: 100ms;" data-step="1">
-                    <div class="eco-layer-card-header">
-                        <span class="eco-layer-index">01 // CONTROL</span>
-                        <h3>System Brain</h3>
-                    </div>
-                    <p class="eco-layer-desc">
-                        The motherboard acts as the central controller, coordinating all modules and maintaining system state. No distributed logic chaos.
-                    </p>
-                    <ul class="eco-layer-points">
-                        <li>Centralized control architecture</li>
-                        <li>No distributed logic chaos</li>
-                        <li>USB interface to desktop</li>
-                        <li>Optional external MCU integration</li>
-                    </ul>
-                </div>
-
-                    <div class="eco-layer-card reveal" style="--delay: 200ms;" data-step="2">
-                    <div class="eco-layer-card-header">
-                        <span class="eco-layer-index">02 // COMMUNICATION</span>
-                        <h3>Unified Interface</h3>
-                    </div>
-                    <p class="eco-layer-desc">
-                        All modules communicate through a structured interface — no conflicts, no collisions, no unpredictability.
-                    </p>
-                    <ul class="eco-layer-points">
-                        <li>Multi-node communication</li>
-                        <li>Predictable system behavior</li>
-                        <li>Scalable architecture</li>
-                        <li>No I2C/SPI chaos</li>
-                    </ul>
-                </div>
-
-                    <div class="eco-layer-card reveal" style="--delay: 300ms;" data-step="3">
-                    <div class="eco-layer-card-header">
-                        <span class="eco-layer-index">03 // POWER</span>
-                        <h3>Programmable Power</h3>
-                    </div>
-                    <p class="eco-layer-desc">
-                        Power is regulated, monitored, and protected in hardware — ensuring stable operation under real loads.
-                    </p>
-                    <ul class="eco-layer-points">
-                        <li>CC/CV programmable outputs</li>
-                        <li>Hardware OCP / SCP</li>
-                        <li>Real-time telemetry</li>
-                        <li>Stable under dynamic loads</li>
-                    </ul>
-                </div>
-
-                    <div class="eco-layer-card reveal" style="--delay: 400ms;" data-step="4">
-                    <div class="eco-layer-card-header">
-                        <span class="eco-layer-index">04 // EXECUTION</span>
-                        <h3>Sensing &amp; Actuation</h3>
-                    </div>
-                    <p class="eco-layer-desc">
-                        Sensors provide structured input, while drivers convert electrical power into controlled physical output.
-                    </p>
-                    <ul class="eco-layer-points">
-                        <li>Sensor abstraction (no raw protocols)</li>
-                        <li>High-current driver modules</li>
-                        <li>Control-ready architecture</li>
-                        <li>Built for real-world loads</li>
-                    </ul>
-                </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- DIVIDER -->
-        <div class="home-tech-divider"><div class="tech-node"></div></div>
-
-        <!-- 4. DATA FLOW SECTION -->
-        <section class="page-section data-flow-section reveal">
-            <div class="home-section-shell section-wide">
-                <div class="home-section-header reveal">
-                    <span class="home-section-label">SYS_ARC_03 // SIGNAL PATH</span>
-                    <h2 class="home-section-title">
-                        <span class="title-dot"></span>How the System Operates
-                    </h2>
-                </div>
-
-                <div class="data-flow-container glass-panel reveal reveal-scale">
-                    <div class="flow-pipeline-wrapper">
-                    <div class="flow-pipeline">
-                        <div class="flow-node hover-premium"><strong>Sensors</strong><br /><span
-                                class="flow-detail">Generate structured data</span></div>
-                        <div class="flow-arrow flow-animate-arrow">&#8594;</div>
-                        <div class="flow-node flow-node-primary hover-premium"><strong>Motherboard</strong><br /><span
-                                class="flow-detail">Processes &amp; routes commands</span></div>
-                        <div class="flow-arrow flow-animate-arrow">&#8594;</div>
-                        <div class="flow-node hover-premium"><strong>Drivers</strong><br /><span
-                                class="flow-detail">Execute control signals</span></div>
-                        <div class="flow-arrow flow-animate-arrow">&#8594;</div>
-                        <div class="flow-node hover-premium"><strong>Actuators</strong><br /><span
-                                class="flow-detail">Physical output</span></div>
-                    </div>
-
-                    <div class="flow-power-injector">
-                        <div class="power-arrow">&#8593;</div>
-                        <div class="flow-node flow-node-power hover-premium"><strong>Power System</strong><br /><span
-                                class="flow-detail">Supplies stable energy across all stages</span></div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DIVIDER -->
-        <div class="home-tech-divider"><div class="tech-node"></div></div>
-
-        <!-- 5. WHY THIS ARCHITECTURE -->
-        <section class="page-section why-arch-section">
-            <div class="home-section-shell section-wide">
-                <div class="home-section-header reveal">
-                    <span class="home-section-label">SYS_ARC_04 // RATIONALE</span>
-                    <h2 class="home-section-title">
-                        <span class="title-dot"></span>Why This Architecture Exists
-                    </h2>
-                </div>
-
-                <div class="why-grid">
-                <div class="why-card glass-panel hover-premium reveal reveal-left">
-                    <h4 class="text-accent">Problem</h4>
-                    <p>Module-based systems break at integration. Power is unstable. Communication is unpredictable.</p>
-                </div>
-
-                <div class="why-card glass-panel hover-premium reveal reveal-scale" style="--delay: 150ms;">
-                    <h4 class="text-accent">Solution</h4>
-                    <p>Eonix enforces structure at every level:<br><br>Controlled power.<br>Reliable
-                        communication.<br>Centralized coordination.</p>
-                </div>
-
-                <div class="why-card glass-panel hover-premium reveal reveal-right"
-                    style="--delay: 300ms; border: 1px solid var(--accent-border);">
-                    <h4 class="text-accent" style="font-size: 1.5rem;">Result
-                    </h4>
-                    <p style="font-size: 1.25rem; color: var(--text-primary); font-weight: 500;">Systems that scale without breaking.
-                    </p>
-                </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DIVIDER -->
-        <div class="home-tech-divider"><div class="tech-node"></div></div>
-
-        <!-- 6. FINAL CTA -->
-        <section class="home-direction page-section home-section-shell section-wide reveal reveal-scale" style="position: relative;">
-            <div class="corner-cross left-top"></div>
-            <div class="corner-cross right-top"></div>
-            <span class="hero-sys-label" style="margin-bottom: 20px;">SYS_ARC_05 // NEXT STEP</span>
-            <h2 class="home-section-title" style="margin-bottom: 20px; font-size: 2.8rem;">
-                A System That Scales Without Breaking
-            </h2>
-            <p style="max-width: 700px; margin-bottom: 32px; color: var(--text-secondary);">
-                Eonix enforces structure across power, communication, and control — enabling systems that remain stable
-                as complexity increases.
-            </p>
-
-            <div class="hero-actions">
-                <a class="btn-primary" href="product.html">
-                    Explore Products
-                    <span class="btn-arrow">→</span>
-                </a>
-                <a class="btn-secondary" href="contact.html">
-                    Work With Us
-                    <span class="btn-arrow">→</span>
-                </a>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="footer-root">
-        <div class="footer-inner">
-            <div class="footer-left">
-                <p class="footer-brand">Eonix Systems</p>
-                <p class="footer-tagline">Power. Intelligent. Protected.</p>
-            </div>
-
-            <div class="footer-right">
-          <div class="footer-links">
-            <a class="footer-link" href="ecosystem.html">Ecosystem</a>
-                <a class="footer-link" href="product.html">Product</a>
-                <a class="footer-link" href="contact.html">Contact</a>
-          </div>
-
-          <div class="footer-social">
-            <a href="https://www.instagram.com/eonixsystems/" class="social-icon" aria-label="Instagram" target="_blank">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/company/eonix-systems/?viewAsMember=true" class="social-icon" aria-label="LinkedIn" target="_blank">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
-              </svg>
-            </a>
-          </div>
+  <footer class="footer-root">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-brand">Eonix Systems</p>
+        <p class="footer-tagline">Engineering reliable electronics.</p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a class="footer-link" href="index.html">Home</a>
+          <a class="footer-link" href="services.html">Services</a>
+          <a class="footer-link" href="about.html#industries">Industries</a>
+          <a class="footer-link" href="contact.html">Contact</a>
         </div>
-        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Eonix Systems Pvt. Ltd. All rights reserved.</p>
+    </div>
+  </footer>
 
-        <div class="footer-bottom">
-            <p>© 2026 Eonix Systems Pvt. Ltd. All rights reserved.</p>
-            
-        </div>
-    </footer>
-
-    <script src="js/scroll-reveal.js?v=611"></script>
-    <script src="js/scroll-animations.js?v=605"></script>
-    <script src="js/nav.js?v=609"></script>
-    <script src="js/diagram.js?v=608"></script>
-
-    <script>
-        // Initialize diagram on step 0 (full visibility)
-        window.activeDiagramStep = 0;
-        window.forceHoverNodeId = null;
-
-        // Tab switching for the diagram
-        window.ecoSelectStep = function(step, btnEl) {
-            if (window.activeDiagramStep === step) return;
-            window.activeDiagramStep = step;
-
-            // Update tab active state
-            document.querySelectorAll('.eco-tab').forEach(b => b.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
-
-            // Highlight the matching layer card
-            document.querySelectorAll('.eco-layer-card').forEach(c => c.classList.remove('eco-layer-active'));
-            const card = document.querySelector(`.eco-layer-card[data-step="${step}"]`);
-            if (card) {
-                card.classList.add('eco-layer-active');
-                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        };
-
-        // Layer card click → update diagram step
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.eco-layer-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const step = parseInt(card.getAttribute('data-step'));
-                    const tab = document.getElementById(`eco-tab-${step}`);
-                    ecoSelectStep(step, tab);
-                });
-            });
-
-            // Bullet hover → highlight specific node in diagram
-            document.querySelectorAll('.eco-layer-points li').forEach((li, i) => {
-                const targets = [
-                    ['MB', 'MB', 'APP', 'MCU'],
-                    ['CAN', 'CAN', 'CAN', 'CAN'],
-                    ['PWR', 'PWR', 'PWR', 'DRV'],
-                    ['TEMP', 'DRV', 'MB', 'MOT']
-                ];
-                const card = li.closest('.eco-layer-card');
-                const step = parseInt(card?.getAttribute('data-step') || '0');
-                const liIdx = Array.from(card.querySelectorAll('li')).indexOf(li);
-                const nodeId = targets[step - 1]?.[liIdx] || null;
-                li.addEventListener('mouseenter', () => window.forceHoverNodeId = nodeId);
-                li.addEventListener('mouseleave', () => window.forceHoverNodeId = null);
-            });
-        });
-    </script>
-
+  <script src="js/scroll-reveal.js?v=611"></script>
+  <script src="js/scroll-animations.js?v=604"></script>
+  <script src="js/nav.js?v=609"></script>
 </body>
-
 </html>
