@@ -8,7 +8,7 @@ This project is intentionally simple:
 - No package manager
 - Plain `HTML`, `CSS`, and `JavaScript`
 
-Open the files, edit them directly, and deploy by pushing to GitHub Pages.
+Open the files, edit them directly, and deploy through Vercel.
 
 ## Project Structure
 
@@ -134,7 +134,17 @@ These should stay visually aligned with the shared spacing rules in `layout.css`
 
 ## Deployment
 
-The site is deployed as a static GitHub Pages site.
+The site is deployed as a static Vercel site.
+
+Recommended Vercel settings:
+
+- Framework Preset: Other
+- Build Command: leave empty
+- Output Directory: leave empty or `.`
+- Install Command: leave empty
+- Production Branch: `main`
+
+The repository includes `vercel.json` for static hosting security headers.
 
 Typical deploy flow:
 
@@ -143,6 +153,8 @@ git add .
 git commit -m "Describe the change"
 git push origin main
 ```
+
+Vercel should redeploy automatically after pushes to `main`.
 
 ## Context Files
 
