@@ -305,6 +305,36 @@
 }
 
 /* =========================
+   INDUSTRIES PAGE
+   ========================= */
+
+.industry-need-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.industry-need-card {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--accent-primary);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 18px 20px;
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.industry-need-card:hover {
+    background: var(--bg-card);
+    border-color: var(--border-strong);
+    border-left-color: var(--accent-hover);
+    transform: translateY(-3px);
+}
+
+/* =========================
    RESPONSIVE
    ========================= */
 
@@ -319,4 +349,5 @@
     .why-row { grid-template-columns: 1fr; gap: 16px; padding: 28px 24px; }
     .why-arrow { transform: rotate(90deg); }
     .sensor-crd { padding: 24px 20px; }
+    .industry-need-grid { grid-template-columns: 1fr; }
 }

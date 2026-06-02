@@ -6,10 +6,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Eonix Systems provides PCB design, embedded firmware, hardware prototyping, power electronics, debugging, and manufacturing support for startups, robotics teams, R&D teams, and product builders." />
+    content="Detailed embedded systems engineering services from Eonix Systems, including PCB design, firmware development, power electronics, bring-up, debugging, and manufacturing handover." />
   <meta property="og:title" content="Services | Eonix Systems" />
   <meta property="og:description"
-    content="PCB design, embedded firmware, hardware bring-up, power electronics, and prototype-to-small-batch support." />
+    content="Deliverable-oriented PCB, firmware, bring-up, debugging, power electronics, and manufacturing handover support." />
   <title>Services | Eonix Systems</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,8 +21,8 @@
   <link rel="stylesheet" href="css/nav.css?v=609" />
   <link rel="stylesheet" href="css/animations.css?v=610" />
   <link rel="stylesheet" href="css/footer.css?v=608" />
-  <link rel="stylesheet" href="css/home.css?v=613" />
-  <link rel="stylesheet" href="css/services.css?v=609" />
+  <link rel="stylesheet" href="css/home.css?v=614" />
+  <link rel="stylesheet" href="css/services.css?v=610" />
 </head>
 
 <body>
@@ -37,7 +37,7 @@
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link nav-active" href="services.html">Services</a>
         <a class="nav-link" href="about.html#why">Why Eonix</a>
-        <a class="nav-link" href="about.html#industries">Industries</a>
+        <a class="nav-link" href="product.html">Industries</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
@@ -53,113 +53,118 @@
     <section class="page-hero home-root page-section hero-animated-grid">
       <div class="home-hero-inner">
         <span class="hero-sys-label">SYS_SVC_01 // SERVICES</span>
-        <h1 class="home-title">Electronics Engineering Services</h1>
+        <h1 class="home-title">Embedded Engineering Services</h1>
         <p class="home-subtitle subtitle-animate">
-          Practical PCB, firmware, debugging, power, and manufacturing support for teams building real embedded systems.
+          Detailed hardware and firmware support for teams moving from concept, prototype, or failed board to a
+          tested electronic system.
         </p>
         <div class="hero-actions hero-actions-animate">
-          <a href="contact.html" class="btn-primary">Request Consultation <span class="btn-arrow">-&gt;</span></a>
-          <a href="#service-blocks" class="btn-secondary">View Details <span class="btn-arrow">-&gt;</span></a>
+          <a href="contact.html" class="btn-primary">Book a Consultation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="#deliverables" class="btn-secondary">See Deliverables <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </section>
 
     <div class="home-tech-divider"><div class="tech-node"></div></div>
 
-    <section id="service-blocks" class="page-section svc-section">
+    <section id="deliverables" class="page-section svc-section">
       <div class="home-section-shell">
         <div class="home-section-header reveal">
-          <span class="home-section-label">SYS_SVC_02 // DETAIL</span>
-          <h2 class="home-section-title"><span class="title-dot"></span>Service Areas</h2>
-          <p class="home-section-subtitle">Each area can be handled independently or connected into a full hardware development workflow.</p>
+          <span class="home-section-label">SYS_SVC_02 // CAPABILITIES</span>
+          <h2 class="home-section-title"><span class="title-dot"></span>What We Deliver</h2>
+          <p class="home-section-subtitle">
+            Each service can be scoped as a focused work package or combined into a complete prototype-to-handover flow.
+          </p>
         </div>
 
         <div class="service-blocks">
           <article class="service-detail-card reveal" style="--delay: 100ms;">
             <div class="service-detail-copy">
-              <h3>PCB Design Services</h3>
-              <p>Board design support from schematic structure to production-ready fabrication and assembly outputs.</p>
-              <p class="best-fit"><strong>Best suited for:</strong> teams that need a new board, a board revision, or a manufacturable PCB from an existing concept.</p>
+              <h3>PCB Design &amp; Hardware Architecture</h3>
+              <p>Board-level architecture, schematic design, layout, and fabrication-ready outputs for embedded products.</p>
+              <p class="best-fit"><strong>Best suited for:</strong> new boards, design revisions, controller boards, sensor boards, and power/interface boards.</p>
             </div>
             <ul>
+              <li>Architecture review</li>
               <li>Schematic design</li>
               <li>PCB layout</li>
-              <li>2-layer and 4-layer boards</li>
               <li>Component selection</li>
-              <li>Power routing</li>
+              <li>Power path planning</li>
               <li>Design rule checks</li>
-              <li>Manufacturing files</li>
-              <li>BOM</li>
-              <li>Pick-and-place</li>
-              <li>Assembly notes</li>
+              <li>Gerber files</li>
+              <li>BOM and placement files</li>
             </ul>
           </article>
 
           <article class="service-detail-card reveal" style="--delay: 150ms;">
             <div class="service-detail-copy">
               <h3>Embedded Firmware Development</h3>
-              <p>Firmware development for board-level control, sensor communication, telemetry, and reliable device behavior.</p>
-              <p class="best-fit"><strong>Best suited for:</strong> prototypes and embedded products that need stable control logic and hardware-aware firmware.</p>
+              <p>Hardware-aware firmware for microcontroller-based products, prototypes, robots, and test systems.</p>
+              <p class="best-fit"><strong>Best suited for:</strong> boards that need stable startup, sensor communication, telemetry, control logic, or debugging routines.</p>
             </div>
             <ul>
               <li>STM32 firmware</li>
               <li>ESP32 firmware</li>
-              <li>Sensor interfacing</li>
               <li>CAN, UART, SPI, I2C</li>
-              <li>BLE/WiFi integration where needed</li>
-              <li>Data logging and telemetry</li>
-              <li>Control logic</li>
-              <li>Debugging and testing</li>
+              <li>Sensor drivers</li>
+              <li>Telemetry and logging</li>
+              <li>Control routines</li>
+              <li>Startup sequencing</li>
+              <li>Firmware test hooks</li>
             </ul>
           </article>
 
           <article class="service-detail-card reveal" style="--delay: 200ms;">
             <div class="service-detail-copy">
-              <h3>Hardware Bring-up &amp; Debugging</h3>
-              <p>Structured validation after assembly, focused on finding electrical, firmware, and integration faults early.</p>
-              <p class="best-fit"><strong>Best suited for:</strong> boards that have been fabricated, assembled, or partially tested and are not behaving correctly.</p>
+              <h3>Bring-up, Debugging &amp; Revision Support</h3>
+              <p>Structured diagnosis for assembled boards, unstable prototypes, interface failures, and firmware-hardware issues.</p>
+              <p class="best-fit"><strong>Best suited for:</strong> boards that power on incorrectly, communicate unreliably, draw unexpected current, or need a clean revision path.</p>
             </div>
             <ul>
               <li>First power-up checks</li>
               <li>Voltage rail validation</li>
-              <li>Current consumption checks</li>
-              <li>Oscilloscope and multimeter debugging</li>
-              <li>Firmware-hardware integration</li>
-              <li>Fault diagnosis</li>
-              <li>Design revision recommendations</li>
+              <li>Current draw checks</li>
+              <li>Interface debugging</li>
+              <li>Firmware integration</li>
+              <li>Fault isolation</li>
+              <li>Test notes</li>
+              <li>Revision recommendations</li>
             </ul>
           </article>
 
           <article class="service-detail-card reveal" style="--delay: 250ms;">
             <div class="service-detail-copy">
-              <h3>Prototype to Small-Batch Support</h3>
-              <p>Practical preparation for moving from a working prototype into repeatable assembly and testing.</p>
-              <p class="best-fit"><strong>Best suited for:</strong> teams preparing a prototype for hand assembly, vendor assembly, or a small production run.</p>
+              <h3>Power Electronics &amp; Protection</h3>
+              <p>Power distribution, conversion, switching, protection, and thermal decisions for embedded and robotic hardware.</p>
+              <p class="best-fit"><strong>Best suited for:</strong> battery systems, motor loads, high-current rails, noisy environments, and mixed-signal boards.</p>
             </div>
             <ul>
-              <li>Manufacturing preparation</li>
-              <li>BOM cleanup</li>
-              <li>Assembly planning</li>
-              <li>Stencil and soldering guidance</li>
-              <li>Testing jig planning</li>
-              <li>Documentation handover</li>
+              <li>Buck converter selection</li>
+              <li>Power distribution</li>
+              <li>MOSFET switching</li>
+              <li>Reverse polarity protection</li>
+              <li>Overcurrent protection</li>
+              <li>TVS and fuse selection</li>
+              <li>Thermal planning</li>
+              <li>Layout review</li>
             </ul>
           </article>
 
           <article class="service-detail-card reveal" style="--delay: 300ms;">
             <div class="service-detail-copy">
-              <h3>Power Electronics &amp; Protection</h3>
-              <p>Power path, switching, distribution, protection, and thermal decisions for embedded and robotic hardware.</p>
-              <p class="best-fit"><strong>Best suited for:</strong> projects with motors, batteries, converters, high-current rails, noisy loads, or sensitive electronics.</p>
+              <h3>Prototype &amp; Manufacturing Handover</h3>
+              <p>Practical preparation for assembly, vendor handoff, test planning, and small-batch repeatability.</p>
+              <p class="best-fit"><strong>Best suited for:</strong> teams preparing a working prototype for repeat builds or production review.</p>
             </div>
             <ul>
-              <li>Buck converter design</li>
-              <li>Power distribution</li>
-              <li>MOSFET switching</li>
-              <li>Reverse polarity protection</li>
-              <li>Overcurrent and short-circuit protection</li>
-              <li>TVS, fuse, and protection selection</li>
-              <li>Thermal and layout considerations</li>
+              <li>BOM cleanup</li>
+              <li>Assembly notes</li>
+              <li>Stencil guidance</li>
+              <li>Test procedure notes</li>
+              <li>Bring-up checklist</li>
+              <li>Vendor handover files</li>
+              <li>Known-risk notes</li>
+              <li>Documentation package</li>
             </ul>
           </article>
         </div>
@@ -168,16 +173,70 @@
 
     <div class="home-tech-divider"><div class="tech-node"></div></div>
 
+    <section class="page-section svc-section">
+      <div class="home-section-shell">
+        <div class="home-section-header reveal">
+          <span class="home-section-label">SYS_SVC_03 // WORKFLOW</span>
+          <h2 class="home-section-title"><span class="title-dot"></span>Typical Workflow</h2>
+          <p class="home-section-subtitle">
+            The process stays practical: understand the system, define the risks, build or fix the hardware, then hand over the next usable step.
+          </p>
+        </div>
+
+        <ul class="capabilities-list">
+          <li class="cap-item reveal" style="--delay: 100ms;"><span class="cap-index">01</span>Technical review of the current idea, files, prototype, or failure mode</li>
+          <li class="cap-item reveal" style="--delay: 150ms;"><span class="cap-index">02</span>Architecture decisions for power, controller, sensors, communication, and test points</li>
+          <li class="cap-item reveal" style="--delay: 200ms;"><span class="cap-index">03</span>PCB, firmware, bring-up, or debugging work scoped around the active risk</li>
+          <li class="cap-item reveal" style="--delay: 250ms;"><span class="cap-index">04</span>Validation notes, revision recommendations, and handover files for the next stage</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="home-tech-divider"><div class="tech-node"></div></div>
+
+    <section class="page-section svc-section">
+      <div class="home-section-shell">
+        <div class="home-section-header reveal">
+          <span class="home-section-label">SYS_SVC_04 // FIT</span>
+          <h2 class="home-section-title"><span class="title-dot"></span>Ideal Project Types</h2>
+          <p class="home-section-subtitle">
+            Eonix fits best when the work needs both circuit-level judgment and firmware-aware execution.
+          </p>
+        </div>
+
+        <div class="sys-content deployment-grid">
+          <div class="sys-card reveal" style="--delay: 100ms;">
+            <h3>New Embedded Product</h3>
+            <p>A team needs the first board, firmware baseline, and a clean path toward a working prototype.</p>
+          </div>
+          <div class="sys-card reveal" style="--delay: 200ms;">
+            <h3>Failed or Unstable Prototype</h3>
+            <p>A board exists, but power, communication, sensors, or firmware behavior needs structured diagnosis.</p>
+          </div>
+          <div class="sys-card reveal" style="--delay: 300ms;">
+            <h3>Revision Before Manufacturing</h3>
+            <p>The design needs cleanup, documentation, test planning, or manufacturability improvements.</p>
+          </div>
+          <div class="sys-card reveal" style="--delay: 400ms;">
+            <h3>R&amp;D Hardware Support</h3>
+            <p>A lab or product team needs fast electronics support for experiments, fixtures, or integration work.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="page-section svc-cta-final home-section-shell reveal reveal-scale" style="position: relative;">
       <div class="corner-cross left-top"></div>
       <div class="corner-cross right-top"></div>
       <div class="svc-cta-final-inner">
-        <span class="hero-sys-label">SYS_SVC_03 // NEXT STEP</span>
+        <span class="hero-sys-label">SYS_SVC_05 // NEXT STEP</span>
         <h2>Bring the Project Brief</h2>
-        <p class="home-section-subtitle" style="margin: 0 auto 28px;">Share the current stage, board files if available, known issues, and what needs to work next.</p>
+        <p class="home-section-subtitle" style="margin: 0 auto 28px;">
+          Share the current stage, known issues, available files, and the result your team needs next.
+        </p>
         <div class="hero-actions" style="justify-content: center;">
-          <a href="contact.html" class="btn-primary">Request Consultation <span class="btn-arrow">-&gt;</span></a>
-          <a href="about.html#why" class="btn-secondary">Why Eonix <span class="btn-arrow">-&gt;</span></a>
+          <a href="contact.html" class="btn-primary">Book a Consultation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="about.html#why" class="btn-secondary">Why Eonix <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </section>
@@ -187,27 +246,14 @@
     <div class="footer-inner">
       <div class="footer-left">
         <p class="footer-brand">Eonix Systems</p>
-        <p class="footer-tagline">Engineering reliable electronics.</p>
+        <p class="footer-tagline">Embedded systems engineering services.</p>
       </div>
       <div class="footer-right">
         <div class="footer-links">
           <a class="footer-link" href="index.html">Home</a>
           <a class="footer-link" href="about.html#why">Why Eonix</a>
-          <a class="footer-link" href="about.html#industries">Industries</a>
+          <a class="footer-link" href="product.html">Industries</a>
           <a class="footer-link" href="contact.html">Contact</a>
-        </div>
-
-        <div class="footer-social">
-          <a href="https://www.instagram.com/eonixsystems/" class="social-icon" aria-label="Instagram" target="_blank">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-            </svg>
-          </a>
-          <a href="https://www.linkedin.com/company/eonix-systems/?viewAsMember=true" class="social-icon" aria-label="LinkedIn" target="_blank">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
-            </svg>
-          </a>
         </div>
       </div>
     </div>

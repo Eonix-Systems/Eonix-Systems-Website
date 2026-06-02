@@ -136,7 +136,9 @@
 }
 
 .contact-social-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 500;

@@ -5,12 +5,12 @@
   <link rel="icon" href="assets/Logo Only White.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, follow" />
   <meta name="description"
-    content="Eonix Systems provides PCB design, embedded firmware, hardware prototyping, power electronics, debugging, and manufacturing support." />
-  <meta property="og:title" content="Services | Eonix Systems" />
-  <meta property="og:description" content="Explore Eonix Systems engineering services for reliable embedded hardware." />
-  <title>Services | Eonix Systems</title>
+    content="Industries served by Eonix Systems: robotics teams, hardware startups, R&D labs, automation teams, IoT teams, and embedded product builders." />
+  <meta property="og:title" content="Industries | Eonix Systems" />
+  <meta property="og:description"
+    content="Embedded systems engineering support for robotics, hardware startups, R&D labs, automation, IoT, and product teams." />
+  <title>Industries | Eonix Systems</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,7 +21,8 @@
   <link rel="stylesheet" href="css/nav.css?v=609" />
   <link rel="stylesheet" href="css/animations.css?v=610" />
   <link rel="stylesheet" href="css/footer.css?v=608" />
-  <link rel="stylesheet" href="css/home.css?v=613" />
+  <link rel="stylesheet" href="css/home.css?v=614" />
+  <link rel="stylesheet" href="css/product.css?v=610" />
 </head>
 
 <body>
@@ -34,9 +35,9 @@
       </a>
       <div class="nav-links">
         <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link nav-active" href="services.html">Services</a>
+        <a class="nav-link" href="services.html">Services</a>
         <a class="nav-link" href="about.html#why">Why Eonix</a>
-        <a class="nav-link" href="about.html#industries">Industries</a>
+        <a class="nav-link nav-active" href="product.html">Industries</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
@@ -50,16 +51,112 @@
     <div class="master-guide right"></div>
 
     <section class="page-hero home-root page-section hero-animated-grid">
-      <div class="home-hero-inner">
-        <span class="hero-sys-label">SYS_SERVICES // UPDATED PAGE</span>
-        <h1 class="home-title">Engineering Services</h1>
-        <p class="home-subtitle subtitle-animate">
-          Eonix Systems now focuses on PCB design, embedded firmware, hardware prototyping, debugging, power electronics,
-          and manufacturing support.
+      <div class="prd-hero-inner">
+        <span class="hero-sys-label">SYS_INDUSTRIES_01 // FIT</span>
+        <h1 class="prd-hero-title">Embedded Engineering for Hardware Teams.</h1>
+        <p class="prd-hero-sub subtitle-animate">
+          Eonix supports teams building electronics that must work with sensors, motors, power systems, communication,
+          test equipment, and manufacturing constraints.
         </p>
         <div class="hero-actions hero-actions-animate">
-          <a href="services.html" class="btn-primary">View Services <span class="btn-arrow">-&gt;</span></a>
-          <a href="contact.html" class="btn-secondary">Book a Consultation <span class="btn-arrow">-&gt;</span></a>
+          <a href="contact.html" class="btn-primary">Book a Consultation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="services.html" class="btn-secondary">Explore Services <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="home-tech-divider"><div class="tech-node"></div></div>
+
+    <section class="page-section prd-overview-section">
+      <div class="home-section-shell section-wide">
+        <div class="home-section-header reveal">
+          <span class="home-section-label">SYS_INDUSTRIES_02 // VALUE</span>
+          <h2 class="home-section-title"><span class="title-dot"></span>Where Eonix Fits</h2>
+          <p class="home-section-subtitle">
+            Each industry has a different pressure point, but the common need is the same: electronics that are designed,
+            tested, and handed over with the full embedded system in mind.
+          </p>
+        </div>
+
+        <div class="prd-overview-grid">
+          <article class="prd-overview-card reveal" style="--delay: 100ms;">
+            <span class="prd-card-index">IND_01</span>
+            <h3>Robotics Teams</h3>
+            <p>Support for custom control boards, sensor interfaces, motor-adjacent electronics, battery/power distribution, telemetry, and CAN-based system integration.</p>
+            <ul class="prd-card-specs">
+              <li>Controller and sensor boards</li>
+              <li>Power and protection planning</li>
+              <li>Bring-up and field debugging</li>
+            </ul>
+          </article>
+
+          <article class="prd-overview-card reveal" style="--delay: 150ms;">
+            <span class="prd-card-index">IND_02</span>
+            <h3>Hardware Startups</h3>
+            <p>Engineering support for moving from product idea to prototype hardware, firmware baseline, revision plan, and small-batch handover.</p>
+            <ul class="prd-card-specs">
+              <li>MVP PCB and firmware scope</li>
+              <li>Prototype validation</li>
+              <li>Manufacturing file preparation</li>
+            </ul>
+          </article>
+
+          <article class="prd-overview-card reveal" style="--delay: 200ms;">
+            <span class="prd-card-index">IND_03</span>
+            <h3>R&amp;D Labs</h3>
+            <p>Fast, practical electronics for experiments, test fixtures, instrumentation, data collection, sensor evaluation, and internal research tools.</p>
+            <ul class="prd-card-specs">
+              <li>Custom test electronics</li>
+              <li>Sensor and data interfaces</li>
+              <li>Rapid board revisions</li>
+            </ul>
+          </article>
+
+          <article class="prd-overview-card reveal" style="--delay: 250ms;">
+            <span class="prd-card-index">IND_04</span>
+            <h3>Automation, IoT &amp; Product Teams</h3>
+            <p>Embedded controllers, connected device boards, communication interfaces, power subsystems, and production-aware design revisions.</p>
+            <ul class="prd-card-specs">
+              <li>Controller and gateway hardware</li>
+              <li>Communication and telemetry</li>
+              <li>Debugging and handover notes</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="home-tech-divider"><div class="tech-node"></div></div>
+
+    <section class="page-section prd-contrast-section">
+      <div class="home-section-shell">
+        <div class="home-section-header reveal">
+          <span class="home-section-label">SYS_INDUSTRIES_03 // NEEDS</span>
+          <h2 class="home-section-title"><span class="title-dot"></span>Common Technical Needs</h2>
+          <p class="home-section-subtitle">
+            Eonix is useful when the project needs engineering depth rather than just a visual board layout or isolated firmware task.
+          </p>
+        </div>
+
+        <div class="industry-need-grid">
+          <div class="industry-need-card reveal" style="--delay: 100ms;">Board architecture before schematic work</div>
+          <div class="industry-need-card reveal" style="--delay: 150ms;">Firmware planned around actual hardware behavior</div>
+          <div class="industry-need-card reveal" style="--delay: 200ms;">Power, noise, protection, and thermal constraints handled early</div>
+          <div class="industry-need-card reveal" style="--delay: 250ms;">Bring-up notes and test procedure created with the design</div>
+          <div class="industry-need-card reveal" style="--delay: 300ms;">Debugging support when a board does not behave as expected</div>
+          <div class="industry-need-card reveal" style="--delay: 350ms;">Manufacturing handover that a vendor or internal team can use</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sys-section reveal reveal-scale">
+      <div class="sys-container home-direction">
+        <span class="sys-eyebrow">SYS_INDUSTRIES_04 // NEXT STEP</span>
+        <h2 class="sys-title">Bring the Technical Context</h2>
+        <p class="sys-subtitle">Send the current stage, constraints, and what needs to work reliably.</p>
+        <div class="sys-content hero-actions" style="margin-top: 32px;">
+          <a class="btn-primary" href="contact.html">Book a Consultation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn-secondary" href="services.html">Explore Services <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </section>
@@ -69,7 +166,7 @@
     <div class="footer-inner">
       <div class="footer-left">
         <p class="footer-brand">Eonix Systems</p>
-        <p class="footer-tagline">Engineering reliable electronics.</p>
+        <p class="footer-tagline">Embedded systems engineering services.</p>
       </div>
       <div class="footer-right">
         <div class="footer-links">

@@ -1,6 +1,6 @@
 # Eonix Systems Website
 
-Static marketing website for Eonix Systems.
+Static services-first website for Eonix Systems.
 
 This project is intentionally simple:
 - No framework
@@ -39,7 +39,6 @@ eonix_systems_website/
 |   |-- diagram.js
 |   `-- stats-counter.js
 |-- assets/
-|-- _build_scripts/
 |-- CNAME
 |-- robots.txt
 |-- sitemap.xml
@@ -48,12 +47,12 @@ eonix_systems_website/
 
 ## Page Map
 
-- `index.html`: Homepage and top-level brand narrative
-- `ecosystem.html`: System architecture and diagram page
-- `product.html`: Platform and sensing layer page
-- `services.html`: Service offering and stats page
-- `about.html`: Brand and engineering manifesto
-- `contact.html`: Contact and inquiry page
+- `index.html`: Homepage with positioning, service summary, method, industries, and CTA
+- `services.html`: Detailed capabilities, deliverables, workflow, ideal projects, and CTA
+- `about.html`: Why Eonix, focused on engineering method and a short founder-led note
+- `product.html`: Industries page for robotics teams, hardware startups, R&D labs, automation, IoT, and product teams
+- `contact.html`: Technical consultation and project brief page
+- `ecosystem.html`: Secondary noindex ecosystem vision page; not a released product claim
 
 ## CSS Architecture
 
@@ -113,7 +112,7 @@ These should stay visually aligned with the shared spacing rules in `layout.css`
 - `js/nav.js`: mobile menu toggle and desktop active-link slider
 - `js/scroll-reveal.js`: reveal-on-scroll behavior
 - `js/scroll-animations.js`: additional motion helpers and divider/hero effects
-- `js/diagram.js`: architecture canvas rendering used by `ecosystem.html`
+- `js/diagram.js`: legacy architecture canvas helper; not used by the current services-first public pages
 - `js/stats-counter.js`: animated number counters used on `services.html`
 
 ## Editing Guidelines
@@ -129,8 +128,9 @@ These should stay visually aligned with the shared spacing rules in `layout.css`
 
 - The site depends on asset version query strings like `nav.css?v=609` to break browser cache.
 - Mobile navbar behavior is split between `nav.css` and `nav.js`; avoid forcing desktop positioning rules into mobile.
-- `ecosystem.html` and `product.html` both include inline scripts that coordinate page-specific interactions with shared JS.
-- `_build_scripts/` is not runtime code. Treat it as internal helper tooling/documentation only.
+- `product.html` is now the Industries page, not a product/platform sales page.
+- `ecosystem.html` stays noindex and secondary. It should describe long-term CAN-based ecosystem direction without implying a released product line.
+- There is no generation script layer. The checked-in HTML files are the source of truth.
 
 ## Deployment
 
@@ -161,6 +161,5 @@ Vercel should redeploy automatically after pushes to `main`.
 If you change structure or shared conventions, update:
 
 - this `README.md`
-- `_build_scripts/README.md` if the role of that folder changes
 
 That keeps the next cleanup pass grounded in the actual codebase instead of outdated assumptions.
