@@ -6,11 +6,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Eonix Systems provides embedded systems engineering services: PCB design, firmware development, power electronics, debugging, bring-up, and manufacturing handover." />
-  <meta property="og:title" content="Eonix Systems | Embedded Systems Engineering Services" />
+    content="Eonix Systems provides embedded electronics engineering services for PCB design, firmware, hardware bring-up, debugging, power electronics, and manufacturing handover." />
+  <meta property="og:title" content="Eonix Systems | Embedded Electronics Engineering Services" />
   <meta property="og:description"
-    content="PCB design, firmware, power electronics, debugging, and bring-up support for teams building reliable electronic products." />
-  <title>Eonix Systems | Embedded Systems Engineering Services</title>
+    content="PCB, firmware, and hardware bring-up support for teams building real embedded systems." />
+  <title>Eonix Systems | Embedded Electronics Engineering Services</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="css/nav.css?v=609" />
   <link rel="stylesheet" href="css/animations.css?v=610" />
   <link rel="stylesheet" href="css/footer.css?v=608" />
-  <link rel="stylesheet" href="css/home.css?v=614" />
+  <link rel="stylesheet" href="css/home.css?v=615" />
 </head>
 
 <body>
@@ -37,8 +37,8 @@
       <div class="nav-links">
         <a class="nav-link nav-active" href="index.html">Home</a>
         <a class="nav-link" href="services.html">Services</a>
-        <a class="nav-link" href="about.html#why">Why Eonix</a>
-        <a class="nav-link" href="product.html">Industries</a>
+        <a class="nav-link" href="industries.html">Industries</a>
+        <a class="nav-link" href="why-eonix.html">Why Eonix</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
@@ -53,21 +53,18 @@
 
     <section class="page-hero home-root page-section hero-animated-grid">
       <div class="home-hero-inner">
-        <span class="hero-sys-label">SYS_HOME_01 // EONIX SYSTEMS</span>
-
-        <h1 class="home-title">Embedded Systems, Built for Real Hardware.</h1>
-
+        <span class="hero-sys-label">EONIX SYSTEMS</span>
+        <h1 class="home-title">Embedded Electronics Engineering Services</h1>
         <p class="home-subtitle subtitle-animate">
-          PCB design, firmware, power electronics, debugging, and bring-up support for teams building reliable
-          electronic products.
+          Eonix Systems helps teams design, build, test, and prepare embedded electronics for real-world use, from
+          schematic and PCB design to firmware, debugging, and manufacturing handover.
         </p>
-
         <div class="hero-actions hero-actions-animate">
           <a class="btn-primary" href="contact.html">
-            Book a Consultation <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+            Discuss a Project <span class="btn-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a class="btn-secondary" href="services.html">
-            Explore Services <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+            View Services <span class="btn-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
@@ -76,96 +73,38 @@
     <section class="sys-section">
       <div class="sys-container">
         <div class="sys-header reveal">
-          <span class="sys-eyebrow">SYS_HOME_02 // SERVICES</span>
-          <h2 class="sys-title">Embedded Engineering Support</h2>
+          <span class="sys-eyebrow">SERVICES</span>
+          <h2 class="sys-title">What We Do</h2>
           <p class="sys-subtitle">
-            Focused support for the board, firmware, power, and validation work behind reliable hardware.
+            Focused engineering support across the board, firmware, power, and handover work behind embedded products.
           </p>
         </div>
 
-        <div class="sys-content provides-grid">
+        <div class="sys-content provides-grid provides-grid-five">
           <div class="sys-card provides-card provides-card-design reveal" style="--delay: 100ms;">
             <span class="sys-eyebrow">PCB</span>
-            <h3>PCB &amp; Hardware Design</h3>
-            <p>Schematic structure, layout, component selection, design checks, and fabrication-ready outputs.</p>
+            <h3>PCB Design</h3>
+            <p>Schematic design, PCB layout, component selection, production files, and design reviews for embedded electronics.</p>
           </div>
-          <div class="sys-card provides-card provides-card-prototyping reveal" style="--delay: 200ms;">
+          <div class="sys-card provides-card provides-card-prototyping reveal" style="--delay: 160ms;">
             <span class="sys-eyebrow">FW</span>
             <h3>Embedded Firmware</h3>
-            <p>Board-aware firmware for sensors, buses, telemetry, control logic, and device behavior.</p>
+            <p>STM32, ESP32, Arduino-class systems, sensor interfaces, communication protocols, control logic, and device-level firmware.</p>
           </div>
-          <div class="sys-card provides-card provides-card-products reveal" style="--delay: 300ms;">
+          <div class="sys-card provides-card provides-card-products reveal" style="--delay: 220ms;">
             <span class="sys-eyebrow">DEBUG</span>
-            <h3>Bring-up &amp; Debugging</h3>
-            <p>Power-up checks, rail validation, interface debugging, firmware integration, and revision guidance.</p>
+            <h3>Bring-Up &amp; Debugging</h3>
+            <p>Power checks, signal validation, firmware flashing, communication testing, hardware fault finding, and prototype stabilization.</p>
           </div>
-          <div class="sys-card provides-card provides-card-systems reveal" style="--delay: 400ms;">
+          <div class="sys-card provides-card provides-card-systems reveal" style="--delay: 280ms;">
+            <span class="sys-eyebrow">POWER</span>
+            <h3>Power &amp; Communication</h3>
+            <p>DC power stages, protection circuits, CAN, UART, SPI, I2C, USB, LoRa, and other embedded interfaces.</p>
+          </div>
+          <div class="sys-card provides-card provides-card-manufacturing reveal" style="--delay: 340ms;">
             <span class="sys-eyebrow">MFG</span>
-            <h3>Manufacturing Handover</h3>
-            <p>BOM cleanup, assembly notes, test steps, and practical preparation for repeatable builds.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sys-section">
-      <div class="sys-container">
-        <div class="sys-header reveal">
-          <span class="sys-eyebrow">SYS_HOME_03 // METHOD</span>
-          <h2 class="sys-title">Engineering Method</h2>
-          <p class="sys-subtitle">
-            Eonix keeps hardware and firmware decisions connected from the first architecture discussion.
-          </p>
-        </div>
-
-        <div class="sys-content deployment-grid">
-          <div class="sys-card reveal" style="--delay: 100ms;">
-            <h3>Architecture First</h3>
-            <p>Power, communication, controller, sensor, and protection choices are defined before layout details lock in.</p>
-          </div>
-          <div class="sys-card reveal" style="--delay: 200ms;">
-            <h3>Hardware and Firmware Together</h3>
-            <p>Firmware is planned around the actual rails, pins, buses, timing, startup behavior, and failure modes.</p>
-          </div>
-          <div class="sys-card reveal" style="--delay: 300ms;">
-            <h3>Testable From Day One</h3>
-            <p>Bring-up steps, debug points, firmware test routines, and validation notes are treated as design inputs.</p>
-          </div>
-          <div class="sys-card reveal" style="--delay: 400ms;">
-            <h3>Manufacturing-Aware</h3>
-            <p>Design outputs are prepared for assembly, inspection, documentation, and small-batch handover.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sys-section">
-      <div class="sys-container">
-        <div class="sys-header reveal">
-          <span class="sys-eyebrow">SYS_HOME_04 // INDUSTRIES</span>
-          <h2 class="sys-title">Built Around Practical Hardware Teams</h2>
-          <p class="sys-subtitle">
-            Eonix is best suited to teams that need electronics to survive real sensors, motion, noise, power limits,
-            and integration pressure.
-          </p>
-        </div>
-
-        <div class="sys-content deployment-grid">
-          <div class="sys-card reveal" style="--delay: 100ms;">
-            <h3>Robotics Teams</h3>
-            <p>Custom controller boards, sensor integration, power distribution, motor interfaces, and CAN-based systems.</p>
-          </div>
-          <div class="sys-card reveal" style="--delay: 200ms;">
-            <h3>Hardware Startups</h3>
-            <p>MVP boards, firmware foundations, prototype debugging, and handover support before small-batch builds.</p>
-          </div>
-          <div class="sys-card reveal" style="--delay: 300ms;">
-            <h3>R&amp;D Labs</h3>
-            <p>Test electronics, instrumentation boards, data collection, sensor fixtures, and rapid technical iteration.</p>
-          </div>
-          <div class="sys-card reveal" style="--delay: 400ms;">
-            <h3>Automation &amp; IoT Teams</h3>
-            <p>Embedded controllers, connected devices, communication interfaces, and production-aware revisions.</p>
+            <h3>Prototype to Manufacturing Support</h3>
+            <p>BOM cleanup, Gerber release, assembly support, test planning, and handover for small-batch production.</p>
           </div>
         </div>
       </div>
@@ -174,27 +113,73 @@
     <section class="sys-section">
       <div class="sys-container built-problems reveal">
         <div class="sys-header">
-          <span class="sys-eyebrow">SYS_HOME_05 // CREDIBILITY</span>
-          <h2 class="sys-title">Founder-Led Engineering Support</h2>
+          <span class="sys-eyebrow">ENGINEERING WORK</span>
+          <h2 class="sys-title">Built Around Real Engineering Work</h2>
         </div>
         <p class="built-problems-copy">
-          Eonix Systems is founder-led and engineering-focused. The work is kept close to the actual board, firmware,
-          test setup, and handover details instead of separating strategy from execution.
+          Most embedded projects do not fail because of one big mistake. They fail because small issues across
+          schematic design, layout, firmware, power, connectors, testing, and documentation add up. Eonix works across
+          these layers so prototypes are easier to build, test, and improve.
         </p>
+      </div>
+    </section>
+
+    <section class="sys-section">
+      <div class="sys-container reveal">
+        <div class="sys-header">
+          <span class="sys-eyebrow">PROJECT EXPERIENCE</span>
+          <h2 class="sys-title">Client Work &amp; Project Experience</h2>
+          <p class="sys-subtitle">
+            Eonix Systems has supported electronics development work for LADS, a defence-focused technology company.
+          </p>
+        </div>
+        <div class="sys-content hero-actions">
+          <a class="btn-secondary" href="https://www.thelads.in/home" target="_blank" rel="noopener noreferrer">
+            View LADS <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sys-section">
+      <div class="sys-container">
+        <div class="sys-header reveal">
+          <span class="sys-eyebrow">PROCESS</span>
+          <h2 class="sys-title">How We Work</h2>
+          <p class="sys-subtitle">
+            The process stays close to the electrical, firmware, and test realities of the project.
+          </p>
+        </div>
+
+        <div class="sys-content deployment-grid process-grid">
+          <div class="sys-card reveal" style="--delay: 100ms;">
+            <h3>Understand the Requirement</h3>
+            <p>We first clarify the electrical, mechanical, firmware, and usage constraints.</p>
+          </div>
+          <div class="sys-card reveal" style="--delay: 180ms;">
+            <h3>Design the Hardware/Firmware Path</h3>
+            <p>We define the circuit, interface, firmware, and test approach before jumping into files.</p>
+          </div>
+          <div class="sys-card reveal" style="--delay: 260ms;">
+            <h3>Build and Bring Up</h3>
+            <p>We support PCB release, assembly checks, firmware flashing, and first-power validation.</p>
+          </div>
+          <div class="sys-card reveal" style="--delay: 340ms;">
+            <h3>Debug and Prepare Handover</h3>
+            <p>We fix issues, document changes, and prepare files for manufacturing or further development.</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="sys-section reveal reveal-scale">
       <div class="sys-container home-direction">
-        <span class="sys-eyebrow">SYS_HOME_06 // NEXT STEP</span>
-        <h2 class="sys-title">Have a Board, Prototype, or Product Brief?</h2>
-        <p class="sys-subtitle">Share the current stage, known risks, and what needs to work next.</p>
+        <span class="sys-eyebrow">NEXT STEP</span>
+        <h2 class="sys-title">Need Help With an Embedded Hardware Project?</h2>
+        <p class="sys-subtitle">Share the current stage of your project, the problem you are facing, and what needs to be built or fixed.</p>
         <div class="sys-content hero-actions" style="margin-top: 32px;">
           <a class="btn-primary" href="contact.html">
-            Book a Consultation <span class="btn-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="btn-secondary" href="services.html">
-            Explore Services <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+            Contact Eonix <span class="btn-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
@@ -205,13 +190,15 @@
     <div class="footer-inner">
       <div class="footer-left">
         <p class="footer-brand">Eonix Systems</p>
-        <p class="footer-tagline">Embedded systems engineering services.</p>
+        <p class="footer-tagline">Embedded electronics engineering services.</p>
+        <p class="footer-tagline">PCB Design &middot; Firmware &middot; Bring-Up &middot; Prototyping</p>
       </div>
       <div class="footer-right">
         <div class="footer-links">
+          <a class="footer-link" href="index.html">Home</a>
           <a class="footer-link" href="services.html">Services</a>
-          <a class="footer-link" href="about.html#why">Why Eonix</a>
-          <a class="footer-link" href="product.html">Industries</a>
+          <a class="footer-link" href="industries.html">Industries</a>
+          <a class="footer-link" href="why-eonix.html">Why Eonix</a>
           <a class="footer-link" href="contact.html">Contact</a>
         </div>
       </div>

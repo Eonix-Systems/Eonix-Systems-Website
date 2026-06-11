@@ -16,7 +16,7 @@
     font-size: 4.5rem;
     font-weight: 700;
     line-height: 1.08;
-    letter-spacing: -0.04em;
+    letter-spacing: 0;
     color: var(--text-primary);
     margin-bottom: 24px;
 }
@@ -81,7 +81,7 @@
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
 }
 
 .prd-overview-card > p {
@@ -200,7 +200,7 @@
     color: var(--text-primary);
     margin-bottom: 12px;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
 }
 
 .sensor-crd p {
@@ -344,7 +344,7 @@
 }
 
 @media (max-width: 768px) {
-    .prd-hero-title { font-size: 2.8rem; letter-spacing: -0.03em; }
+    .prd-hero-title { font-size: 2.8rem; letter-spacing: 0; }
     .prd-hero-sub { font-size: 1rem; }
     .why-row { grid-template-columns: 1fr; gap: 16px; padding: 28px 24px; }
     .why-arrow { transform: rotate(90deg); }

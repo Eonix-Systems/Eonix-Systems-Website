@@ -25,7 +25,7 @@
     font-size: 4.5rem;
     font-weight: 700;
     line-height: 1.08;
-    letter-spacing: -0.04em;
+    letter-spacing: 0;
     color: var(--text-primary);
     margin-bottom: 24px;
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -193,7 +193,7 @@
 .svc-cta-final-inner h2 {
     font-size: 2.8rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     color: var(--text-primary);
     margin-bottom: 32px;
     font-family: 'Plus Jakarta Sans', sans-serif;

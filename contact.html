@@ -6,10 +6,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Book a technical consultation with Eonix Systems for PCB design, firmware, bring-up, debugging, power electronics, and manufacturing handover.">
+    content="Contact Eonix Systems for embedded electronics engineering support, including PCB design, firmware, hardware bring-up, debugging, and manufacturing handover.">
   <meta property="og:title" content="Contact | Eonix Systems">
   <meta property="og:description"
-    content="Share your embedded systems project brief with Eonix Systems.">
+    content="Share your embedded hardware project stage, problem, and engineering support needs with Eonix Systems.">
   <title>Contact | Eonix Systems</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,8 +23,8 @@
   <link rel="stylesheet" href="css/nav.css?v=609">
   <link rel="stylesheet" href="css/animations.css?v=610">
   <link rel="stylesheet" href="css/footer.css?v=608">
-  <link rel="stylesheet" href="css/home.css?v=614">
-  <link rel="stylesheet" href="css/contact.css?v=606">
+  <link rel="stylesheet" href="css/home.css?v=615">
+  <link rel="stylesheet" href="css/contact.css?v=607">
 </head>
 
 <body>
@@ -39,8 +39,8 @@
       <div class="nav-links">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="services.html">Services</a>
-        <a class="nav-link" href="about.html#why">Why Eonix</a>
-        <a class="nav-link" href="product.html">Industries</a>
+        <a class="nav-link" href="industries.html">Industries</a>
+        <a class="nav-link" href="why-eonix.html">Why Eonix</a>
         <a class="nav-link nav-active" href="contact.html">Contact</a>
       </div>
 
@@ -56,10 +56,10 @@
 
     <section class="page-hero home-root page-section hero-animated-grid">
       <div class="home-hero-inner">
-        <span class="hero-sys-label">SYS_CONTACT_01 // CONSULTATION</span>
-        <h1 class="home-title">Book a Technical Consultation</h1>
+        <span class="hero-sys-label">CONTACT</span>
+        <h1 class="home-title">Contact Eonix</h1>
         <p class="home-subtitle subtitle-animate">
-          Share the board, firmware, prototype, or product problem you want to solve.
+          Tell us what you are building, what stage it is at, and where you need engineering support. We will review the details and respond with the next practical step.
         </p>
       </div>
     </section>
@@ -71,31 +71,31 @@
     <section class="page-section contact-section">
       <div class="home-section-shell">
         <div class="home-section-header reveal">
-          <span class="home-section-label">SYS_CONTACT_02 // PROJECT BRIEF</span>
+          <span class="home-section-label">PROJECT BRIEF</span>
           <h2 class="home-section-title">
-            <span class="title-dot"></span>Project Brief
+            <span class="title-dot"></span>Project Details
           </h2>
           <p class="home-section-subtitle">
-            Include the current stage, available files, known technical risks, and the result your team needs next.
+            Share the current stage, the problem you are facing, and the files or constraints already known.
           </p>
         </div>
 
         <form class="consultation-form reveal" id="consultationForm">
           <div class="form-grid">
             <label>
-              <span>Full Name</span>
-              <input type="text" name="fullName" autocomplete="name" required>
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" required>
             </label>
             <label>
-              <span>Email Address</span>
+              <span>Email</span>
               <input type="email" name="email" autocomplete="email" required>
             </label>
             <label>
-              <span>Phone Number</span>
+              <span>Phone</span>
               <input type="tel" name="phone" autocomplete="tel">
             </label>
             <label>
-              <span>Company / Team Name</span>
+              <span>Company / Team</span>
               <input type="text" name="team" autocomplete="organization">
             </label>
             <label>
@@ -104,23 +104,23 @@
                 <option value="">Select project type</option>
                 <option>PCB Design</option>
                 <option>Firmware Development</option>
-                <option>Bring-up / Debugging</option>
-                <option>Power Electronics</option>
-                <option>Prototype Handover</option>
-                <option>System Integration</option>
+                <option>Hardware Bring-Up</option>
+                <option>Debugging</option>
+                <option>Prototype to Manufacturing</option>
                 <option>Other</option>
               </select>
             </label>
             <label>
-              <span>Project Stage</span>
-              <select name="projectStage" required>
-                <option value="">Select project stage</option>
-                <option>Idea / Architecture</option>
-                <option>Schematic Ready</option>
-                <option>PCB Layout Needed</option>
-                <option>Prototype Built</option>
-                <option>Debugging Required</option>
-                <option>Manufacturing Handover</option>
+              <span>Current Stage</span>
+              <select name="currentStage" required>
+                <option value="">Select current stage</option>
+                <option>Idea / requirement stage</option>
+                <option>Schematic started</option>
+                <option>PCB designed</option>
+                <option>Prototype assembled</option>
+                <option>Firmware in progress</option>
+                <option>Debugging issue</option>
+                <option>Ready for manufacturing</option>
               </select>
             </label>
             <label>
@@ -128,17 +128,17 @@
               <select name="timeline" required>
                 <option value="">Select timeline</option>
                 <option>Urgent</option>
-                <option>1-2 Weeks</option>
-                <option>2-4 Weeks</option>
-                <option>1-2 Months</option>
+                <option>1-2 weeks</option>
+                <option>2-4 weeks</option>
+                <option>1-2 months</option>
                 <option>Flexible</option>
               </select>
             </label>
           </div>
 
           <label class="form-wide">
-            <span>Technical Context</span>
-            <textarea name="projectDescription" rows="7" placeholder="Board status, firmware scope, failure symptoms, files available, constraints, and expected next milestone." required></textarea>
+            <span>Project Description</span>
+            <textarea name="projectDescription" rows="7" placeholder="What is being built, current files or hardware status, known issue, constraints, and what needs to work next." required></textarea>
           </label>
 
           <div class="form-actions">
@@ -160,32 +160,32 @@
     <section class="page-section contact-section">
       <div class="home-section-shell">
         <div class="home-section-header reveal">
-          <span class="home-section-label">SYS_CONTACT_03 // DIRECT CHANNELS</span>
+          <span class="home-section-label">DIRECT CHANNEL</span>
           <h2 class="home-section-title">
-            <span class="title-dot"></span>Direct Channel
+            <span class="title-dot"></span>Direct Contact
           </h2>
         </div>
 
         <div class="contact-cards-grid">
           <div class="contact-card reveal" style="--delay: 100ms;">
-            <span class="contact-card-index">CH_01 // EMAIL</span>
+            <span class="contact-card-index">EMAIL</span>
             <h3>Engineering Inquiries</h3>
             <p>Use email for board files, technical references, debugging notes, firmware scope, or manufacturing handover questions.</p>
             <a class="contact-email" href="mailto:rishabh@eonixsystems.com">rishabh@eonixsystems.com</a>
           </div>
           <div class="contact-card reveal" style="--delay: 200ms;">
-            <span class="contact-card-index">CH_02 // SCOPE</span>
-            <h3>Service Scope</h3>
-            <p>PCB design, embedded firmware, power electronics, bring-up, debugging, system integration, and small-batch preparation.</p>
-            <a class="btn-secondary" href="services.html" style="margin-top: 8px; display: inline-flex;">Explore Services <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+            <span class="contact-card-index">LOCATION</span>
+            <h3>Location</h3>
+            <p>Mumbai / Navi Mumbai, India. Remote engineering support and project review can be handled online where practical.</p>
+            <a class="btn-secondary" href="services.html" style="margin-top: 8px; display: inline-flex;">View Services <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
           </div>
           <div class="contact-card reveal" style="--delay: 300ms;">
-            <span class="contact-card-index">CH_03 // SOCIAL</span>
+            <span class="contact-card-index">SOCIAL</span>
             <h3>Follow the Work</h3>
             <p>Hardware development updates, board work, embedded systems experiments, and engineering notes.</p>
             <div class="contact-social-links">
-              <a href="https://www.instagram.com/eonixsystems/" class="contact-social-btn" target="_blank">Instagram <span aria-hidden="true">&rarr;</span></a>
-              <a href="https://www.linkedin.com/company/eonix-systems/?viewAsMember=true" class="contact-social-btn" target="_blank">LinkedIn <span aria-hidden="true">&rarr;</span></a>
+              <a href="https://www.instagram.com/eonixsystems/" class="contact-social-btn" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">&rarr;</span></a>
+              <a href="https://www.linkedin.com/company/eonix-systems/?viewAsMember=true" class="contact-social-btn" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">&rarr;</span></a>
             </div>
           </div>
         </div>
@@ -197,15 +197,17 @@
     <div class="footer-inner">
       <div class="footer-left">
         <p class="footer-brand">Eonix Systems</p>
-        <p class="footer-tagline">Embedded systems engineering services.</p>
+        <p class="footer-tagline">Embedded electronics engineering services.</p>
+        <p class="footer-tagline">PCB Design &middot; Firmware &middot; Bring-Up &middot; Prototyping</p>
       </div>
 
       <div class="footer-right">
         <div class="footer-links">
           <a class="footer-link" href="index.html">Home</a>
           <a class="footer-link" href="services.html">Services</a>
-          <a class="footer-link" href="about.html#why">Why Eonix</a>
-          <a class="footer-link" href="product.html">Industries</a>
+          <a class="footer-link" href="industries.html">Industries</a>
+          <a class="footer-link" href="why-eonix.html">Why Eonix</a>
+          <a class="footer-link" href="contact.html">Contact</a>
         </div>
       </div>
     </div>

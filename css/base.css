@@ -116,7 +116,7 @@ h6 {
     font-weight: 600;
     line-height: 1.2;
     color: var(--text-primary);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
 }
 
 a {
