@@ -143,11 +143,11 @@
 
           <div class="form-actions">
             <button class="btn-primary" type="submit">Send Project Brief</button>
-            <a class="btn-secondary" href="mailto:rishabh@eonixsystems.com">Email Directly <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="btn-secondary" href="mailto:business@eonixsystems.com">Email Directly <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
           </div>
 
           <p class="form-success" id="formSuccess" role="status" aria-live="polite">
-            Thank you. Your project brief has been saved locally on this page. You can also email the same details directly.
+            Thank you. Your email app should open with the project brief addressed to Eonix.
           </p>
         </form>
       </div>
@@ -171,7 +171,7 @@
             <span class="contact-card-index">EMAIL</span>
             <h3>Engineering Inquiries</h3>
             <p>Use email for board files, technical references, debugging notes, firmware scope, or manufacturing handover questions.</p>
-            <a class="contact-email" href="mailto:rishabh@eonixsystems.com">rishabh@eonixsystems.com</a>
+            <a class="contact-email" href="mailto:business@eonixsystems.com">business@eonixsystems.com</a>
           </div>
           <div class="contact-card reveal" style="--delay: 200ms;">
             <span class="contact-card-index">LOCATION</span>
@@ -250,6 +250,20 @@
         event.preventDefault();
         const data = Object.fromEntries(new FormData(form).entries());
         localStorage.setItem(storageKey, JSON.stringify(data));
+        const subject = `Project brief from ${data.name || "website contact"}`;
+        const body = [
+          `Name: ${data.name || ""}`,
+          `Email: ${data.email || ""}`,
+          `Phone: ${data.phone || ""}`,
+          `Company / Team: ${data.team || ""}`,
+          `Project Type: ${data.projectType || ""}`,
+          `Current Stage: ${data.currentStage || ""}`,
+          `Timeline: ${data.timeline || ""}`,
+          "",
+          "Project Description:",
+          data.projectDescription || ""
+        ].join("\n");
+        window.location.href = `mailto:business@eonixsystems.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         success.classList.add("is-visible");
         form.reset();
       });
