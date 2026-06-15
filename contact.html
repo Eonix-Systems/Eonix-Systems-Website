@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="css/animations.css?v=610">
   <link rel="stylesheet" href="css/footer.css?v=608">
   <link rel="stylesheet" href="css/home.css?v=615">
-  <link rel="stylesheet" href="css/contact.css?v=607">
+  <link rel="stylesheet" href="css/contact.css?v=608">
 </head>
 
 <body>
@@ -80,14 +80,14 @@
           </p>
         </div>
 
-        <form class="consultation-form reveal" id="consultationForm">
+        <form class="consultation-form reveal" id="consultationForm" action="/api/contact" method="post">
           <div class="form-grid">
             <label>
-              <span>Name</span>
+              <span>Name <small aria-hidden="true">*</small></span>
               <input type="text" name="name" autocomplete="name" required>
             </label>
             <label>
-              <span>Email</span>
+              <span>Email <small aria-hidden="true">*</small></span>
               <input type="email" name="email" autocomplete="email" required>
             </label>
             <label>
@@ -136,13 +136,18 @@
             </label>
           </div>
 
+          <label class="form-honeypot" aria-hidden="true" tabindex="-1">
+            <span>Website</span>
+            <input type="text" name="website" autocomplete="off" tabindex="-1">
+          </label>
+
           <label class="form-wide">
-            <span>Project Description</span>
+            <span>Project Description <small aria-hidden="true">*</small></span>
             <textarea name="projectDescription" rows="7" placeholder="What is being built, current files or hardware status, known issue, constraints, and what needs to work next." required></textarea>
           </label>
 
           <div class="form-actions">
-            <button class="btn-primary" type="submit">Send Project Brief</button>
+            <button class="btn-primary" type="submit" id="submitProjectBrief">Send Project Brief</button>
             <a class="btn-secondary" href="mailto:business@eonixsystems.com">Email Directly <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
           </div>
 
@@ -224,9 +229,16 @@
     document.addEventListener("DOMContentLoaded", () => {
       const form = document.getElementById("consultationForm");
       const success = document.getElementById("formSuccess");
+      const submitButton = document.getElementById("submitProjectBrief");
       const storageKey = "eonixConsultationDraft";
 
-      if (!form || !success) return;
+      if (!form || !success || !submitButton) return;
+
+      function setStatus(message, type) {
+        success.textContent = message;
+        success.classList.toggle("is-error", type === "error");
+        success.classList.add("is-visible");
+      }
 
       const saved = localStorage.getItem(storageKey);
       if (saved) {
@@ -246,26 +258,38 @@
         localStorage.setItem(storageKey, JSON.stringify(data));
       });
 
-      form.addEventListener("submit", (event) => {
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
         const data = Object.fromEntries(new FormData(form).entries());
         localStorage.setItem(storageKey, JSON.stringify(data));
-        const subject = `Project brief from ${data.name || "website contact"}`;
-        const body = [
-          `Name: ${data.name || ""}`,
-          `Email: ${data.email || ""}`,
-          `Phone: ${data.phone || ""}`,
-          `Company / Team: ${data.team || ""}`,
-          `Project Type: ${data.projectType || ""}`,
-          `Current Stage: ${data.currentStage || ""}`,
-          `Timeline: ${data.timeline || ""}`,
-          "",
-          "Project Description:",
-          data.projectDescription || ""
-        ].join("\n");
-        window.location.href = `mailto:business@eonixsystems.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        success.classList.add("is-visible");
-        form.reset();
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+        success.classList.remove("is-visible", "is-error");
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+          });
+
+          if (!response.ok) throw new Error("Contact request failed");
+
+          localStorage.removeItem(storageKey);
+          form.reset();
+          setStatus("Submitted. Thank you for contacting Eonix Systems. Our engineer will review your query and contact you at the earliest.", "success");
+        } catch (error) {
+          setStatus("We could not submit the form right now. Please email business@eonixsystems.com directly with your project details.", "error");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = "Send Project Brief";
+        }
       });
     });
   </script>

@@ -134,6 +134,26 @@ Important shared patterns:
 - Keep mobile nav behavior isolated to `nav.css` and `nav.js`.
 - If a browser is still showing old CSS or JS, bump the relevant `?v=` query string in the HTML file that loads it.
 
+## Contact Form Email Setup
+
+The contact page posts to `/api/contact`, which is a Vercel serverless function.
+It sends the project brief to Eonix and sends an automated confirmation email to
+the visitor.
+
+Required Vercel environment variables:
+
+- `RESEND_API_KEY`: API key from Resend
+- `CONTACT_FROM_EMAIL`: verified sender, for example `Eonix Systems <noreply@eonixsystems.com>`
+- `CONTACT_TO_EMAIL`: inbox for project briefs, normally `business@eonixsystems.com`
+
+Setup steps:
+
+1. Create a Resend account.
+2. Verify `eonixsystems.com` in Resend DNS settings.
+3. Create an API key in Resend.
+4. Add the variables above in Vercel Project Settings > Environment Variables.
+5. Redeploy the site from Vercel after saving the variables.
+
 ## Deployment
 
 The site is deployed as a static Vercel site.

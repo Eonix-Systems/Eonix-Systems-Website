@@ -181,6 +181,11 @@
     font-weight: 600;
 }
 
+.consultation-form small {
+    color: #c83232;
+    font-size: 0.9em;
+}
+
 .consultation-form input,
 .consultation-form select,
 .consultation-form textarea {
@@ -211,6 +216,13 @@
     width: 100%;
 }
 
+.form-honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .form-actions {
     display: flex;
     gap: 14px;
@@ -230,6 +242,12 @@
 
 .form-success.is-visible {
     display: block;
+}
+
+.form-success.is-error {
+    border-color: rgba(196, 57, 57, 0.3);
+    background: rgba(196, 57, 57, 0.08);
+    color: #7a2222;
 }
 
 /* =========================
