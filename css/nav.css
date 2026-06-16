@@ -33,7 +33,7 @@
 
 .nav-logo img {
     width: auto;
-    height: 48px;
+    height: 56px;
 }
 
 .nav-links {
@@ -97,8 +97,8 @@
     }
 
     .nav-logo img {
-        content: url("../assets/Logo Only Black Transparent.png");
-        height: 34px;
+        content: url("../assets/LOGO/Logo Only Black Transparent.png");
+        height: 46px;
     }
 
     .nav-links {

@@ -46,6 +46,26 @@
     color: var(--text-primary);
 }
 
+.page-hero .hero-sys-label {
+    color: var(--text-muted);
+}
+
+.page-hero .hero-sys-label::before {
+    background: var(--border-strong);
+}
+
+.contact-form-shell .home-section-title {
+    color: var(--accent);
+}
+
+.contact-form-shell .home-section-label {
+    color: var(--text-muted);
+}
+
+.contact-form-shell .home-section-label::before {
+    background: var(--border-strong);
+}
+
 .contact-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
@@ -98,6 +118,34 @@
     background: rgba(255, 255, 255, 0.06);
 }
 
+.contact-social-btn {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 6px 12px;
+    align-items: center;
+}
+
+.contact-social-btn .social-icon {
+    grid-row: span 2;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    color: #ffffff;
+    background: rgba(0, 102, 255, 0.16);
+}
+
+.social-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
 .contact-meta-item strong,
 .contact-social-btn strong {
     display: block;
@@ -107,7 +155,7 @@
     text-transform: uppercase;
 }
 
-.contact-social-btn span,
+.contact-social-btn > span:not(.social-icon),
 .contact-meta-item span {
     color: rgba(255, 255, 255, 0.72);
     font-size: 0.92rem;
