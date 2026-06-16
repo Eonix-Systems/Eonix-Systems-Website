@@ -83,28 +83,70 @@ async function sendEmail(payload) {
   }
 }
 
-function readRequestBody(req) {
-  if (typeof req.body === "object" && req.body) {
-    return Promise.resolve(req.body);
+function parseBodyString(rawBody, contentType = "") {
+  const body = String(rawBody || "").replace(/^\uFEFF/, "").trim();
+  if (!body) return {};
+
+  if (contentType.includes("application/x-www-form-urlencoded") || body.includes("=")) {
+    return Object.fromEntries(new URLSearchParams(body));
   }
 
-  if (typeof req.body === "string" && req.body) {
-    return Promise.resolve(JSON.parse(req.body));
+  return JSON.parse(body);
+}
+
+async function readRequestBody(req) {
+  const contentType = req.headers?.["content-type"] || req.headers?.["Content-Type"] || "";
+
+  if (req.body && Buffer.isBuffer(req.body)) {
+    return parseBodyString(req.body.toString("utf8"), contentType);
+  }
+
+  if (req.body && typeof req.body === "object") {
+    return req.body;
+  }
+
+  if (typeof req.body === "string") {
+    return parseBodyString(req.body, contentType);
+  }
+
+  if (typeof req[Symbol.asyncIterator] === "function") {
+    const chunks = [];
+    let totalLength = 0;
+
+    for await (const chunk of req) {
+      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      totalLength += buffer.length;
+      if (totalLength > 100000) {
+        throw new Error("Request body is too large.");
+      }
+      chunks.push(buffer);
+    }
+
+    return parseBodyString(Buffer.concat(chunks).toString("utf8"), contentType);
   }
 
   return new Promise((resolve, reject) => {
-    let rawBody = "";
+    if (typeof req.on !== "function") {
+      resolve({});
+      return;
+    }
+
+    const chunks = [];
+    let totalLength = 0;
 
     req.on("data", (chunk) => {
-      rawBody += chunk;
-      if (rawBody.length > 100000) {
+      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      totalLength += buffer.length;
+      if (totalLength > 100000) {
         reject(new Error("Request body is too large."));
+        return;
       }
+      chunks.push(buffer);
     });
 
     req.on("end", () => {
       try {
-        resolve(rawBody ? JSON.parse(rawBody) : {});
+        resolve(parseBodyString(Buffer.concat(chunks).toString("utf8"), contentType));
       } catch (error) {
         reject(error);
       }
