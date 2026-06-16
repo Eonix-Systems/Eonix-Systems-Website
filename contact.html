@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="css/animations.css?v=610">
   <link rel="stylesheet" href="css/footer.css?v=702">
   <link rel="stylesheet" href="css/home.css?v=701">
-  <link rel="stylesheet" href="css/contact.css?v=702">
+  <link rel="stylesheet" href="css/contact.css?v=703">
 </head>
 
 <body>
@@ -91,7 +91,8 @@
             </p>
           </div>
 
-          <form class="consultation-form" id="consultationForm" action="/api/contact" method="post">
+          <form class="consultation-form" id="consultationForm" action="/api/contact" method="post"
+            enctype="multipart/form-data" autocomplete="off">
             <div class="form-grid">
               <label>
                 <span>Name <small aria-hidden="true">*</small></span>
@@ -153,6 +154,13 @@
               <textarea name="projectDescription" rows="7"
                 placeholder="Describe the hardware, firmware, current blockers, known constraints, and what needs to be delivered next."
                 required></textarea>
+            </label>
+
+            <label class="form-wide file-upload-field">
+              <span>Project Files</span>
+              <input type="file" name="projectFiles" multiple
+                accept=".pdf,.png,.jpg,.jpeg,.webp,.zip,.txt,.doc,.docx,.xls,.xlsx,.csv,.sch,.brd,.kicad_sch,.kicad_pcb">
+              <em>Attach drawings, screenshots, briefs, or zipped project files. Up to 5 files, 4 MB total.</em>
             </label>
 
             <div class="form-actions">
@@ -280,32 +288,22 @@
       const success = document.getElementById("formSuccess");
       const submitButton = document.getElementById("submitProjectBrief");
       const storageKey = "eonixConsultationDraft";
+      const maxUploadBytes = 4 * 1024 * 1024;
+      const maxFileCount = 5;
 
       if (!form || !success || !submitButton) return;
+      form.reset();
+      try {
+        localStorage.removeItem(storageKey);
+      } catch (error) {
+        // Storage can be blocked in some privacy modes; the form should still work.
+      }
 
       function setStatus(message, type) {
         success.textContent = message;
         success.classList.toggle("is-error", type === "error");
         success.classList.add("is-visible");
       }
-
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        try {
-          const data = JSON.parse(saved);
-          Object.entries(data).forEach(([name, value]) => {
-            const field = form.elements[name];
-            if (field) field.value = value;
-          });
-        } catch (error) {
-          localStorage.removeItem(storageKey);
-        }
-      }
-
-      form.addEventListener("input", () => {
-        const data = Object.fromEntries(new FormData(form).entries());
-        localStorage.setItem(storageKey, JSON.stringify(data));
-      });
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -314,8 +312,14 @@
           return;
         }
 
-        const data = Object.fromEntries(new FormData(form).entries());
-        localStorage.setItem(storageKey, JSON.stringify(data));
+        const formData = new FormData(form);
+        const selectedFiles = Array.from(form.elements.projectFiles?.files || []);
+        const uploadBytes = selectedFiles.reduce((total, file) => total + file.size, 0);
+
+        if (selectedFiles.length > maxFileCount || uploadBytes > maxUploadBytes) {
+          setStatus("Please attach no more than 5 files and keep the total upload under 4 MB.", "error");
+          return;
+        }
 
         submitButton.disabled = true;
         submitButton.textContent = "Sending Brief...";
@@ -324,13 +328,11 @@
         try {
           const response = await fetch(form.action, {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-            body: new URLSearchParams(data)
+            body: formData
           });
 
           if (!response.ok) throw new Error("Contact request failed");
 
-          localStorage.removeItem(storageKey);
           form.reset();
           setStatus("Submitted. Thank you for contacting Eonix Systems. The engineering brief has been received.", "success");
         } catch (error) {

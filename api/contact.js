@@ -2,6 +2,8 @@ const RESEND_API_URL = "https://api.resend.com/emails";
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || "business@eonixsystems.com";
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
+const MAX_FILE_COUNT = 5;
 
 function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode;
@@ -26,15 +28,21 @@ function escapeHtml(value) {
     .replace(/'/g, "&#039;");
 }
 
-function projectBriefHtml(data) {
+function formatBytes(bytes) {
+  if (!bytes) return "0 KB";
+  if (bytes < 1024 * 1024) return `${Math.ceil(bytes / 1024)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function projectBriefHtml(data, files = []) {
   const rows = [
     ["Name", data.name],
     ["Email", data.email],
-    ["Phone", data.phone || "Not provided"],
     ["Company / Team", data.team || "Not provided"],
     ["Project Type", data.projectType],
     ["Project Stage", data.currentStage],
-    ["Timeline", data.timeline]
+    ["Timeline", data.timeline],
+    ["Attached Files", files.length ? files.map((file) => `${file.filename} (${formatBytes(file.size)})`).join(", ") : "None"]
   ];
 
   return `
@@ -94,19 +102,96 @@ function parseBodyString(rawBody, contentType = "") {
   return JSON.parse(body);
 }
 
-async function readRequestBody(req) {
-  const contentType = req.headers?.["content-type"] || req.headers?.["Content-Type"] || "";
+function parseHeaderParams(value = "") {
+  const params = {};
+  const parts = value.split(";").map((part) => part.trim());
+  params.type = parts.shift() || "";
 
-  if (req.body && Buffer.isBuffer(req.body)) {
-    return parseBodyString(req.body.toString("utf8"), contentType);
+  parts.forEach((part) => {
+    const [key, ...rest] = part.split("=");
+    if (!key || !rest.length) return;
+    params[key.toLowerCase()] = rest.join("=").replace(/^"|"$/g, "");
+  });
+
+  return params;
+}
+
+function safeFilename(filename) {
+  const cleaned = clean(filename)
+    .replace(/\\/g, "/")
+    .split("/")
+    .pop()
+    .replace(/[^\w.\- ()]/g, "_")
+    .slice(0, 120);
+
+  return cleaned || "attachment";
+}
+
+function parseMultipartBody(buffer, contentType = "") {
+  const boundaryMatch = contentType.match(/boundary=(?:"([^"]+)"|([^;]+))/i);
+  const boundary = boundaryMatch && (boundaryMatch[1] || boundaryMatch[2]);
+
+  if (!boundary) {
+    throw new Error("Missing multipart boundary.");
   }
 
-  if (req.body && typeof req.body === "object") {
+  const fields = {};
+  const files = [];
+  const raw = buffer.toString("binary");
+  const boundaryText = `--${boundary}`;
+  const parts = raw.split(boundaryText).slice(1, -1);
+
+  parts.forEach((part) => {
+    let normalized = part;
+    if (normalized.startsWith("\r\n")) normalized = normalized.slice(2);
+    if (normalized.endsWith("\r\n")) normalized = normalized.slice(0, -2);
+
+    const separatorIndex = normalized.indexOf("\r\n\r\n");
+    if (separatorIndex === -1) return;
+
+    const rawHeaders = normalized.slice(0, separatorIndex);
+    const rawContent = normalized.slice(separatorIndex + 4);
+    const headers = {};
+
+    rawHeaders.split("\r\n").forEach((line) => {
+      const index = line.indexOf(":");
+      if (index === -1) return;
+      headers[line.slice(0, index).toLowerCase()] = line.slice(index + 1).trim();
+    });
+
+    const disposition = parseHeaderParams(headers["content-disposition"]);
+    const fieldName = disposition.name;
+    if (!fieldName) return;
+
+    const contentBuffer = Buffer.from(rawContent, "binary");
+    if (disposition.filename !== undefined) {
+      if (!contentBuffer.length) return;
+      files.push({
+        fieldName,
+        filename: safeFilename(disposition.filename),
+        contentType: headers["content-type"] || "application/octet-stream",
+        size: contentBuffer.length,
+        content: contentBuffer.toString("base64")
+      });
+      return;
+    }
+
+    fields[fieldName] = contentBuffer.toString("utf8").trim();
+  });
+
+  return { fields, files };
+}
+
+async function readRawBuffer(req, maxBytes = MAX_UPLOAD_BYTES + 250000) {
+  if (req.body && Buffer.isBuffer(req.body)) {
+    if (req.body.length > maxBytes) throw new Error("Request body is too large.");
     return req.body;
   }
 
   if (typeof req.body === "string") {
-    return parseBodyString(req.body, contentType);
+    const buffer = Buffer.from(req.body);
+    if (buffer.length > maxBytes) throw new Error("Request body is too large.");
+    return buffer;
   }
 
   if (typeof req[Symbol.asyncIterator] === "function") {
@@ -116,18 +201,18 @@ async function readRequestBody(req) {
     for await (const chunk of req) {
       const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
       totalLength += buffer.length;
-      if (totalLength > 100000) {
+      if (totalLength > maxBytes) {
         throw new Error("Request body is too large.");
       }
       chunks.push(buffer);
     }
 
-    return parseBodyString(Buffer.concat(chunks).toString("utf8"), contentType);
+    return Buffer.concat(chunks);
   }
 
   return new Promise((resolve, reject) => {
     if (typeof req.on !== "function") {
-      resolve({});
+      resolve(Buffer.alloc(0));
       return;
     }
 
@@ -137,23 +222,38 @@ async function readRequestBody(req) {
     req.on("data", (chunk) => {
       const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
       totalLength += buffer.length;
-      if (totalLength > 100000) {
+      if (totalLength > maxBytes) {
         reject(new Error("Request body is too large."));
         return;
       }
       chunks.push(buffer);
     });
 
-    req.on("end", () => {
-      try {
-        resolve(parseBodyString(Buffer.concat(chunks).toString("utf8"), contentType));
-      } catch (error) {
-        reject(error);
-      }
-    });
-
+    req.on("end", () => resolve(Buffer.concat(chunks)));
     req.on("error", reject);
   });
+}
+
+async function readRequestBody(req) {
+  const contentType = req.headers?.["content-type"] || req.headers?.["Content-Type"] || "";
+
+  if (contentType.includes("multipart/form-data")) {
+    return parseMultipartBody(await readRawBuffer(req), contentType);
+  }
+
+  if (req.body && Buffer.isBuffer(req.body)) {
+    return { fields: parseBodyString(req.body.toString("utf8"), contentType), files: [] };
+  }
+
+  if (req.body && typeof req.body === "object") {
+    return { fields: req.body, files: [] };
+  }
+
+  if (typeof req.body === "string") {
+    return { fields: parseBodyString(req.body, contentType), files: [] };
+  }
+
+  return { fields: parseBodyString((await readRawBuffer(req, 100000)).toString("utf8"), contentType), files: [] };
 }
 
 module.exports = async function handler(req, res) {
@@ -162,12 +262,15 @@ module.exports = async function handler(req, res) {
     return sendJson(res, 405, { error: "Method not allowed" });
   }
 
-  let payload;
+  let body;
   try {
-    payload = await readRequestBody(req);
+    body = await readRequestBody(req);
   } catch (error) {
-    return sendJson(res, 400, { error: "Invalid request body." });
+    return sendJson(res, error.message.includes("large") ? 413 : 400, { error: "Invalid request body." });
   }
+
+  const payload = body.fields;
+  const files = body.files || [];
 
   if (!payload || typeof payload !== "object") {
     return sendJson(res, 400, { error: "Invalid request body." });
@@ -180,7 +283,6 @@ module.exports = async function handler(req, res) {
   const data = {
     name: clean(payload.name),
     email: clean(payload.email),
-    phone: clean(payload.phone),
     team: clean(payload.team),
     projectType: clean(payload.projectType),
     currentStage: clean(payload.currentStage),
@@ -201,19 +303,34 @@ module.exports = async function handler(req, res) {
     return sendJson(res, 400, { error: "Please complete all required fields with a valid email address." });
   }
 
+  const totalAttachmentBytes = files.reduce((sum, file) => sum + file.size, 0);
+
+  if (files.length > MAX_FILE_COUNT || totalAttachmentBytes > MAX_UPLOAD_BYTES) {
+    return sendJson(res, 413, { error: "Please attach no more than 5 files and keep the total under 4 MB." });
+  }
+
   if (!RESEND_API_KEY || !CONTACT_FROM_EMAIL) {
     return sendJson(res, 500, { error: "Contact email service is not configured." });
   }
 
   try {
+    const projectBriefEmail = {
+      from: CONTACT_FROM_EMAIL,
+      to: [CONTACT_TO_EMAIL],
+      reply_to: data.email,
+      subject: `New Eonix project brief from ${data.name}`,
+      html: projectBriefHtml(data, files)
+    };
+
+    if (files.length) {
+      projectBriefEmail.attachments = files.map((file) => ({
+        filename: file.filename,
+        content: file.content
+      }));
+    }
+
     await Promise.all([
-      sendEmail({
-        from: CONTACT_FROM_EMAIL,
-        to: [CONTACT_TO_EMAIL],
-        reply_to: data.email,
-        subject: `New Eonix project brief from ${data.name}`,
-        html: projectBriefHtml(data)
-      }),
+      sendEmail(projectBriefEmail),
       sendEmail({
         from: CONTACT_FROM_EMAIL,
         to: [data.email],

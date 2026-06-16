@@ -133,14 +133,20 @@ Ownership:
 
 ## Contact Form
 
-`contact.html` posts JSON to `/api/contact`.
+`contact.html` posts multipart form data to `/api/contact`.
 
 `api/contact.js`:
 
 - validates required fields
 - filters honeypot spam
 - sends the project brief to Eonix through Resend
+- forwards optional uploaded project files as attachments on the internal Eonix email
 - sends an auto-confirmation email to the visitor
+
+Upload limits:
+
+- maximum 5 files
+- maximum 4 MB total upload size, to stay under Vercel serverless request limits
 
 Required Vercel environment variables:
 
