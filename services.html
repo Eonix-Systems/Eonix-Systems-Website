@@ -6,23 +6,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Engineering services from Eonix Systems for PCB design, embedded firmware, hardware bring-up, power electronics, protection, prototyping, and manufacturing handover." />
+    content="Service blocks from Eonix Systems covering PCB design, embedded firmware, prototyping, power electronics, manufacturing support, and technical consulting." />
   <meta property="og:title" content="Services | Eonix Systems" />
   <meta property="og:description"
-    content="PCB, firmware, bring-up, power electronics, and manufacturing support for embedded hardware." />
+    content="Premium embedded electronics engineering blocks for design, development, validation, and manufacturing handover." />
   <title>Services | Eonix Systems</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/base.css?v=608" />
-  <link rel="stylesheet" href="css/layout.css?v=612" />
-  <link rel="stylesheet" href="css/nav.css?v=609" />
+  <link rel="stylesheet" href="css/base.css?v=701" />
+  <link rel="stylesheet" href="css/layout.css?v=701" />
+  <link rel="stylesheet" href="css/nav.css?v=701" />
   <link rel="stylesheet" href="css/animations.css?v=610" />
-  <link rel="stylesheet" href="css/footer.css?v=608" />
-  <link rel="stylesheet" href="css/home.css?v=615" />
-  <link rel="stylesheet" href="css/services.css?v=611" />
+  <link rel="stylesheet" href="css/footer.css?v=701" />
+  <link rel="stylesheet" href="css/home.css?v=701" />
+  <link rel="stylesheet" href="css/services.css?v=701" />
 </head>
 
 <body>
@@ -31,7 +33,7 @@
   <nav class="nav-root">
     <div class="nav-inner">
       <a class="nav-logo" href="index.html">
-        <img src="assets/Name Logo White Transparent.png" alt="Eonix Systems logo" />
+        <img src="assets/Name Logo Black Transparent.png" alt="Eonix Systems logo" />
       </a>
       <div class="nav-links">
         <a class="nav-link" href="index.html">Home</a>
@@ -47,130 +49,246 @@
   </nav>
 
   <main class="page-wrapper blueprint-wrapper">
-    <div class="master-guide left"></div>
-    <div class="master-guide right"></div>
-
-    <section class="page-hero home-root page-section hero-animated-grid">
-      <div class="home-hero-inner">
-        <span class="hero-sys-label">SERVICES</span>
-        <h1 class="home-title">Engineering Services for Embedded Hardware</h1>
-        <p class="home-subtitle subtitle-animate">
-          Eonix Systems works on the electronics and firmware layers of embedded products, from early prototypes to
-          boards being prepared for small-batch manufacturing.
-        </p>
-        <div class="hero-actions hero-actions-animate">
-          <a href="contact.html" class="btn-primary">Discuss a Project <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-          <a href="#services-list" class="btn-secondary">View Details <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    <section class="page-hero page-section">
+      <div class="home-section-shell reveal">
+        <div class="svc-hero-grid">
+          <div class="svc-hero-copy">
+            <span class="hero-sys-label">Services</span>
+            <h1 class="home-title">Engineering Blocks for Embedded Hardware</h1>
+            <p class="home-subtitle">
+              The scope can be one focused service or a connected workflow from board definition to validation and
+              manufacturing handover.
+            </p>
+            <div class="hero-actions">
+              <a class="btn-primary" href="contact.html">Book Consultation <span class="btn-arrow"
+                  aria-hidden="true">&rarr;</span></a>
+              <a class="btn-secondary" href="#service-stack">View Detailed Scope <span class="btn-arrow"
+                  aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="svc-hero-media">
+            <img src="assets/engineering-lab-v1.png" alt="Embedded electronics engineering bench with probes and oscilloscope" />
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="home-tech-divider"><div class="tech-node"></div></div>
+    <div class="home-tech-divider">
+      <div class="tech-node"></div>
+    </div>
 
-    <section id="services-list" class="page-section svc-section">
+    <section id="service-stack" class="page-section">
       <div class="home-section-shell">
         <div class="home-section-header reveal">
-          <span class="home-section-label">CAPABILITIES</span>
-          <h2 class="home-section-title"><span class="title-dot"></span>Service Areas</h2>
+          <span class="home-section-label">Detailed Scope</span>
+          <h2 class="home-section-title">Service Areas</h2>
           <p class="home-section-subtitle">
-            Work can be scoped as one focused service or combined into a prototype-to-handover flow.
+            Each service block is framed around clear engineering work, concrete outputs, and the teams it fits best.
           </p>
         </div>
 
-        <div class="service-blocks">
-          <article class="service-detail-card reveal" style="--delay: 100ms;">
-            <div class="service-detail-copy">
+        <div class="service-stack">
+          <article id="pcb-design" class="service-feature reveal">
+            <div class="service-feature-media">
+              <img src="assets/engineering-hero-v1.png" alt="PCB design and validation board with test probes" />
+            </div>
+            <div class="service-feature-copy">
               <h3>PCB Design</h3>
-              <p>Schematic design, board layout, and release files for embedded electronics that need to be built, tested, and revised cleanly.</p>
+              <p>Board design work for embedded systems that need clean layout, practical component choices, and
+                reliable manufacturing files.</p>
+              <div class="service-list-block">
+                <h4>What we do</h4>
+                <p>Schematic design, PCB layout, component selection, connector planning, stack-up review, and release
+                  preparation for assembled boards.</p>
+              </div>
+              <div class="service-list-block">
+                <h4>Deliverables</h4>
+                <ul class="service-feature-list">
+                  <li>Schematics</li>
+                  <li>PCB layout database</li>
+                  <li>Gerber and drill outputs</li>
+                  <li>BOM and pick-and-place files</li>
+                </ul>
+              </div>
+              <div class="service-list-block">
+                <h4>Best suited for</h4>
+                <div class="service-suited">
+                  <span>Startups</span><span>Robotics teams</span><span>Industrial systems</span>
+                </div>
+              </div>
             </div>
-            <ul>
-              <li>Schematic design</li>
-              <li>PCB layout</li>
-              <li>Component selection</li>
-              <li>Power and signal routing</li>
-              <li>Connectors and interface planning</li>
-              <li>Gerbers, BOM, pick-and-place files</li>
-              <li>Design review and correction</li>
-            </ul>
           </article>
 
-          <article class="service-detail-card reveal" style="--delay: 150ms;">
-            <div class="service-detail-copy">
+          <article id="embedded-firmware" class="service-feature reveal">
+            <div class="service-feature-media">
+              <img src="assets/engineering-lab-v1.png" alt="Firmware debugging setup with electronics instrumentation" />
+            </div>
+            <div class="service-feature-copy">
               <h3>Embedded Firmware</h3>
-              <p>Device-level firmware for microcontroller boards, sensor systems, communication interfaces, and prototype control logic.</p>
+              <p>Device-level firmware aligned with the board, peripherals, interfaces, and the real debug behavior of
+                the hardware.</p>
+              <div class="service-list-block">
+                <h4>What we do</h4>
+                <p>MCU firmware development, sensor integration, communication drivers, state handling, and
+                  bring-up-focused firmware support for STM32, ESP32, and similar platforms.</p>
+              </div>
+              <div class="service-list-block">
+                <h4>Deliverables</h4>
+                <ul class="service-feature-list">
+                  <li>Firmware source package</li>
+                  <li>Peripheral and interface drivers</li>
+                  <li>Bring-up notes</li>
+                  <li>Programming and validation guidance</li>
+                </ul>
+              </div>
+              <div class="service-list-block">
+                <h4>Best suited for</h4>
+                <div class="service-suited">
+                  <span>IoT hardware</span><span>R&amp;D groups</span><span>Prototype programs</span>
+                </div>
+              </div>
             </div>
-            <ul>
-              <li>STM32 firmware</li>
-              <li>ESP32 firmware</li>
-              <li>Arduino-compatible prototypes</li>
-              <li>Sensor integration</li>
-              <li>CAN, UART, SPI, I2C, USB</li>
-              <li>Basic control logic</li>
-              <li>Communication framing and device protocols</li>
-            </ul>
           </article>
 
-          <article class="service-detail-card reveal" style="--delay: 200ms;">
-            <div class="service-detail-copy">
-              <h3>Hardware Bring-Up</h3>
-              <p>Structured checks for assembled boards, unstable prototypes, flashing issues, bus failures, and hardware-firmware faults.</p>
+          <article id="prototyping" class="service-feature reveal">
+            <div class="service-feature-media">
+              <img src="assets/engineering-lab-v1.png" alt="Prototype bring-up bench for electronics engineering" />
             </div>
-            <ul>
-              <li>First power-on checks</li>
-              <li>Regulator validation</li>
-              <li>MCU flashing/debugging</li>
-              <li>Sensor and peripheral testing</li>
-              <li>Communication bus testing</li>
-              <li>Fault diagnosis</li>
-            </ul>
+            <div class="service-feature-copy">
+              <h3>Prototyping</h3>
+              <p>Support for turning designed hardware into a working prototype with an organized bring-up and debug
+                process.</p>
+              <div class="service-list-block">
+                <h4>What we do</h4>
+                <p>Assembly review, power-on sequencing, debug preparation, test planning, and issue tracking from
+                  first boards to stable prototype behavior.</p>
+              </div>
+              <div class="service-list-block">
+                <h4>Deliverables</h4>
+                <ul class="service-feature-list">
+                  <li>Bring-up checklist</li>
+                  <li>Prototype issue log</li>
+                  <li>Revision recommendations</li>
+                  <li>Validation notes</li>
+                </ul>
+              </div>
+              <div class="service-list-block">
+                <h4>Best suited for</h4>
+                <div class="service-suited">
+                  <span>Early hardware teams</span><span>Research labs</span><span>Custom device projects</span>
+                </div>
+              </div>
+            </div>
           </article>
 
-          <article class="service-detail-card reveal" style="--delay: 250ms;">
-            <div class="service-detail-copy">
-              <h3>Power Electronics &amp; Protection</h3>
-              <p>Practical power stages, switching, protection, sensing, and thermal decisions for embedded and field electronics.</p>
+          <article id="power-electronics" class="service-feature reveal">
+            <div class="service-feature-media">
+              <img src="assets/engineering-hero-v1.png" alt="Power and signal focused PCB engineering setup" />
             </div>
-            <ul>
-              <li>DC input protection</li>
-              <li>Buck converters</li>
-              <li>Load switching</li>
-              <li>Current sensing</li>
-              <li>Reverse polarity protection</li>
-              <li>Basic motor/power control boards</li>
-              <li>Thermal and current considerations</li>
-            </ul>
+            <div class="service-feature-copy">
+              <h3>Power Electronics</h3>
+              <p>Practical power path, protection, and interface design work for embedded systems that must operate
+                reliably under real electrical conditions.</p>
+              <div class="service-list-block">
+                <h4>What we do</h4>
+                <p>Power architecture, protection circuitry, sensing, switching, communication interfaces, and control
+                  electronics review for field and industrial use.</p>
+              </div>
+              <div class="service-list-block">
+                <h4>Deliverables</h4>
+                <ul class="service-feature-list">
+                  <li>Power stage schematics</li>
+                  <li>Protection and sensing circuits</li>
+                  <li>Interface review notes</li>
+                  <li>Validation targets</li>
+                </ul>
+              </div>
+              <div class="service-list-block">
+                <h4>Best suited for</h4>
+                <div class="service-suited">
+                  <span>Industrial controls</span><span>Robotics hardware</span><span>Field electronics</span>
+                </div>
+              </div>
+            </div>
           </article>
 
-          <article class="service-detail-card reveal" style="--delay: 300ms;">
-            <div class="service-detail-copy">
-              <h3>Prototype &amp; Manufacturing Support</h3>
-              <p>Clean handover material for assembly, vendor review, testing, and small-batch repeatability.</p>
+          <article id="manufacturing-support" class="service-feature reveal">
+            <div class="service-feature-media">
+              <img src="assets/manufacturing-bench-v1.png" alt="Manufacturing-ready PCB inspection setup" />
             </div>
-            <ul>
-              <li>BOM cleanup</li>
-              <li>DFM review</li>
-              <li>Assembly support</li>
-              <li>Vendor-ready production files</li>
-              <li>Test checklist</li>
-              <li>Small-batch handover</li>
-            </ul>
+            <div class="service-feature-copy">
+              <h3>Manufacturing Support</h3>
+              <p>Output preparation for assembly, inspection, vendor communication, and small-batch repeatability.</p>
+              <div class="service-list-block">
+                <h4>What we do</h4>
+                <p>DFM checks, BOM cleanup, assembly handover support, manufacturing file verification, and test planning
+                  so released outputs are usable outside the design environment.</p>
+              </div>
+              <div class="service-list-block">
+                <h4>Deliverables</h4>
+                <ul class="service-feature-list">
+                  <li>Manufacturing package</li>
+                  <li>Assembly reference outputs</li>
+                  <li>Procurement-ready BOM</li>
+                  <li>Test and inspection guidance</li>
+                </ul>
+              </div>
+              <div class="service-list-block">
+                <h4>Best suited for</h4>
+                <div class="service-suited">
+                  <span>Small-batch builds</span><span>Vendor handoff</span><span>Revision-controlled programs</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article id="technical-consulting" class="service-feature reveal">
+            <div class="service-feature-media">
+              <img src="assets/manufacturing-bench-v1.png" alt="Electronics design review desk with documentation and tooling" />
+            </div>
+            <div class="service-feature-copy">
+              <h3>Technical Consulting</h3>
+              <p>Focused engineering review when a team needs clarity on architecture, debug direction, or next-step
+                technical decisions.</p>
+              <div class="service-list-block">
+                <h4>What we do</h4>
+                <p>Review current hardware state, identify likely failure points, define validation priorities, and
+                  recommend an execution path that fits the team’s stage.</p>
+              </div>
+              <div class="service-list-block">
+                <h4>Deliverables</h4>
+                <ul class="service-feature-list">
+                  <li>Engineering review notes</li>
+                  <li>Priority issue breakdown</li>
+                  <li>Actionable next-step plan</li>
+                  <li>Scope definition for deeper work</li>
+                </ul>
+              </div>
+              <div class="service-list-block">
+                <h4>Best suited for</h4>
+                <div class="service-suited">
+                  <span>Founders</span><span>R&amp;D leads</span><span>Teams under schedule pressure</span>
+                </div>
+              </div>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="page-section svc-cta-final home-section-shell reveal reveal-scale" style="position: relative;">
-      <div class="corner-cross left-top"></div>
-      <div class="corner-cross right-top"></div>
-      <div class="svc-cta-final-inner">
-        <span class="hero-sys-label">NEXT STEP</span>
-        <h2>Bring the Project Brief</h2>
-        <p class="home-section-subtitle" style="margin: 0 auto 28px;">
-          Share the current stage, known issues, available files, and the result your team needs next.
-        </p>
-        <div class="hero-actions" style="justify-content: center;">
-          <a href="contact.html" class="btn-primary">Discuss a Project <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-          <a href="why-eonix.html" class="btn-secondary">Why Eonix <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    <section class="sys-section">
+      <div class="sys-container">
+        <div class="service-cta-note reveal">
+          <span class="sys-eyebrow">Next Step</span>
+          <h2 class="sys-title">Start With the Current Technical State</h2>
+          <p class="sys-subtitle">Share the board files, known issues, firmware scope, or production target. The initial
+            review stays grounded in the actual engineering condition of the project.</p>
+          <div class="hero-actions" style="margin-top: 24px;">
+            <a class="btn-primary" href="contact.html">Book Consultation <span class="btn-arrow"
+                aria-hidden="true">&rarr;</span></a>
+            <a class="btn-secondary" href="industries.html">View Industries <span class="btn-arrow"
+                aria-hidden="true">&rarr;</span></a>
+          </div>
         </div>
       </div>
     </section>
@@ -180,16 +298,22 @@
     <div class="footer-inner">
       <div class="footer-left">
         <p class="footer-brand">Eonix Systems</p>
-        <p class="footer-tagline">Embedded electronics engineering services.</p>
-        <p class="footer-tagline">PCB Design &middot; Firmware &middot; Bring-Up &middot; Prototyping</p>
+        <p class="footer-tagline">Embedded electronics engineering for PCB design, firmware integration, validation,
+          and manufacturing readiness.</p>
+        <div class="footer-contact">
+          <a href="mailto:business@eonixsystems.com">business@eonixsystems.com</a>
+          <span>Phone shared during consultation scheduling</span>
+          <a href="https://eonixsystems.com" target="_blank" rel="noopener noreferrer">eonixsystems.com</a>
+        </div>
       </div>
       <div class="footer-right">
         <div class="footer-links">
-          <a class="footer-link" href="index.html">Home</a>
           <a class="footer-link" href="services.html">Services</a>
           <a class="footer-link" href="industries.html">Industries</a>
           <a class="footer-link" href="why-eonix.html">Why Eonix</a>
           <a class="footer-link" href="contact.html">Contact</a>
+          <a class="footer-link" href="https://www.linkedin.com/company/eonix-systems/?viewAsMember=true" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
     </div>
@@ -202,4 +326,5 @@
   <script src="js/scroll-animations.js?v=604"></script>
   <script src="js/nav.js?v=609"></script>
 </body>
+
 </html>

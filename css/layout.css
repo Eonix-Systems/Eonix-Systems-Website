@@ -1,82 +1,60 @@
-/* =========================
-   PAGE SECTION (GLOBAL)
-   ========================= */
-
-.page-section {
-    max-width: 1500px;
-    padding-left: 48px;
-    padding-right: 48px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.page-section:not(.page-hero) {
-    margin-bottom: 64px;
-}
-
-@media (max-width: 768px) {
-    .page-section {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-}
-
-/* =========================
-   GLOBAL DEPTH & LIGHT
-   ========================= */
-
-.page-wrapper {
-    background:
-        linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.015),
-            transparent 30%);
-}
+/* =============================================================================
+   LAYOUT.CSS
+   Shared page spacing and hero rhythm.
+   ============================================================================= */
 
 .page-wrapper {
     padding-top: var(--nav-height);
     min-height: calc(100vh - var(--nav-height));
 }
 
-/* =========================
-   CONSISTENT PAGE HERO
-   All first-sections on every page use this class for
-   identical top padding / headline distance from the nav.
-   ========================= */
+.blueprint-wrapper {
+    position: relative;
+}
+
+.page-section {
+    width: min(1280px, calc(100% - 96px));
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-section:not(.page-hero) {
+    margin-bottom: 56px;
+}
 
 .page-hero {
-    min-height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 14vh;
-    padding-bottom: 20px;
-    position: relative;
-    text-align: center;
-    margin-bottom: 28px;
+    padding-top: 72px;
+    padding-bottom: 42px;
 }
 
-/* Vertical space between major page sections */
-.page-section+.home-tech-divider {
-    margin-top: -12px;
-    margin-bottom: 51px;
+.page-shell {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    box-shadow: var(--shadow-md);
 }
 
-.home-tech-divider + .page-section {
-    margin-top: 0;
-}
-
-@media (max-width: 768px) {
-    .page-section:not(.page-hero) {
-        margin-bottom: 46px;
+@media (max-width: 1024px) {
+    .page-section {
+        width: min(1280px, calc(100% - 48px));
     }
 
     .page-hero {
-        margin-bottom: 18px;
+        padding-top: 56px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-section {
+        width: calc(100% - 32px);
     }
 
-    .page-section+.home-tech-divider {
-        margin-top: -10px;
-        margin-bottom: 32px;
+    .page-section:not(.page-hero) {
+        margin-bottom: 40px;
+    }
+
+    .page-hero {
+        padding-top: 40px;
+        padding-bottom: 28px;
     }
 }

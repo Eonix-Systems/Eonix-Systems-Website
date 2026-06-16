@@ -33,7 +33,7 @@ function projectBriefHtml(data) {
     ["Phone", data.phone || "Not provided"],
     ["Company / Team", data.team || "Not provided"],
     ["Project Type", data.projectType],
-    ["Current Stage", data.currentStage],
+    ["Project Stage", data.currentStage],
     ["Timeline", data.timeline]
   ];
 

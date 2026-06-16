@@ -108,10 +108,5 @@ document.addEventListener("DOMContentLoaded", () => {
         initContainerObserver();
     }
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 15) initAll();
-    }, { passive: true });
-
-    // Fallback: already scrolled on refresh
-    if (window.scrollY > 15) initAll();
+    initAll();
 });

@@ -162,8 +162,7 @@
         dividers.forEach(function (d) { observer.observe(d); });
     };
 
-    window.addEventListener('scroll', () => { if (window.scrollY > 15) initDivObserver(); }, { passive: true });
-    if (window.scrollY > 15) initDivObserver();
+    initDivObserver();
   }
 
   // =============================================
@@ -214,8 +213,7 @@
         });
     };
 
-    window.addEventListener('scroll', () => { if (window.scrollY > 15) initCascObserver(); }, { passive: true });
-    if (window.scrollY > 15) initCascObserver();
+    initCascObserver();
   }
 
   // =============================================
