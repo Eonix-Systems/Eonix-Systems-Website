@@ -91,7 +91,7 @@
             </p>
           </div>
 
-          <form class="consultation-form" id="consultationForm" action="/api/contact" method="post"
+          <form class="consultation-form" id="consultationForm" action="https://www.eonixsystems.com/api/contact" method="post"
             enctype="multipart/form-data" autocomplete="off">
             <div class="form-grid">
               <label>
@@ -331,12 +331,23 @@
             body: formData
           });
 
-          if (!response.ok) throw new Error("Contact request failed");
+          if (!response.ok) {
+            let message = "We could not submit the form right now. Please email business@eonixsystems.com directly with your project details.";
+            try {
+              const result = await response.json();
+              if (result?.error) message = result.error;
+            } catch (error) {
+              if (response.status === 413) {
+                message = "Please attach no more than 5 files and keep the total upload under 4 MB.";
+              }
+            }
+            throw new Error(message);
+          }
 
           form.reset();
           setStatus("Submitted. Thank you for contacting Eonix Systems. The engineering brief has been received.", "success");
         } catch (error) {
-          setStatus("We could not submit the form right now. Please email business@eonixsystems.com directly with your project details.", "error");
+          setStatus(error.message || "We could not submit the form right now. Please email business@eonixsystems.com directly with your project details.", "error");
         } finally {
           submitButton.disabled = false;
           submitButton.textContent = "Send Technical Brief";

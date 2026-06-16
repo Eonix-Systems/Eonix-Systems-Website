@@ -4,6 +4,12 @@ const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
 const MAX_FILE_COUNT = 5;
+const ALLOWED_ORIGINS = new Set([
+  "https://eonixsystems.com",
+  "https://www.eonixsystems.com",
+  "http://localhost:5500",
+  "http://127.0.0.1:5500"
+]);
 
 function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode;
@@ -26,6 +32,18 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+function setCors(req, res) {
+  const origin = req.headers?.origin;
+
+  if (ALLOWED_ORIGINS.has(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+  }
+
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
 
 function formatBytes(bytes) {
@@ -257,6 +275,13 @@ async function readRequestBody(req) {
 }
 
 module.exports = async function handler(req, res) {
+  setCors(req, res);
+
+  if (req.method === "OPTIONS") {
+    res.statusCode = 204;
+    return res.end();
+  }
+
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return sendJson(res, 405, { error: "Method not allowed" });
